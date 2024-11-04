@@ -1,4 +1,5 @@
 # PetsCopFrontMulti
+This is the school's multidisciplinary project called PetsCop that tries to solve a social problem
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.3.
 
