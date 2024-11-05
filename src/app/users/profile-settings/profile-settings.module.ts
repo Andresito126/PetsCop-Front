@@ -8,6 +8,9 @@ import { FormProfileUserComponent } from './form-profile-user/form-profile-user.
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    FormProfileUserComponent
   ]
 })
 export class ProfileSettingsModule { }
