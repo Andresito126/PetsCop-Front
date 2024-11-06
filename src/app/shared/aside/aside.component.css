@@ -1,0 +1,7 @@
+.asideColor{
+    background: linear-gradient( #0575A6 0%, #2682AA 100%);
+}
+
+.aside-li_hover:hover{
+    background-color: #136A93;
+}
