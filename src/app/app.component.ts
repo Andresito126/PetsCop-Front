@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IUserDataSerialization } from './users/models/iuser-data-serialization';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'PetsCop-front-multi';
+  f = 'kevin'
+  g = 'Morales Pérez'
+  h = '2024-11-05'
+  i = '9612493893'
+
+  imprimirMensaje(objet: IUserDataSerialization){
+    console.log(objet)
+  }
 }

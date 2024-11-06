@@ -7,19 +7,39 @@
   <div class="container-form">
     <div class="container-input-firt-name">
       <label for="first-name">Primer nombre</label>
-      <input type="text" id="first-name" />
+      <input 
+        type="text"
+        id="first-name"
+        [(ngModel)]="first_name"
+        (ngModelChange)="emitDataUser()"
+      />
     </div>
     <div class="container-input-last-name">
       <label for="last-name">Apellidos</label>
-      <input type="text" id="last-name" />
+      <input
+        type="text"
+        id="last-name"
+        [(ngModel)]="last_name"
+        (ngModelChange)="emitDataUser()"
+      />
     </div>
     <div class="container-input-birth-date">
       <label for="birth-date">Fecha de nacimiento</label>
-      <input type="text" id="birth-date" />
+      <input
+        type="date"
+        id="birth-date"
+        [(ngModel)]="date_birth"
+        (ngModelChange)="emitDataUser()"
+      />
     </div>
     <div class="container-input-phone-number">
       <label for="phone-number">Número de teléfono</label>
-      <input type="text" id="phone-number" />
+      <input
+        type="text"
+        id="phone-number"
+        [(ngModel)]="phone_number"
+        (ngModelChange)="emitDataUser()"
+      />
     </div>
   </div>
 </div>
