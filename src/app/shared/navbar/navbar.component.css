@@ -1,0 +1,21 @@
+.navColor{
+    background: linear-gradient( #0575A6 0%, #2682AA 100%);
+}
+
+.logo-nav-side {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    width: 100px;           
+    height: 100px;    
+  }
+.logo-nav-side_img {
+    max-width: 100%;     
+    max-height: 100%;     
+    object-fit: contain;   
+}
+
+.navButton-color{
+    background-color: #ece7f1;
+    color: #9ca3af;
+}
