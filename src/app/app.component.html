@@ -1,10 +1,11 @@
-<nav>
-<app-navbar></app-navbar>
-</nav>
-<aside>
-<app-aside></app-aside>
-</aside>
-
-<main>
+<nav class="app-navbar" >
+    <app-navbar></app-navbar>
+  </nav>
+  <div class="app-container">
+      <app-aside class="app-aside"></app-aside>
+      <main class="app-main">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
     
-</main>
+  
