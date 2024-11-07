@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IUserDataSerialization } from '../../models/iuser-data-serialization';
 
 @Component({
   selector: 'app-profile-settings-page',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './profile-settings-page.component.css'
 })
 export class ProfileSettingsPageComponent {
+  f = 'kevin'
+  g = 'Morales Pérez'
+  h = '2024-11-05'
+  i = '9612493893'
 
+  imprimirMensaje(objet: IUserDataSerialization){
+    console.log(objet)
+  }
 }

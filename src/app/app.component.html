@@ -1,21 +1,10 @@
-<nav>
-<app-navbar></app-navbar>
+<nav class="app-navbar" >
+  <app-navbar></app-navbar>
 </nav>
-<aside>
-<app-aside></app-aside>
-</aside>
-
-<main>
-    
-<form-profile-user
-[first_name]="f"
-[last_name]="g"
-[date_birth]="h"
-[phone_number]="i"
-(data_user)="imprimirMensaje($event)"
-/>
-
-<app-profile-settings-page></app-profile-settings-page>
-</main>
-
-
+<div class="app-container">
+    <app-aside class="app-aside"></app-aside>
+    <main class="app-main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  
