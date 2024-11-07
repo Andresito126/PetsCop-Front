@@ -11,6 +11,8 @@ export class ProfileSettingsPageComponent {
   g = 'Morales Pérez'
   h = '2024-11-05'
   i = '9612493893'
+  j= 'kevincito@gmail.com'
+  k= 'Jejeto'
 
   imprimirMensaje(objet: IUserDataSerialization){
     console.log(objet)
