@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AsideComponent } from "../aside/aside.component";
 import { SidebarComponent } from "../sidebar/sidebar.component";
 import { PostTypeModalComponent } from "../modals/post-type-modal/post-type-modal.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +17,8 @@ export class NavbarComponent {
   menuOpenTypePost = false;
   showModalTypePost = false;
   menuOpen = false; 
+
+  constructor(private router: Router) {}
 
   //modals
 
@@ -34,11 +37,14 @@ export class NavbarComponent {
   handlePostTypeSelection(postType: 'adopcion' | 'perdida') {
     this.closePostTypeModal();
     if (postType === 'adopcion') {
+      this.router.navigate(['/nuevaPublicacion/adopcion']);
     } else if (postType === 'perdida') {
+      this.router.navigate(['/nuevaPublicacion/perdida']);
     }
+  }
   }
 
   //methods
 
 
-}
+
