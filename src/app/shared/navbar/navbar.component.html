@@ -1,0 +1,34 @@
+<nav class="navColor p-4 flex items-center justify-between max-h-28">
+  <div class="flex items-center space-x-2">
+    <div class="logo-nav-side">
+      <img class="logo-nav-side h-10" src="/assets/nav-aside/logoPet.svg" alt="Logo">
+    </div>
+    <span class="text-white text-xl font-bold">PETS COP</span>
+  </div>
+
+  <div class="flex items-center space-x-4 mx-4">
+    <input
+      type="text"
+      placeholder="¿Qué es lo que quieres buscar?"
+      class="navButton-color w-96 p-2 rounded-full  focus:outline-none"
+    />
+
+    <button
+      class=" navButton-color w-64 py-2 px-4 rounded-full flex items-center space-x-2 "
+    >
+      <img src="/assets/nav-aside/addPost.svg" alt="Añadir publicación" >
+      <span>Añadir una publicación</span>
+    </button>
+  </div>
+
+  <div class="flex items-center space-x-4">
+    <button class="text-white hover:text-gray-200">
+      <img src="/assets/nav-aside/startChat.svg" alt="Iniciar chat" >
+    </button>
+    <button (click)="toggleMenu()" class="text-white hover:text-gray-200">
+      <img src="/assets/nav-aside/hamburgerNav.svg" alt="Menú" [ngClass]="{'rotate-90': menuOpen}" class="transition-transform duration-300">
+    </button>
+  </div>
+</nav>
+
+<app-sidebar [menuOpen]="menuOpen" (menuToggle)="toggleMenu()"></app-sidebar>

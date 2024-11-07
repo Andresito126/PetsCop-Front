@@ -1,0 +1,7 @@
+.sideBar-color{
+    background: linear-gradient( #0575A6 0%, #2682AA 100%);
+    opacity: 0.8;
+}
+.side-li_hover:hover {
+    background-color: #136A93;
+}
