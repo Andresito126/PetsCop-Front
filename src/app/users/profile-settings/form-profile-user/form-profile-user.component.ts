@@ -14,6 +14,7 @@ export class FormProfileUserComponent {
   constructor(private datePipe: DatePipe, private userConfigService: UserConfigurationService){}
 
   // Variables
+  @Input() id_user: number=1;
   @Input() profileImageUrl: string = '';
   @Input() first_name: string = '';
   @Input() last_name: string = '';
@@ -32,6 +33,7 @@ export class FormProfileUserComponent {
   // Common methods
   emitDataUser(): void {
     this.data_user.emit({
+      id_user:this.id_user,
       first_name: this.first_name,
       last_name: this.last_name,
       birth_date: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
@@ -60,6 +62,7 @@ export class FormProfileUserComponent {
 
   submitUserData(): void {
     const userData: IUserDataSerialization = {
+      id_user: this.id_user,
       first_name: this.first_name,
       last_name: this.last_name,
       birth_date: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',

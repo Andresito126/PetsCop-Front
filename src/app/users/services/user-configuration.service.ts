@@ -13,8 +13,7 @@ export class UserConfigurationService {
 
   constructor(private _http: HttpClient) { }
 
-    updateNormalUser(normalUser: IUserDataSerialization): Observable<IUserDataSerialization> {
-                                                                      //falta el id             .idNormalUser 
-      return this._http.put<IUserDataSerialization>(`${this._apiUrl}/edit_profile/${normalUser}`, normalUser);
+    updateNormalUser(user: IUserDataSerialization): Observable<IUserDataSerialization> {
+      return this._http.put<IUserDataSerialization>(`${this._apiUrl}/edit_profile/${user.id_user}`, user);
   }
 }
