@@ -15,11 +15,23 @@ export class Step1Component {
   };
 
   addCharacteristic() {
-    this.pet.characteristics.push('');
+    if(this.pet.characteristics[this.pet.characteristics.length-1] !== ""){
+      this.pet.characteristics.push('');
+    } else {
+      alert('Debes llenar el input anterior')
+    }
+    
+    console.log(this.pet.characteristics)
   }
 
   onSubmit() {
     console.log('Datos de la mascota:', this.pet);
   }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
+  }
+
+
 
 }

@@ -1,1 +1,87 @@
-<p>step2 works!</p>
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center">
+    <div class="w-full sm:w-1/2">
+      <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl">Datos de perdida</h1>
+      <form action="#" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"> 
+  
+
+        <div>
+            <label for="zip-code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Código postal</label>
+            <input 
+              name="zip-code"   
+              type="text"
+              id="zip-code"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
+              required 
+            />
+          </div>
+
+          <div>
+            <label for="state" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Estado</label>
+            <input 
+              name="state"   
+              type="text"
+              id="state"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
+              required
+              disabled
+            />
+          </div>
+  
+        <div>
+          <label for="municipality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Municipio</label>
+          <input 
+            name="municipality"   
+            type="text"
+            id="municipality"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
+            required 
+            disabled
+          />
+        </div>
+  
+        <div>
+          <label for="cologne" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Colonia</label>
+          <select id="cologne" name="cologne" class="div-select-pet bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
+            <option value="labrador">col 1</option>
+            <option value="pastor">col 2</option>
+            <option value="bulldog">col 3</option>
+          </select>
+        </div>
+
+       
+  
+        <div>
+          <label for="date-lost" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Fecha de perdida</label>
+          <input  
+            name="date_lost"
+            type="date"
+            id="date-lost"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
+            required 
+          />
+        </div>
+
+        <br>
+        
+        <button
+          type="submit"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white "
+        >
+          Siguiente
+        </button>
+  
+        <button
+          type="reset"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+        >
+          Anterior
+        </button>
+  
+        <br>
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots2.svg" alt="">
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,1 +1,44 @@
-<p>step3 works!</p>
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center">
+  <div class="w-full sm:w-2/3">
+    <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6">Fotos de la mascota</h1>
+
+    <form (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 p-4 shadow-lg rounded-lg bg-white">
+     <!-- img main -->
+      <label class="block">
+        <input type="file" accept="image/*" (change)="onFileSelect($event, 'main')" class="hidden" #mainFileInput>
+        <div class="w-[350px] h-[375px] flex items-center justify-center border rounded-lg cursor-pointer bg-gray-50">
+          <img *ngIf="mainPhoto; else mainIcon" [src]="mainPhoto" alt="Foto principal de la mascota" class="object-cover w-full h-full rounded-lg">
+          <ng-template #mainIcon>
+            <img [src]="mainPlaceholderIcon" alt="Ícono de foto principal" class="w-16 h-16 text-gray-500">
+          </ng-template>
+        </div>
+      </label>
+
+      <!-- demas img -->
+      <div class="grid grid-cols-2 gap-4">
+        <ng-container *ngFor="let icon of additionalPlaceholderIcons; let i = index">
+          <label class="block">
+            <input type="file" accept="image/*" (change)="onFileSelect($event, i)" class="hidden">
+            <div class="w-[180px] h-[180px] flex items-center justify-center border rounded-lg cursor-pointer bg-gray-50">
+              <img *ngIf="additionalPhotos[i]; else additionalIcon" [src]="additionalPhotos[i]" alt="Foto secundaria {{i + 1}}" class="object-cover w-full h-full rounded-lg">
+              <ng-template #additionalIcon>
+                <img [src]="icon" alt="Ícono de foto secundaria {{i + 1}}" class="w-8 h-8 text-gray-500">
+              </ng-template>
+            </div>
+          </label>
+        </ng-container>
+      </div>
+    </form>
+
+    <button type="submit" class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4">
+      Enviar
+    </button>
+
+    <button type="reset" class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white">
+      Anterior
+    </button>
+    <div class="flex justify-center mt-4">
+      <img src="/assets/forms/dots3.svg" alt="">
+    </div>
+  </div>
+</div>

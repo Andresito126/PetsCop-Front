@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LostPageComponent {
 
+
+  //metofos
+  onSubmitLoss(event: any) {
+    console.log('Formulario de adopción enviado', event);
+    
+  }
+
 }

@@ -6,5 +6,19 @@ import { Component } from '@angular/core';
   styleUrl: './step2.component.css'
 })
 export class Step2Component {
+  pet = {
+    type: 'perro',
+    name: '',
+    breed: '',
+    age: null,
+    characteristics: ['']
+  };
 
+  addCharacteristic() {
+    this.pet.characteristics.push('');
+  }
+
+  onSubmit() {
+    console.log('Datos de la mascota:', this.pet);
+  }
 }

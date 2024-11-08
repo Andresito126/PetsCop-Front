@@ -1,79 +1,128 @@
-<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center">
-    <div class="w-full sm:w-1/2">
-      <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl">Datos básicos de la mascota</h1>
-      <form action="#" class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"> 
-  
-        <div>
-          <label for="pet-type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tipo de mascota</label>
-          <select id="pet-type" name="pet-type" class="div-select-pet bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-            <option value="perro">Perro</option>
-            <option value="gato">Gato</option>
-            <option value="ave">Ave</option>
-          </select>
-        </div>
-  
-        <div>
-          <label for="pet-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre del cachorro</label>
-          <input 
-            name="pet-name"   
-            type="text"
-            id="pet-name"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
-            required 
-          />
-        </div>
-  
-        <div>
-          <label for="pet-breed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Raza</label>
-          <select id="pet-breed" name="pet-breed" class="div-select-pet bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-            <option value="labrador">Labrador</option>
-            <option value="pastor">Pastor Alemán</option>
-            <option value="bulldog">Bulldog</option>
-          </select>
-        </div>
-  
-        <div>
-          <label for="pet-age" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Edad</label>
-          <input  
-            name="pet-age"
-            type="number"
-            id="pet-age"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
-            required 
-          />
-        </div>
-  
-        <div class="flex items-center space-x-4 justify-center mt-6">
-          <hr class="flex-grow">
-          <p class="text-center text-lg font-medium">Características físicas principales</p>
-          <hr class="flex-grow">
-        </div> 
-  
-        <div *ngFor="let characteristic of pet.characteristics; let i = index" class="mb-2">
-          <input [(ngModel)]="pet.characteristics[i]" name="characteristic{{i}}" placeholder="Añade una característica" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-        </div>
-        <button type="button" (click)="addCharacteristic()" class="text-blue-600 text-sm font-medium mt-2">+ Agregar nueva característica</button>
-  
-        <br>
-        <button
-          type="submit"
-          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+<div
+  class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center"
+>
+  <div class="w-full sm:w-1/2">
+    <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl">
+      Datos básicos de la mascota
+    </h1>
+    <form
+      action="#"
+      class="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+    >
+      <div>
+        <label
+          for="pet-type"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >Tipo de mascota</label
         >
-          Guardar cambios
-        </button>
-  
-        <button
-          type="reset"
-          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+        <select
+          id="pet-type"
+          name="pet-type"
+          class="div-select-pet bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
         >
-          Anterior
-        </button>
-  
-        <br>
-        <div class="flex justify-center mt-4">
-          <img src="/assets/forms/dots1.svg" alt="">
-        </div>
-      </form>
-    </div>
+          <option value="perro">Perro</option>
+          <option value="gato">Gato</option>
+          <option value="ave">Ave</option>
+        </select>
+      </div>
+
+      <div>
+        <label
+          for="pet-name"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >Nombre del cachorro</label
+        >
+        <input
+          name="pet-name"
+          type="text"
+          id="pet-name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          required
+        />
+      </div>
+
+      <div>
+        <label
+          for="pet-breed"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >Raza</label
+        >
+        <select
+          id="pet-breed"
+          name="pet-breed"
+          class="div-select-pet bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        >
+          <option value="labrador">Labrador</option>
+          <option value="pastor">Pastor Alemán</option>
+          <option value="bulldog">Bulldog</option>
+        </select>
+      </div>
+
+      <div>
+        <label
+          for="pet-age"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+          >Edad</label
+        >
+        <input
+          name="pet-age"
+          type="number"
+          id="pet-age"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          required
+        />
+      </div>
+
+      <div class="flex items-center space-x-4 justify-center mt-6">
+        <hr class="flex-grow" />
+        <p class="text-center text-lg font-medium">
+          Características físicas principales
+        </p>
+        <hr class="flex-grow" />
+      </div>
+
+      <div
+        *ngFor="
+          let characteristic of pet.characteristics;
+          let i = index;
+          trackBy: trackByIndex
+        "
+        class="mb-2"
+      >
+        <input
+          [(ngModel)]="pet.characteristics[i]"
+          name="characteristic{{ i }}"
+          placeholder="Añade una característica"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+        />
+      </div>
+      <button
+        type="button"
+        (click)="addCharacteristic()"
+        class="text-blue-600 text-sm font-medium mt-2"
+      >
+        + Agregar nueva característica
+      </button>
+
+      <br /><br />
+      <button
+        type="submit"
+        class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+      >
+        Siguiente
+      </button>
+
+      <button
+        type="reset"
+        class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+      >
+        Anterior
+      </button>
+
+      <br />
+      <div class="flex justify-center mt-4">
+        <img src="/assets/forms/dots1.svg" alt="" />
+      </div>
+    </form>
   </div>
-  
+</div>
