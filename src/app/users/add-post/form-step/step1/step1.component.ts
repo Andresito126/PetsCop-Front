@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-step1',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './step1.component.css'
 })
 export class Step1Component {
+  @Output() nextStep = new EventEmitter<void>();
+
   pet = {
     type: 'perro',
     name: '',
@@ -31,6 +33,11 @@ export class Step1Component {
   trackByIndex(index: number, obj: any): any {
     return index;
   }
+
+  onNext() {
+    this.nextStep.emit();
+  }
+
 
 
 

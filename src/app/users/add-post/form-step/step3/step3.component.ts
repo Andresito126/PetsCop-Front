@@ -7,6 +7,7 @@ import { Component, EventEmitter,Output, Input } from '@angular/core';
 })
 export class Step3Component {
   //variables
+  @Output() previousStep= new EventEmitter<void>();
   @Input() mainImage: string = ''; 
   @Input() additionalImages: string[] = [
   ]; 
@@ -47,5 +48,9 @@ export class Step3Component {
   isAdoptionForm(): boolean {
     //ira logica de diferenciacion
     return true;  
+  }
+
+  onBack() {
+    this.previousStep.emit();
   }
 }
