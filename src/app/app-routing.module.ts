@@ -8,7 +8,7 @@ const routes: Routes = [
 
 
   //del  login
-  {path:'', component:RegisterComponent},
+  {path:'registro', component:RegisterComponent},
   {path:'login', component:LoginComponent}
 ];
 
