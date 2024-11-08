@@ -3,7 +3,5 @@ export interface IUserDataSerialization {
     last_name: string;
     birth_date: string;
     phone_number: string;
-    email:string;
-    password:string;
-    profileImageUrl:string;
+    profileImageUrl:string
 }

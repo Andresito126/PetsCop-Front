@@ -1,6 +1,8 @@
 import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { IUserDataSerialization } from '../../models/iuser-data-serialization';
+import { IuserCredentialsSerialization } from '../../models/iuser-credentials-serialization';
 import { DatePipe } from '@angular/common';
+import { UserConfigurationService } from '../../services/user-configuration.service';
 
 @Component({
   selector: 'form-profile-user',
@@ -9,7 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class FormProfileUserComponent {
 
-  constructor(private datePipe: DatePipe){}
+  constructor(private datePipe: DatePipe, private userConfigService: UserConfigurationService){}
 
   // Variables
   @Input() profileImageUrl: string = '';
@@ -19,12 +21,9 @@ export class FormProfileUserComponent {
   @Input() phone_number: string = '';
   @Input() email: string = '';
   @Input() password: string = '';
+  @Output() data_user = new EventEmitter<IUserDataSerialization>();
+  @Output() credential_user = new EventEmitter<IuserCredentialsSerialization>
 
-  @Output()
-  data_user = new EventEmitter<IUserDataSerialization>
-
-  @Output()
-  credential_user = new EventEmitter<IUserDataSerialization>
   
 
   // Methods to consume the service 
@@ -37,21 +36,14 @@ export class FormProfileUserComponent {
       last_name: this.last_name,
       birth_date: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
       phone_number: this.phone_number,
-      email:this.email,
-      password: this.password,
       profileImageUrl: this.profileImageUrl
     })
   }
 
   emitCredentialUser(): void {
-    this.data_user.emit({
-      first_name: this.first_name,
-      last_name: this.last_name,
-      birth_date: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
-      phone_number: this.phone_number,
+    this.credential_user.emit({
       email:this.email,
       password: this.password,
-      profileImageUrl: this.profileImageUrl
     })
   }
 
@@ -65,4 +57,24 @@ export class FormProfileUserComponent {
       reader.readAsDataURL(file);
     }
   }
+
+  submitUserData(): void {
+    const userData: IUserDataSerialization = {
+      first_name: this.first_name,
+      last_name: this.last_name,
+      birth_date: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
+      phone_number: this.phone_number,
+      profileImageUrl: this.profileImageUrl,
+    };
+
+    this.userConfigService.updateNormalUser(userData).subscribe(
+      updatedUser => {
+        this.data_user.emit(updatedUser);  
+      },
+      error => {
+        console.error('Error al actualizar el usuario', error);
+      }
+    );
+  }
+  
 }

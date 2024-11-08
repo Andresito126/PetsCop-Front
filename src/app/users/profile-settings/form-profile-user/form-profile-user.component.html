@@ -107,7 +107,7 @@
             type="text"
             id="gmail"
             [(ngModel)]="email"
-            (ngModelChange)="emitDataUser()"
+            (ngModelChange)="emitCredentialUser()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{email}}" required />
         </div>
 
@@ -118,7 +118,7 @@
             type="text"
             id="password"
             [(ngModel)]="password"
-            (ngModelChange)="emitDataUser()"
+            (ngModelChange)="emitCredentialUser()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{password}}" required />
         </div>
         <br>
