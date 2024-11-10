@@ -2,7 +2,7 @@
   <div class="w-full sm:w-2/3">
     <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6">Fotos de la mascota</h1>
 
-    <form (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 p-4 shadow-lg rounded-lg bg-white">
+    
      <!-- img main -->
       <label class="block">
         <input type="file" accept="image/*" (change)="onFileSelect($event, 'main')" class="hidden" #mainFileInput>
@@ -28,7 +28,7 @@
           </label>
         </ng-container>
       </div>
-    </form>
+   
 
     <button type="submit" class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4">
       Enviar

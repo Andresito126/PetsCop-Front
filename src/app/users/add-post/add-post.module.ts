@@ -5,7 +5,7 @@ import { AdoptionPageComponent } from './pages/adoption-page/adoption-page.compo
 import { Step2Component } from './form-step/step2/step2.component';
 import { Step3Component } from './form-step/step3/step3.component';
 import { Step1Component } from './form-step/step1/step1.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
     Step3Component
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     FormsModule
   ]
