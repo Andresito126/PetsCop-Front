@@ -9,8 +9,7 @@ export class Step3Component {
   //variables
   @Output() previousStep= new EventEmitter<void>();
   @Input() mainImage: string = ''; 
-  @Input() additionalImages: string[] = [
-  ]; 
+  @Input() additionalImages: string[] = []; 
   @Input() mainPlaceholderIcon: string = '';  
   @Input() additionalPlaceholderIcons: string[] = [];
   mainPhoto: string | ArrayBuffer | null = this.mainImage;

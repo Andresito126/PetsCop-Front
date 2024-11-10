@@ -1,6 +1,5 @@
-<app-step1 *ngIf="currentStep === 1" (nextStep)="goToNextStep()"></app-step1>
-<app-step2 *ngIf="currentStep === 2" (nextStep)="goToNextStep()" (previousStep)="goToPreviousStep()"></app-step2>
-<app-step3 *ngIf="currentStep === 3" (nextStep)="goToNextStep()" (previousStep)="goToPreviousStep()"
+<app-step1 ></app-step1>
+<app-step3 
 [mainImage]="''"
 [additionalImages]="[]"
 [mainPlaceholderIcon]="'/assets/forms/dog2.svg'"

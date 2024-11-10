@@ -6,7 +6,9 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrl: './step1.component.css'
 })
 export class Step1Component {
+  currentStep: number = 1;
   @Output() nextStep = new EventEmitter<void>();
+  @Output() previousStep= new EventEmitter<void>();
 
   pet = {
     type: 'perro',
@@ -34,8 +36,17 @@ export class Step1Component {
     return index;
   }
 
+  //siguiente y regreso de los formularios
   onNext() {
-    this.nextStep.emit();
+    if (this.currentStep < 3) {
+      this.currentStep++;
+    }
+  }
+
+  onBack() {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
   }
 
 

@@ -17,16 +17,6 @@ export class LostPageComponent {
     
   }
 
-  goToNextStep() {
-    if (this.currentStep < 3) {
-      this.currentStep++;
-    }
-  }
 
-  goToPreviousStep() {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-    }
-  }
 
 }
