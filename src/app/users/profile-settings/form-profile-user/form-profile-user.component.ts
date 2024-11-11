@@ -14,14 +14,15 @@ export class FormProfileUserComponent implements OnInit{
   constructor(private datePipe: DatePipe, private userConfigService: UserConfigurationService){}
 
   // Variables
-  @Input() id_user: number=1;
   @Input() profileImageUrl: string = '';
-  @Input() first_name: string = '';
-  @Input() last_name: string = '';
-  @Input() date_birth: string = '';
-  @Input() phone_number: string = '';
-  @Input() email: string = '';
-  @Input() password: string = '';
+  
+  // @Input() id_user: number=1;
+  // @Input() first_name: string = '';
+  // @Input() last_name: string = '';
+  // @Input() date_birth: string = '';
+  // @Input() phone_number: string = '';
+  // @Input() email: string = '';
+  // @Input() password: string = '';
   @Output() data_user = new EventEmitter<IUserDataSerialization>();
   @Output() credential_user = new EventEmitter<IuserCredentialsSerialization>
 
@@ -93,12 +94,12 @@ export class FormProfileUserComponent implements OnInit{
   }
 
   emitCredentialUser(): void {
-    /*
-    this.credential_user.emit({
-      email:this.email,
-      password: this.password,
-    })
-      */
+    // /*
+    // this.credential_user.emit({
+    //   email:this.email,
+    //   password: this.password,
+    // })
+    //   */
   }
 
 
@@ -112,24 +113,24 @@ export class FormProfileUserComponent implements OnInit{
     }
   }
 
-  submitUserData(): void {
-    const userData: IUserDataSerialization = {
-      id_user_normally: 0,
-      id_user: this.id_user,
-      first_name: this.first_name,
-      last_name: this.last_name,
-      birthdate: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
-      profile_picture: this.profileImageUrl,
-    };
+  // submitUserData(): void {
+  //   const userData: IUserDataSerialization = {
+  //     id_user_normally: 0,
+  //     id_user: this.id_user,
+  //     first_name: this.first_name,
+  //     last_name: this.last_name,
+  //     birthdate: this.datePipe.transform(this.date_birth, 'yyyy-MM-dd') || '',
+  //     profile_picture: this.profileImageUrl,
+  //   };
 
-    this.userConfigService.updateNormalUser(userData).subscribe(
-      updatedUser => {
-        this.data_user.emit(updatedUser);  
-      },
-      error => {
-        console.error('Error al actualizar el usuario', error);
-      }
-    );
-  }
+  //   this.userConfigService.updateNormalUser(userData).subscribe(
+  //     updatedUser => {
+  //       this.data_user.emit(updatedUser);  
+  //     },
+  //     error => {
+  //       console.error('Error al actualizar el usuario', error);
+  //     }
+  //   );
+  // }
   
 }

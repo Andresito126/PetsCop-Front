@@ -35,7 +35,7 @@
             id="first-name"
             [(ngModel)]="user_normaly.first_name"
             (ngModelChange)="emitDataUser()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{first_name}}" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_normaly.first_name}}" required />
         </div>
 
         <div>
@@ -46,7 +46,7 @@
             id="last-name"
             [(ngModel)]="user_normaly.last_name"
             (ngModelChange)="emitDataUser()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{last_name}}" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_normaly.last_name}}" required />
         </div>
 
         <div>
@@ -59,7 +59,7 @@
             [(ngModel)]="user_normaly.birthdate"
             (ngModelChange)="emitDataUser()"
             disabled=""
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{date_birth}}" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_normaly.birthdate}}" required />
         </div>
 
         <br>
@@ -102,18 +102,18 @@
             [(ngModel)]="user_credential.email"
             (ngModelChange)="emitCredentialUser()"
             disabled=""
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{email}}" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_credential.email}}" required />
         </div>
 
         <div>
           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Contraseña</label>
           <input 
             name="password"   
-            type="text"
+            type="password"
             id="password"
             [(ngModel)]="user_credential.password_user"
             (ngModelChange)="emitCredentialUser()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="contraseña" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_credential.password_user}}" required />
         </div>
         <br>
 
