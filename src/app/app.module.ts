@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
 import { UsersModule } from './users/users.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UsersModule } from './users/users.module';
     AppRoutingModule,
     UsersModule,
     NavbarComponent,
-    AsideComponent
+    AsideComponent,
+    HttpClientModule
   ],
    
   providers: [],
