@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IUserDataSerialization } from '../../models/iuser-data-serialization';
+import { IuserCredentialsSerialization } from '../../models/iuser-credentials-serialization';
 
 @Component({
   selector: 'app-profile-settings-page',

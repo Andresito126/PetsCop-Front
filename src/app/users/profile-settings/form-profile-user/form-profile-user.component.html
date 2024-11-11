@@ -11,7 +11,7 @@
           <label for="profile-picture" class="cursor-pointer relative">
             <img
               class="w-20 h-20 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-              [src]="profileImageUrl"
+              [src]="user_normaly.profile_picture"
               alt="Photo"
               id="profile-image"
             />
@@ -33,7 +33,7 @@
             name="firstName"   
             type="text"
             id="first-name"
-            [(ngModel)]="first_name"
+            [(ngModel)]="user_normaly.first_name"
             (ngModelChange)="emitDataUser()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{first_name}}" required />
         </div>
@@ -44,37 +44,30 @@
             name="last-name"   
             type="text"
             id="last-name"
-            [(ngModel)]="last_name"
+            [(ngModel)]="user_normaly.last_name"
             (ngModelChange)="emitDataUser()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{last_name}}" required />
         </div>
 
         <div>
           <label for="birth-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Fecha de nacimiento</label>
+          <p>{{user_normaly.birthdate}}</p>
           <input 
             name="date_birth"
             type="date"
             id="birth-date"
-            [(ngModel)]="date_birth"
+            [(ngModel)]="user_normaly.birthdate"
             (ngModelChange)="emitDataUser()"
+            disabled=""
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{date_birth}}" required />
         </div>
 
-        <div>
-          <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Número de teléfono</label>
-          <input  
-            name="phone_number"
-            type="text"
-            id="phone-number"
-            [(ngModel)]="phone_number"
-            (ngModelChange)="emitDataUser()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{phone_number}}" required />
-        </div>
         <br>
 
         <button
-          type="submit"
+          type="button"
           class="div-submit_color block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+          (click)="editProfile()"
         >
           Guardar cambios
         </button>
@@ -106,8 +99,9 @@
             name="gmail"   
             type="text"
             id="gmail"
-            [(ngModel)]="email"
+            [(ngModel)]="user_credential.email"
             (ngModelChange)="emitCredentialUser()"
+            disabled=""
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{email}}" required />
         </div>
 
@@ -117,15 +111,16 @@
             name="password"   
             type="text"
             id="password"
-            [(ngModel)]="password"
+            [(ngModel)]="user_credential.password_user"
             (ngModelChange)="emitCredentialUser()"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{password}}" required />
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="contraseña" required />
         </div>
         <br>
 
         <button
-          type="submit"
+          type="button"
           class="div-submit_color block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
+          (click)="editPassword()"
         >
           Actualizar credenciales
         </button>

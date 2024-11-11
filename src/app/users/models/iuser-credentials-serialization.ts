@@ -1,4 +1,6 @@
 export interface IuserCredentialsSerialization {
+    id_user: number;
     email:string;
-    password:string;
+    password_user:string;
+    type_user:string;
 }
