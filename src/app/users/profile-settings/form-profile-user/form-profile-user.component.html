@@ -47,11 +47,11 @@
             [(ngModel)]="user_normaly.last_name"
             (ngModelChange)="emitDataUser()"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:border-gray-5000 dark:placeholder-gray-400 dark:text-black" placeholder="{{user_normaly.last_name}}" required />
+            <!-- listo -->
         </div>
 
         <div>
           <label for="birth-date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Fecha de nacimiento</label>
-          <p>{{user_normaly.birthdate}}</p>
           <input 
             name="date_birth"
             type="date"
