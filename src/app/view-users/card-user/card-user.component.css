@@ -18,7 +18,7 @@
 }
 
 .card-user-info {
-    width: 70%;
+    width: 60%;
 }
 
 .card-user-name {
@@ -27,5 +27,17 @@
 }
 
 .card-user-button_edit{
-    width: 10%;
+    display: inline-flex; 
+    width: 20%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-user-button_edit :hover{
+    color: rgb(58, 140, 217);
+}
+
+.card-user-button_edit-icon{
+    font-size: 60px;
 }
