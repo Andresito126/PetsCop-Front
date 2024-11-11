@@ -1,6 +1,6 @@
 import { Component,Input, Output, EventEmitter,SimpleChanges, OnChanges } from '@angular/core';
 import { FormFieldsInputs } from '../../../models/form-fields-dinamic';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormArray  } from '@angular/forms';
 
 @Component({
   selector: 'app-step1',
@@ -8,44 +8,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './step1.component.css'
 })
 export class Step1Component implements OnChanges{
-                    //Variables
+                                         // VARIABLES FORM
+ @Input() formType: 'adopcion' | 'perdida' | undefined;  
+  @Output() formSubmit = new EventEmitter<string>();
+                                       
+  @Input() fields: FormFieldsInputs[] = []; //
+  @Input() buttonText: string = 'Enviar'; 
+  @Output() formSubmitted = new EventEmitter<any>(); 
+  @Output() nextStep = new EventEmitter<void>(); 
+  @Output() previousStep = new EventEmitter<void>(); 
+  currentStep: number = 1; 
+  form: FormGroup; 
+                                        // VARIABLES IMG
+  mainPhoto: string | null = null; // Foto principal
+  additionalPhotos: string[] = new Array(5).fill(null); 
 
-  //variables forms y botones siguientes
-  @Input() fields: FormFieldsInputs[] = [];
-  @Input() buttonText: string = 'Enviar';
-  @Output() formSubmitted = new EventEmitter<any>();
-  currentStep: number = 1;
-  @Output() nextStep = new EventEmitter<void>();
-  @Output() previousStep= new EventEmitter<void>();
-  form: FormGroup;
-  //variables imgs
-  @Input() mainImage: string = ''; 
-  @Input() additionalImages: string[] = []; 
-  @Input() mainPlaceholderIcon: string = '';  
-  @Input() additionalPlaceholderIcons: string[] = [];
-  mainPhoto: string | ArrayBuffer | null = this.mainImage;
-  additionalPhotos: (string | ArrayBuffer | null)[] = [...this.additionalImages];
-
-
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({});
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['fields']) {
-      this.form = this.fb.group({});
-      this.fields.forEach(field => {
-        const validators = field.required ? [Validators.required] : [];
-        this.form.addControl(field.name, this.fb.control('', validators));
-      });
-    }
-  }
-
-              //Métodos
-
-  //caracteristicas 
-
+  
   pet = {
     type: 'perro',
     name: '',
@@ -54,65 +32,103 @@ export class Step1Component implements OnChanges{
     characteristics: ['']
   };
 
-  addCharacteristic() {
-    if(this.pet.characteristics[this.pet.characteristics.length-1] !== ""){
-      this.pet.characteristics.push('');
-    } else {
-      alert('Debes llenar el input anterior')
-    }
-    
-    console.log(this.pet.characteristics)
+  constructor(private fb: FormBuilder) {
+   
+    this.form = this.fb.group({});
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['fields']) {
+      this.form = this.fb.group({
+        name: ['', Validators.required],
+        breed: ['', Validators.required],
+        age: ['', Validators.required],
+        petType: ['', Validators.required],
+        characteristics: this.fb.array([this.fb.control('')]) 
+      });
+
+                                       // METODOS
+      //controldores de los campos
+      this.fields.forEach(field => {
+        const validators = field.required ? [Validators.required] : [];
+        this.form.addControl(field.name, this.fb.control('', validators));
+      });
+    }
+  }
+
+  
+  get characteristics(): FormArray {
+    return this.form.get('characteristics') as FormArray;
+  }
+
+  addCharacteristic() {
+    const lastControl = this.characteristics.at(this.characteristics.length - 1);
+  
+    if (lastControl.value.trim() !== '') {
+      this.characteristics.push(this.fb.control('')); 
+    } else {
+      
+      alert('Debes llenar el input anterior');
+    }
+  }
+
+  
   trackByIndex(index: number, obj: any): any {
     return index;
   }
 
-  //boton enviar
-
-  onSubmit() {
-    if (this.form.valid) {
-      this.formSubmitted.emit(this.form.value);
-      console.log('Datos de la mascota:', this.pet);
-    } else {
-      console.log('Formulario inválido');
-    }
-   
-  }
-
-  //imagenes
-  onFileSelect(event: Event, index: number | 'main') {
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
-      const file = target.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (index === 'main') {
-          this.mainPhoto = reader.result;
-        } else {
-          this.additionalPhotos[index] = reader.result;
-        }
-      };
-      reader.readAsDataURL(file);
+  //envio
+  onSubmitForm() {
+    
+    if (this.formType === 'adopcion') {
+      this.submitAdopcion();
+    } else if (this.formType === 'perdida') {
+      this.submitPerdida();
     }
   }
 
- 
+  submitAdopcion() {
+    console.log('Formulario de adopción enviado');
 
-  //siguiente y regreso de los formularios
+  }
+
+  submitPerdida() {
+    console.log('Formulario de pérdida enviado');
+    
+  }
+
+  // botones next y back del form
   onNext() {
     if (this.currentStep < 3) {
       this.currentStep++;
+      this.nextStep.emit(); 
     }
   }
 
   onBack() {
     if (this.currentStep > 1) {
       this.currentStep--;
+      this.previousStep.emit(); 
     }
   }
 
 
+  //METODO SUBIR IMG
+  onFileSelect(event: any, index: string | number) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (index === 'main') {
+          this.mainPhoto = reader.result as string; // Asigna la foto principal
+        } else {
+          this.additionalPhotos[+index] = reader.result as string; // Asigna las fotos adicionales
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
 
-
+  
 }

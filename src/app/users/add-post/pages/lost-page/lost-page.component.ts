@@ -7,12 +7,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LostPageComponent {
   // variables
+  formType: 'adopcion' | 'perdida' = 'perdida';
   currentStep: number = 1;
 
   fields = [
     //campos perro
-    { label: 'Tipo de mascota', type: 'text', name: 'pet-type', placeholder: 'Selecciona a tu mascota', required: true },
-    { label: 'Raza', type: 'text', name: 'pet-breed', placeholder: 'Selecciona la raza', required: true },
+    { label: 'Tipo de mascota', type: 'select', name: 'pet-type', placeholder: 'Selecciona a tu mascota', required: true, options: [{ label: 'Perro', value: 'perro' }, { label: 'Gato', value: 'gato' }] },
+    { label: 'Raza', type: 'select', name: 'pet-breed', placeholder: 'Selecciona la raza de tu mascota', required: true, options: [{ label: 'Pug', value: 'pug' }, { label: 'jej', value: 'jej' }] },
     { label: 'Nombre de la mascota', type: 'text', name: 'pet-name', placeholder: 'Ingresa el nombre de tu mascota', required: true },
     { label: 'Edad', type: 'number', name: 'pet-age', placeholder: 'Edad de tu mascota', required: true },
     //campos de direccion
@@ -24,27 +25,20 @@ export class LostPageComponent {
     { label: 'Descripción', type: 'text', name: 'description', placeholder: 'Pequeña descripción ', required: true },
     { label: 'Lugar de la ultima vez visto', type: 'text', name: 'last_seen', placeholder: 'Ultima vez que lo viste ', required: true },
     { label: 'Recompensa', type: 'number', name: 'reward', placeholder: '¿Recompensa? ', required: true },
-    
-
-  
   ];
+
+  //variables imagenes
+  mainPlaceholderIcon = '/assets/img/default-main-icon.png';
+  additionalPlaceholderIcons = ['/assets/img/default-additional-icon1.png', '/assets/img/default-additional-icon2.png'];
 
   
 
   //metofos
-  onSubmitLoss(event: any) {
-    console.log('Formulario de perdida enviado', event);
-    
-  }
 
-  onSubmitAdoption(event: any) {
-    console.log('Formulario de adopción enviado', event);
-    
+  onFormSubmit(formType: string) {
+    console.log(`${formType} enviado`);
   }
-
-  async onLogin(data: any) {
-    console.log("se envioperror");
-  }
+  
 
 
 
