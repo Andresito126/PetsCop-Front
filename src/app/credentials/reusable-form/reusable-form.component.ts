@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormFieldCredentials } from '../models/form-field-credentials';
+import { FormFieldInputs } from '../models/form-field-inputs';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { FormFieldCredentials } from '../models/form-field-credentials';
   styleUrl: './reusable-form.component.css'
 })
 export class ReusableFormComponent implements OnChanges {
-  @Input() fields: FormFieldCredentials[] = [];
+  @Input() fields: FormFieldInputs[] = [];
   @Input() buttonText: string = 'Enviar';
   @Output() formSubmitted = new EventEmitter();
   @Input() showUserTypeSelect: boolean = false;

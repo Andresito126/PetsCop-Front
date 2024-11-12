@@ -1,4 +1,4 @@
-export interface FormFieldCredentials {
+export interface FormFieldInputs {
   label: string;
   type: string;
   name: string;
