@@ -11,7 +11,8 @@ import { FormFieldCredentials } from '../models/form-field-credentials';
 export class ReusableFormComponent implements OnChanges {
   @Input() fields: FormFieldCredentials[] = [];
   @Input() buttonText: string = 'Enviar';
-  @Output() formSubmitted = new EventEmitter<any>();
+  @Output() formSubmitted = new EventEmitter();
+  @Input() showUserTypeSelect: boolean = false;
 
   form: FormGroup;
 
