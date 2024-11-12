@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     UsersModule,
     NavbarComponent,
     AsideComponent,
-    CredentialsModule
+    CredentialsModule,
     HttpClientModule
   ],
    
