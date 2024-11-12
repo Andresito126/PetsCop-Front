@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
+import { UsersModule } from './users/users.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,10 +15,14 @@ import { CredentialsModule } from './credentials/credentials.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UsersModule,
     NavbarComponent,
     AsideComponent,
     CredentialsModule
-],
+    HttpClientModule
+  ],
+   
+
   providers: [],
   bootstrap: [AppComponent]
 })
