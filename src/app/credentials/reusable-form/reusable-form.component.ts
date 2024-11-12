@@ -11,16 +11,20 @@ import { UsersAuthService } from '../services/users-auth.service';
   styleUrl: './reusable-form.component.css'
 })
 export class ReusableFormComponent implements OnChanges {
+  formData: any = {}; 
   @Input() fields: FormFieldInputs[] = [];
   @Input() buttonText: string = 'Enviar';
   @Output() formSubmitted = new EventEmitter();
-  @Input() showUserTypeSelect: boolean = false;
+  @Input() actionType: string = ''; 
+
+
+
 
   form: FormGroup;
 
   @Output() user_type_field = new EventEmitter();
   user_type: string = "";
-
+  compare_password: string = "";
   new_user_normally: IRegistrerUserSerialization = {
     first_name: "",
     last_name: "",
@@ -42,21 +46,44 @@ export class ReusableFormComponent implements OnChanges {
     );
   }
 */
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['fields']) {
-      this.form = this.fb.group({});
-      this.fields.forEach(field => {
-        const validators = field.required ? [Validators.required] : [];
-        this.form.addControl(field.name, this.fb.control('', validators));
-      });
+ngOnChanges(changes: SimpleChanges): void {
+  if (changes['fields'] && this.fields) {
+   
+    this.fields.forEach(field => {
+      if (!this.formData.hasOwnProperty(field.name)) {
+        this.formData[field.name] = ''; 
+      }
+    });
+  }
+}
+
+  register(){
+    if(this.new_user_normally.password_user === this.compare_password){
+        // console.log(this.new_user_normally);
+        // this.userAuthServices.register(this.new_user_normally).subscribe(
+        //   response => console.log("Respuesta del servidor:", response),
+        //   error => console.log("Error:", error)
+      console.log("registro enviado") 
     }
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.formSubmitted.emit(this.form.value);
-    } else {
-      console.log('Formulario inválido');
+  login(){
+    if(this.new_user_normally.password_user === this.compare_password){
+        // console.log(this.new_user_normally);
+        // this.userAuthServices.register(this.new_user_normally).subscribe(
+        //   response => console.log("Respuesta del servidor:", response),
+        //   error => console.log("Error:", error)
+      console.log("login enviado")
     }
+  }
+
+    
+  onSubmit() {
+    if (this.actionType === 'login') {
+      this.login();
+    } else if (this.actionType === 'register') {
+      this.register();
+    }
+    this.formSubmitted.emit(this.formData); // Emitimos los datos al componente padre
   }
 }

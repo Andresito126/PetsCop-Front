@@ -11,8 +11,8 @@ export class LoginComponent {
   usersService = inject(UsersAuthService);
 
   fields = [
-    { label: 'Correo electrónico', type: 'email', name: 'email', placeholder: 'Ingresa tu correo electrónico', required: true },
-    { label: 'Contraseña', type: 'password', name: 'password', placeholder: 'Ingresa tu contraseña', required: true }
+    { label: 'Correo electrónico', type: 'email', name: 'email', placeholder: 'Ingresa tu correo electrónico', required: true, ngName:"hola" },
+    { label: 'Contraseña', type: 'password', name: 'password', placeholder: 'Ingresa tu contraseña', required: true, ngName:"jeje" }
   ];
 
   async onLogin(data: any) {
