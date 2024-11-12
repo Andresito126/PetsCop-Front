@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormFieldInputs } from '../models/form-field-inputs';
+import { IRegistrerUserSerialization } from '../models/iregistrer-user-serialization';
+import { UsersAuthService } from '../services/users-auth.service';
 
 
 @Component({
@@ -16,10 +18,30 @@ export class ReusableFormComponent implements OnChanges {
 
   form: FormGroup;
 
+  @Output() user_type_field = new EventEmitter();
+  user_type: string = "";
+
+  new_user_normally: IRegistrerUserSerialization = {
+    first_name: "",
+    last_name: "",
+    birthdate: "",
+    profile_picture: "",
+    email: "",
+    password_user: "",
+    type_user: "",
+  }
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({});
   }
-
+/*
+  registrer(){
+    this.userAuthServices.register(this.new_user_normally).subscribe(
+      response => console.log("Respuesta del servidor:", response),
+      error => console.log("Error:", error)
+    );
+  }
+*/
   ngOnChanges(changes: SimpleChanges) {
     if (changes['fields']) {
       this.form = this.fb.group({});

@@ -4,4 +4,5 @@ export interface FormFieldInputs {
   name: string;
   placeholder?: string;
   required?: boolean;
+  ngName: string;
 }
