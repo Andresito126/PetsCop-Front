@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
+import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,9 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
     UsersModule,
     NavbarComponent,
     AsideComponent,
+    CredentialsModule
     HttpClientModule
   ],
    
+
   providers: [],
   bootstrap: [AppComponent]
 })
