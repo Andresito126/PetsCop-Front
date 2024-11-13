@@ -6,7 +6,8 @@ import { Step2Component } from './form-step/step2/step2.component';
 import { Step3Component } from './form-step/step3/step3.component';
 import { Step1Component } from './form-step/step1/step1.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FormLostComponent } from './form-lost/form-lost.component';
+import { FormAdoptionComponent } from './form-adoption/form-adoption.component';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdoptionPageComponent,
     Step1Component,
     Step2Component,
-    Step3Component
+    Step3Component,
+    FormLostComponent,
+    FormAdoptionComponent,
   ],
   imports: [
     FormsModule,

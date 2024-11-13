@@ -40,11 +40,6 @@ export class Step1Component implements OnChanges{
   ngOnChanges(changes: SimpleChanges) {
     if (changes['fields']) {
       this.form = this.fb.group({
-        name: ['', Validators.required],
-        breed: ['', Validators.required],
-        age: ['', Validators.required],
-        petType: ['', Validators.required],
-        characteristics: this.fb.array([this.fb.control('')]) 
       });
 
                                        // METODOS

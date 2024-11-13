@@ -1,0 +1,83 @@
+<div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center">
+    <div class="w-full sm:w-1/2">
+      <form [formGroup]="formLost" (ngSubmit)="onSubmitForm()" action="#" class="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+        <!-- INICIO FORM PT1 -->
+        <div *ngIf="currentStep === 1" class="form-step1">
+          <h1 class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl">
+            Datos básicos de la mascota
+          </h1>
+  
+          <!-- tipo de mascota -->
+          <label for="petType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tipo de mascota</label>
+          <select id="petType" formControlName="petType" class="mb-4 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5">
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+          </select>
+          <div *ngIf="hasErrors('petType', 'required')" class="text-red-500 text-xs mb-2">
+            El campo Tipo de mascota es obligatorio
+          </div>
+  
+          <!-- raza  -->
+          <label for="petBreed" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Raza</label>
+          <select id="petBreed" formControlName="petBreed" class="mb-4 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5">
+            <option value="pug">Pug</option>
+            <option value="jej">Jej</option>
+          </select>
+          <div *ngIf="hasErrors('petBreed', 'required')" class="text-red-500 text-xs mb-2">
+            El campo Raza es obligatorio
+          </div>
+  
+          <!-- nombre del pet -->
+          <label for="petName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre de la mascota</label>
+          <input type="text" id="petName" formControlName="petName" placeholder="Ingresa el nombre de tu mascota"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black" required />
+            <div *ngIf="hasErrors('petName', 'required')" class="text-red-500 text-xs mb-2">
+            El campo Nombre de la mascota es obligatorio
+          </div>
+  
+          <!-- edad -->
+          <label for="petAge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Edad</label>
+          <input type="number" id="petAge" formControlName="petAge" placeholder="Edad de tu mascota"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black" required />
+            <div *ngIf="hasErrors('petAge', 'required')" class="text-red-500 text-xs mb-2">
+            El campo Edad es obligatorio
+          </div>
+  
+          <!-- caracteristicas  -->
+           <div class="flex items-center space-x-4 justify-center mt-6 mb-4">
+            <hr class="flex-grow" />
+            <p class="text-center text-lg font-medium">Características físicas principales</p>
+            <hr class="flex-grow" />
+          </div>
+  
+          <div formArrayName="characteristics">
+            <div *ngFor="let characteristic of characteristics.controls; let i = index" [formGroupName]="i" class="mb-2">
+              <input formControlName="" placeholder="Añade una característica"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" />
+            </div>
+          </div>
+          
+          <button type="button" (click)="addCharacteristic()" class="text-blue-600 text-sm font-medium mt-2">
+            + Agregar nueva característica
+          </button> 
+  
+          <br /><br />
+  
+          <!-- Botones siguiente y back -->
+          <button type="submit" class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-5" >
+            Siguiente
+          </button>
+          <button type="reset" class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white">
+            Cancelar
+          </button>
+  
+          <br />
+          <div class="flex justify-center mt-4">
+            <img src="/assets/forms/dots1.svg" alt="" />
+          </div>
+        </div>
+       
+      </form>
+    </div>
+  </div>
+  
