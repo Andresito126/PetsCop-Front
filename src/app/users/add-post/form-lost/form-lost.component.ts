@@ -12,17 +12,32 @@ export class FormLostComponent implements OnInit{
   @Output() previousStep = new EventEmitter<void>();
   currentStep: number = 1;
   formLost: FormGroup;
+  //pics
+  photos: (string | ArrayBuffer | null)[] = Array(5).fill(null);
 
-  constructor(private form: FormBuilder) {
+
+
+  constructor(private form: FormBuilder, private formBuilder: FormBuilder) {
     this.formLost = this.form.group({
+      //caracteristicas
       petType: ['', Validators.required],
       petBreed: ['', Validators.required],
       petName: ['', Validators.required,],
       petAge: ['', Validators.required],
-    }),
-    characteristics: new FormArray([
-      new FormControl(null),
-    ]);
+      characteristics: this.formBuilder.array([new FormControl('')]),
+      //direcciones
+      zipCode: ['', Validators.required,],
+      state: [{ value: '', disabled: true }, Validators.required],
+      municipality: [{ value: '', disabled: true }, Validators.required],
+      neighborhood: ['', Validators.required],
+      dateLost: ['', Validators.required],
+      description: ['', Validators.required],
+      lastSeen: ['', Validators.required],
+      reward: [''],
+      //pics
+      photos: this.formBuilder.array(Array(5).fill('')),
+    });
+    
   }
 
   ngOnInit(): void {
@@ -44,6 +59,8 @@ export class FormLostComponent implements OnInit{
       this.currentStep++;
       this.nextStep.emit();
     }
+
+    
   }
 
   onBack() {
@@ -59,24 +76,45 @@ export class FormLostComponent implements OnInit{
     return this.formLost.get('characteristics') as FormArray;
   }
 
-  addCharacteristic() {
-    const lastControl = this.characteristics.at(
-      this.characteristics.length - 1
-    );
-
-    if (lastControl.value.trim() !== '') {
-      this.characteristics.push(this.form.control(''));
+ addCharacteristic() {
+    const lastControl = this.characteristics.at(this.characteristics.length - 1);
+    if (lastControl && lastControl.value.trim() !== '') {
+      this.characteristics.push(new FormControl(''));
     } else {
-      alert('Debes llenar el input anterior');
+      alert('Debes llenar el input anterior antes de agregar otro.');
     }
   }
 
-  trackByIndex(index: number, obj: any): any {
-    return index;
-  }
+  // trackByIndex(index: number, obj: any): any {
+  //   return index;
+  // }
 
   //ENVIO DEL FORM
-  onSubmitForm() {
-    console.log(this.formLost);
+  onSubmitFormLost() {
+    if (this.formLost.valid) {
+      console.log(this.formLost);
+      // aca se dee llamar la api creo??????
+    } else {
+      alert('Por favor completa todos los campos obligatorios.');
+    }
   }
+
+
+  //form imagenes
+  onFileSelect(event: Event, index: number) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.photos[index] = reader.result as string | ArrayBuffer;
+        const photosControl = this.formLost.get('photos') as FormArray;
+        if (!photosControl.at(index)) {
+          photosControl.push(new FormControl(''));
+        }
+        photosControl.at(index).setValue(this.photos[index]);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  
 }
