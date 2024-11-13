@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { ReusableFormComponent } from './reusable-form/reusable-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ChooseUserComponent } from './choose-user/choose-user.component';
 
 
 
@@ -12,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ReusableFormComponent
+    ReusableFormComponent,
+    ChooseUserComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UsersAuthService } from '../services/users-auth.service';
 import { IUserCredentialsSerialization } from '../models/iuser-credentials-serialization';
 import { IloginUserSerialization } from '../models/ilogin-user-serialization';
@@ -8,9 +8,21 @@ import { IloginUserSerialization } from '../models/ilogin-user-serialization';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  logInTypeUser :string="";
 
   constructor(private userAuthServices: UsersAuthService){}
+
+  ngOnInit(): void {
+    const userType = localStorage.getItem('userTypeInTheRegister');
+    if (userType) {
+      this.logInTypeUser = userType; 
+      console.log(`Tipo de usuario en login: ${this.log_credentials.type_user}`);
+    } else {
+      console.log("No se seleccionó un tipo de usuario.");
+    }
+  }
 
   log_credentials: IloginUserSerialization = {
     id_user: 0,
