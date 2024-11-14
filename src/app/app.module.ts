@@ -7,6 +7,7 @@ import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     AsideComponent,
     CredentialsModule,
-    HttpClientModule
+    HttpClientModule,
+    HomeModule
   ],
    
 
