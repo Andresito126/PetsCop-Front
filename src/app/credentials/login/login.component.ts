@@ -14,15 +14,7 @@ export class LoginComponent implements OnInit{
 
   constructor(private userAuthServices: UsersAuthService){}
 
-  ngOnInit(): void {
-    const userType = localStorage.getItem('userTypeInTheRegister');
-    if (userType) {
-      this.logInTypeUser = userType; 
-      console.log(`Tipo de usuario en login: ${this.log_credentials.type_user}`);
-    } else {
-      console.log("No se seleccionó un tipo de usuario.");
-    }
-  }
+  ngOnInit(): void {}
 
   log_credentials: IloginUserSerialization = {
     id_user: 0,

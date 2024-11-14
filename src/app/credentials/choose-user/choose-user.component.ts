@@ -13,8 +13,8 @@ constructor(private router: Router) {}
 
   setUserType(type: string) {
     this.type_user_in_register = type;
-    console.log(`Tipo de usuario seleccionado: ${this.type_user_in_register}`);
+    console.log(`user seleccionado: ${this.type_user_in_register}`);
     localStorage.setItem('userTypeInTheRegister', this.type_user_in_register); 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/usuario/registro']);
   }
 }

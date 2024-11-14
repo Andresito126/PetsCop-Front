@@ -1,8 +1,8 @@
-export interface IRegistrerUserSerialization {
+export interface IRegistrerUserNormalSerialization {
     first_name: string;
     last_name: string;
     birthdate: string;
-    profile_picture:string;
+    profile_picture?:string;
     email:string;
     password_user:string;
     type_user:string;

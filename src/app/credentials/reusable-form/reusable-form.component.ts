@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormFieldInputs } from '../models/form-field-inputs';
-import { IRegistrerUserSerialization } from '../models/iregistrer-user-serialization';
+import { IRegistrerUserNormalSerialization } from '../models/iregistrer-user-normal-serialization';
 import { UsersAuthService } from '../services/users-auth.service';
 
 
@@ -12,7 +11,7 @@ import { UsersAuthService } from '../services/users-auth.service';
 })
 export class ReusableFormComponent implements OnChanges {
   formData: any = {}; 
-  @Input() fields: FormFieldInputs[] = [];
+  
   @Input() buttonText: string = 'Enviar';
   @Output() formSubmitted = new EventEmitter();
   @Input() actionType: string = ''; 
@@ -25,7 +24,7 @@ export class ReusableFormComponent implements OnChanges {
   @Output() user_type_field = new EventEmitter();
   user_type: string = "";
   compare_password: string = "";
-  new_user_normally: IRegistrerUserSerialization = {
+  new_user_normally: IRegistrerUserNormalSerialization = {
     first_name: "",
     last_name: "",
     birthdate: "",
@@ -46,15 +45,15 @@ export class ReusableFormComponent implements OnChanges {
     );
   }
 */
-ngOnChanges(changes: SimpleChanges): void {
-  if (changes['fields'] && this.fields) {
+ngOnChanges(): void {
+  // if (changes['fields'] && this.fields) {
    
-    this.fields.forEach(field => {
-      if (!this.formData.hasOwnProperty(field.name)) {
-        this.formData[field.name] = ''; 
-      }
-    });
-  }
+  //   this.fields.forEach(field => {
+  //     if (!this.formData.hasOwnProperty(field.name)) {
+  //       this.formData[field.name] = ''; 
+  //     }
+  //   });
+  // }
 }
 
   register(){
