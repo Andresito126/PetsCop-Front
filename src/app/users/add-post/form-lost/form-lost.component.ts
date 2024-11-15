@@ -170,10 +170,15 @@ export class FormLostComponent implements OnInit {
     this.servicePost.createPostLostPet(this.postLostPet).subscribe(
       (response) => {
         Swal.fire({
-          title: "Publicación creada",
-          imageUrl: "assets/imgs/imgExcellentProcess.jpg",
-          imageWidth: 400,
-          imageHeight: 300
+          title: "Publicación creada exitosamente",
+          imageUrl: "assets/imgs/img.svg",
+          imageWidth: 250,
+          imageHeight: 250,
+          width: "400px",
+          background: "rgb(35, 155, 205)",
+          color: "#ffffff",
+          showConfirmButton: false,
+          timer: 1600
         });
       },
       (err) => {

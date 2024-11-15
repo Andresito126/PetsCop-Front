@@ -1,23 +1,24 @@
-.div-submit_color{
-    background-color: #136A93;
+.div-submit_color {
+  background-color: #136a93;
 }
 
-.div-submit_color:hover{
-    background-color: rgb(35, 150, 203);
+.div-submit_color:hover {
+  background-color: rgb(35, 150, 203);
 }
 
-.div-reset_color, .div-hr_color{
-    background-color: #C2C2C2;
+.div-reset_color,
+.div-hr_color {
+  background-color: #c2c2c2;
 }
 
-.div-reset_color:hover{
-    background-color: #7c7c7c;
+.div-reset_color:hover {
+  background-color: #7c7c7c;
 }
 
 .div-select-pet {
-    appearance: none; 
-    background-image: url("/assets/forms/vector.svg");
-    background-repeat: no-repeat;
-    background-position: calc(100% - 1.5rem) center; 
-  }
-  
+  appearance: none;
+  background-image: url("/assets/forms/vector.svg");
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1.5rem) center;
+}
+

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { IUserDataSerialization } from '../../models/iuser-data-serialization';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'form-profile-user',
@@ -29,7 +30,19 @@ export class FormProfileUserComponent {
 
   // Methods to consume the service 
 
-
+  showModal(){
+    Swal.fire({
+      title: "Publicación creada exitosamente",
+      imageUrl: "assets/imgs/img.svg",
+      imageWidth: 250,
+      imageHeight: 250,
+      width: "400px",
+      background: "rgb(35, 155, 205)",
+      color: "#ffffff",
+      showConfirmButton: false,
+      timer: 1600
+    });
+  }
   // Common methods
   emitDataUser(): void {
     this.data_user.emit({
