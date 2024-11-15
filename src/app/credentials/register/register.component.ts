@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersAuthService } from '../services/users-auth.service';
 import { IRegistrerUserNormalSerialization } from '../models/iregistrer-user-normal-serialization';
 import { IRegisterUserLocalServiceSerialization } from '../models/iregister-user-local-service-serialization';
+import { UserConfigurationService } from '../../users/services/user-configuration.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { IRegisterUserSerialization } from '../models/iregister-user-serialization';
@@ -13,7 +14,7 @@ import { catchError, map, Observable, of } from 'rxjs';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
-  constructor(private userAuthServices: UsersAuthService, private router: Router) {}
+  constructor(private userAuthServices: UsersAuthService,private userConfigurationSerice:UserConfigurationService ,private router: Router) {}
 
   // Variables
   choosenUser: string = '';
@@ -53,10 +54,19 @@ export class RegisterComponent implements OnInit {
     const userType = localStorage.getItem('userTypeInTheRegister');
     if (userType) {
       this.choosenUser = userType;
+      this.getProfilePhoto();
     }
   }
   
   // Métodos
+
+  //img
+  getProfilePhoto(){
+    
+    
+  }
+
+
 
   //REGISTAR USUARIO
   registerUser() {
@@ -68,6 +78,7 @@ export class RegisterComponent implements OnInit {
         id_img => {
           console.log(id_img)
           this.new_user_normally.profile_picture = id_img;
+          this.getProfilePhoto
           this.userAuthServices.registerNormalUser(this.new_user_normally).subscribe(
             (response) => {
               console.log("Respuesta del server:", response)
