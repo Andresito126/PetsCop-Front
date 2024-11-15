@@ -7,7 +7,7 @@
       (ngSubmit)="onSubmitFormLost()"
       action="#"
       class="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
-        >
+    >
       <!-- INICIO FORM PT1 -->
       <div *ngIf="currentStep === 1" class="form-step1">
         <h1
@@ -28,8 +28,8 @@
             formControlName="petType"
             class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
           >
-            <option value="perro">Perro</option>
-            <option value="gato">Gato</option>
+            <option value="Dog">Perro</option>
+            <option value="Cat">Gato</option>
           </select>
           <div
             *ngIf="hasErrors('petType', 'required')"
@@ -46,20 +46,13 @@
             class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
             >Raza</label
           >
-          <select
+          <input
+            type="text"
+            name="petBreed"
             id="petBreed"
             formControlName="petBreed"
-            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
-          >
-            <option value="pug">Pug</option>
-            <option value="jej">Jej</option>
-          </select>
-          <div
-            *ngIf="hasErrors('petBreed', 'required')"
-            class="text-red-500 text-xs mb-2"
-          >
-            El campo Raza es obligatorio
-          </div>
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
         </div>
 
         <!-- nombre del pet -->
@@ -93,7 +86,7 @@
             >Edad</label
           >
           <input
-            type="number"
+            type="text"
             id="petAge"
             formControlName="petAge"
             placeholder="Edad de tu mascota"
@@ -170,7 +163,7 @@
         <h1
           class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
         >
-          Datos básicos de la mascota
+          Datos de perdida
         </h1>
 
         <!-- codigo postal -->
@@ -211,8 +204,6 @@
             placeholder="Tu estado"
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
           />
-
-          
         </div>
 
         <!-- municipio  -->
@@ -239,19 +230,18 @@
             >Colonia</label
           >
           <select
-          id="neighborhood"
-          formControlName="neighborhood"
-          class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
-        >
-          <option value="pug">col1</option>
-          <option value="jej">col2</option>
-        </select>
+            id="neighborhood"
+            formControlName="neighborhood"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+          <option *ngFor="let colony of colonies" [value]="colony">{{colony}}</option>
+          </select>
           <div
-          *ngIf="hasErrors('neighborhood', 'required')"
-          class="text-red-500 text-xs mb-2"
-        >
-          El campo de la colonia es obligatorio
-        </div>
+            *ngIf="hasErrors('neighborhood', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la colonia es obligatorio
+          </div>
         </div>
 
         <!-- fecha perdida-->
@@ -271,11 +261,11 @@
           />
 
           <div
-          *ngIf="hasErrors('dateLost', 'required')"
-          class="text-red-500 text-xs mb-2"
-        >
-          El campo de la fecha de perdida es obligatorio
-        </div>
+            *ngIf="hasErrors('dateLost', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la fecha de perdida es obligatorio
+          </div>
         </div>
 
         <!-- descripcion -->
@@ -294,11 +284,11 @@
             required
           />
           <div
-          *ngIf="hasErrors('description', 'required')"
-          class="text-red-500 text-xs mb-2"
-        >
-          El campo de una pequeña descripción es obligatorio
-        </div>
+            *ngIf="hasErrors('description', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de una pequeña descripción es obligatorio
+          </div>
         </div>
 
         <!-- uktima vez visto-->
@@ -317,11 +307,11 @@
             required
           />
           <div
-          *ngIf="hasErrors('lastSeen', 'required')"
-          class="text-red-500 text-xs mb-2"
-        >
-          El campo de la ultima vez visto es obligatorio
-        </div>
+            *ngIf="hasErrors('lastSeen', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la ultima vez visto es obligatorio
+          </div>
         </div>
 
         <!-- recompensa -->
@@ -340,11 +330,12 @@
             required
           />
           <div
-          *ngIf="hasErrors('reward', 'required')"
-          class="text-red-500 text-xs mb-2"
-        >
-          El campo de la recompensa es obligatorio (Pon 0 si no quieres dar alguna recompensa)
-        </div>
+            *ngIf="hasErrors('reward', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la recompensa es obligatorio (Pon 0 si no quieres dar
+            alguna recompensa)
+          </div>
         </div>
 
         <!-- botones siguiente y back -->
@@ -368,46 +359,57 @@
         <div class="flex justify-center mt-4">
           <img src="/assets/forms/dots2.svg" alt="" />
         </div>
-
-        
-
-
-        
-
-
       </div>
 
-       <!-- INICIO FORM PT3 -->
+      <!-- INICIO FORM PT3 -->
 
       <div *ngIf="currentStep === 3" class="form-step3">
-        <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6">Fotos de la mascota</h1>
+        <h1
+          class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
+        >
+          Fotos de la mascota
+        </h1>
         <div class="grid grid-cols-2 gap-2 mt-5 ml-10 mb-5">
-            <label *ngFor="let photo of photos; let i = index" class="block">
-              <input
-                type="file"
-                accept="image/*"
-                (change)="onFileSelect($event, i)"
-                class="hidden"
-                #fileInput
+          <label *ngFor="let photo of photos; let i = index" class="block">
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onFileSelect($event, i)"
+              class="hidden"
+              #fileInput
+            />
+            <div
+              class="flex items-center justify-center border rounded-lg cursor-pointer bg-gray-50"
+              (click)="fileInput.click()"
+            >
+              <img
+                *ngIf="photo; else uploadIcon"
+                [src]="photo"
+                alt="Foto {{ i === 0 ? 'principal' : 'secundaria ' + i }}"
+                class="object-cover w-full h-full rounded-lg"
               />
-              <div
-                class="flex items-center justify-center border rounded-lg cursor-pointer bg-gray-50"
-                (click)="fileInput.click()"
-              >
-                <img *ngIf="photo; else uploadIcon" [src]="photo" alt="Foto {{i === 0 ? 'principal' : 'secundaria ' + i}}" class="object-cover w-full h-full rounded-lg">
-                <ng-template #uploadIcon>
-                  <span class="text-gray-500">Cargar Imagen</span>
-                </ng-template>
-              </div>
-            </label>
-          </div>
-          
-      
-        <!-- Botones -->
-        <button type="submit" class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4">Enviar</button>
-        <button type="button" class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white" (click)="onBack()">Anterior</button>
+              <ng-template #uploadIcon>
+                <span class="text-gray-500">Cargar Imagen</span>
+              </ng-template>
+            </div>
+          </label>
         </div>
-      
+
+        <!-- Botones -->
+        <button
+          type="submit"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4"
+        >
+          Enviar
+        </button>
+        <button
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
+        >
+          Anterior
+        </button>
+      </div>
     </form>
   </div>
 </div>
