@@ -14,6 +14,7 @@
     />
 
     <button
+    (click)="openPostTypeModal()"
       class=" navButton-color w-64 py-2 px-4 rounded-full flex items-center space-x-2 "
     >
       <img src="/assets/nav-aside/addPost.svg" alt="Añadir publicación" >
@@ -29,6 +30,13 @@
       <img src="/assets/nav-aside/hamburgerNav.svg" alt="Menú" [ngClass]="{'rotate-90': menuOpen}" class="transition-transform duration-300">
     </button>
   </div>
+
+  <div *ngIf="showModalTypePost">
+    <app-post-type-modal 
+    (postTypeSelected)="handlePostTypeSelection($event)" 
+    (closeModalTypeSelect)="closePostTypeModal()"></app-post-type-modal>
+  </div>
+  
 </nav>
 
 <app-sidebar [menuOpen]="menuOpen" (menuToggle)="toggleMenu()"></app-sidebar>
