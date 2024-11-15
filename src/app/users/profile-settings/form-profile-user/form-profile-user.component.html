@@ -11,7 +11,7 @@
           <label for="profile-picture" class="cursor-pointer relative">
             <img
               class="w-20 h-20 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-              [src]="user_normaly.profile_picture"
+              [src]="profileImg"
               alt="Photo"
               id="profile-image"
             />
@@ -28,6 +28,8 @@
         </div> 
 
         <div>
+          <button (click)="putProfilePhoto()">Subir foto</button>
+
           <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Primer nombre</label>
           <input
             name="firstName"   

@@ -3,6 +3,7 @@ import { IUserDataSerialization } from '../../models/iuser-data-serialization';
 import { IuserCredentialsSerialization } from '../../models/iuser-credentials-serialization';
 import { DatePipe } from '@angular/common';
 import { UserConfigurationService } from '../../services/user-configuration.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'form-profile-user',
@@ -11,18 +12,12 @@ import { UserConfigurationService } from '../../services/user-configuration.serv
 })
 export class FormProfileUserComponent implements OnInit{
 
-  constructor(private datePipe: DatePipe, private userConfigService: UserConfigurationService){}
+  constructor(private datePipe: DatePipe, 
+    private userConfigService: UserConfigurationService,
+    private domSanitizer: DomSanitizer){}
 
   // Variables
   @Input() profileImageUrl: string = '';
-  
-  // @Input() id_user: number=1;
-  // @Input() first_name: string = '';
-  // @Input() last_name: string = '';
-  // @Input() date_birth: string = '';
-  // @Input() phone_number: string = '';
-  // @Input() email: string = '';
-  // @Input() password: string = '';
   @Output() data_user = new EventEmitter<IUserDataSerialization>();
   @Output() credential_user = new EventEmitter<IuserCredentialsSerialization>
 
@@ -42,33 +37,71 @@ export class FormProfileUserComponent implements OnInit{
     profile_picture:""
   }
 
+  new_img: File | null = null;
+  profileImg: any;
+
   //Method on init to extract the user
 
   ngOnInit(): void {
-      this.userConfigService.getOwnProfile(1).subscribe(
-        response => {
-          console.log("It's ok", response);
-          this.user_normaly = response;
-        },
-        error => console.log("Error:", error)
-      )
-      this.userConfigService.getOwnCredentials(1).subscribe(
-        response => {
-          console.log("It's ok", response);
-          this.user_credential = response;
-        },
-        error => console.log("Error", error)
-      )
+      this.loadUserData();
   }
 
   // Methods to consume the service 
 
-  editProfile(): void {
-    this.userConfigService.updateNormalUser(this.user_normaly).subscribe(
-      response => console.log("Respuesta del server:", response),
+  loadUserData(): void {
+    this.userConfigService.getOwnProfile(7).subscribe(
+      response => {
+        console.log("It's ok", response);
+        this.user_normaly = response;
+        this.getProfilePhoto();
+      },
       error => console.log("Error:", error)
-    )
-    this.ngOnInit();
+    );
+  
+    this.userConfigService.getOwnCredentials(7).subscribe(
+      response => {
+        console.log("It's ok", response);
+        this.user_credential = response;
+      },
+      error => console.log("Error", error)
+    );
+  }
+  
+
+  getProfilePhoto(){
+    console.log(this.user_normaly.profile_picture);
+    this.userConfigService.getOwnProfilePhoto(this.user_normaly.profile_picture).subscribe(
+      respone => {
+        const img = URL.createObjectURL(respone);
+        this.profileImg = this.domSanitizer.bypassSecurityTrustUrl(img);
+      },
+      error => console.log("Error:", error)
+    );
+  }
+
+  putProfilePhoto(): void {
+    if (!this.new_img) return;
+  
+    console.log("Subiendo foto");
+    this.userConfigService.uploadProfilePhoto(this.new_img).subscribe({
+      next: (response) => {
+        console.log("Respuesta del servidor", response);
+        this.user_normaly.profile_picture = response.id_document;
+        this.editProfile();
+      },
+      error: (err) => console.error("Error:", err),
+    });
+  }
+  
+
+  editProfile(){
+    
+      this.userConfigService.updateNormalUser(this.user_normaly).subscribe(
+        response => console.log("Respuesta del servidor:", response),
+        error => console.log("Error:", error)
+      );
+    
+    this.loadUserData();
   }
 
   editPassword(): void{
@@ -106,11 +139,11 @@ export class FormProfileUserComponent implements OnInit{
 
   onProfilePictureChange(event: any): void {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => this.profileImageUrl = reader.result as string;
-      reader.readAsDataURL(file);
+    if(file){
+      this.new_img = file;
+      this.putProfilePhoto();
     }
+    console.log(this.new_img);
   }
 
   // submitUserData(): void {
