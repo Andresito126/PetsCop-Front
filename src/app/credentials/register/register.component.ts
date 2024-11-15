@@ -18,14 +18,15 @@ export class RegisterComponent implements OnInit {
   // Variables
   choosenUser: string = '';
   compare_password: string = '';
-  file: File | null = null;  
+  file: File | null = null;
+  id_file: string = "";
 
   // Objeto para el registro de un usuario normal
   new_user_normally: IRegistrerUserNormalSerialization = {
     first_name: '',
     last_name: '',
     birthdate: '',
-    profile_picture: 'foto',
+    profile_picture: '',
     email: '',
     password_user: '',
     type_user: '',
@@ -61,19 +62,29 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     if (this.new_user_normally.password_user === this.compare_password) {
       this.new_user_normally.type_user = this.choosenUser;
-      this.userAuthServices.registerNormalUser(this.new_user_normally).subscribe(
-        (response) => {
-          Swal.fire({
-            icon: "success",
-            title: "Te haz registrado en el sistema",
-            showConfirmButton: false,
-            timer: 2500
-          }).then(() => this.router.navigate(['/login']))
-        },
-        (error) => {
-          console.log('Error:', error)
+      this.new_user_normally.profile_picture = this.id_file;
+      console.log(this.new_user_normally.type_user);
+      this.uploadImage().subscribe(
+        id_img => {
+          console.log(id_img)
+          this.new_user_normally.profile_picture = id_img;
+          this.userAuthServices.registerNormalUser(this.new_user_normally).subscribe(
+            (response) => {
+              console.log("Respuesta del server:", response)
+              Swal.fire({
+                icon: "success",
+                title: "Te haz registrado en el sistema",
+                showConfirmButton: false,
+                timer: 2500
+              }).then(() => this.router.navigate(['/login']))
+            },
+            (error) => {
+              console.log('Error:', error)
+            }
+          );
         }
       );
+      
     } else {
       alert('Las contraseñas son diferentes');
     }
@@ -127,10 +138,12 @@ export class RegisterComponent implements OnInit {
       formData.append('file', this.file, this.file.name);
       
       return this.userAuthServices.saveImage(formData).pipe(
-        map(response => response.fileId),
+        map(response => 
+          this.id_file = response.id_document
+        ),
         catchError(err => {
           console.log("Error " + err);
-          return of(''); 
+          return of('');  
         })
       );
     }

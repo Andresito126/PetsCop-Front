@@ -39,7 +39,7 @@ export class UsersAuthService {
 
   // Guardar imágen
   saveImage(form_data: FormData): Observable<any> {
-    return this._http.post<any>(this._apiURLMONGO + '/drive/uploadImageProfile', form_data)
+    return this._http.post<any>(this._apiUrl + '/drive/upload', form_data)
   }
 
   // registerLocalService(newUser: IRegisterUserLocalServiceSerialization): Observable<IRegisterUserLocalServiceSerialization>{
