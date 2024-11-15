@@ -1,58 +1,70 @@
-<div class="card-container max-w-11/12 max-h-3/4 p-4 rounded-lg border border-gray-200 bg-white shadow-lg ml-20 mt-10">
-    <div class="card-header flex items-center">
+<!-- incio -->
+<div class="section-header flex items-center justify-between p-4 bg-gray-100 rounded-lg shadow-md mb-6">
+  <h1 class="section-header_title text-2xl font-semibold text-gray-700 text-center w-full">INICIO</h1>
+
+   <div class="relative">
+    
+    <select class="filtro-button appearance-none bg-gradient-to-r cursor-pointer text-white font-semibold py-2 px-4 rounded-full shadow-md pr-8">
+      <option disabled class="filtro-button_value" value="" >Filtrar por</option>
+      <option class="filtro-button_value cursor-pointer" value="todo">Todo</option>
+      <option class="filtro-button_value cursor-pointer" value="perdido">Perdido</option>
+      <option class="filtro-button_value cursor-pointer" value="encontrado">Encontrado</option>
+    </select>
+   
+    <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+      <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+    </svg>
+  </div>
+</div>
+   
+   <div class="card-container_main  p-4 rounded-lg border border-gray-200 bg-white shadow-lg  mt-10">
+
+    <div class="card-header flex items-center mb-3">
       <img class="profile-image w-12 h-12 rounded-full border border-gray-300" src="https://via.placeholder.com/50" alt="Foto de perfil" />
       <div class="ml-4">
         <p class="text-sm font-semibold">Andre Julian Gutiérrez Alcazar</p>
-        <p class="text-xs text-gray-500">24/10/2024 &nbsp; 10:12 p.m</p>
+        <p class="text-xs text-gray-500">24/10/2024 &nbsp; 10:12</p>
       </div>
-      <button class="message-button ml-auto flex items-center bg-blue-800 text-white px-4 py-1.5 rounded-md text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
+      <button class="message-button ml-auto flex items-center px-4 py-1.5 rounded-md text-sm">
+        <img class="h-7 w-7 mr-2" src="assets/posts/message.svg" alt="message-icon">
         Enviar mensaje
       </button>
     </div>
-  
-  
-    <div class="body-content flex justify-between items-center mt-4">
-      <div class="info-section">
-        <p class="text-blue-600 font-bold text-lg">Cozy</p>
-        <p class="text-gray-600 text-sm">Perro macho</p>
-        <p class="status-text text-red-600 font-bold">Estado: <span class="text-gray-800">Perdido</span></p>
-        <p class="text-gray-600 text-sm flex items-center mt-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13 21.314M10.343 3.686A8 8 0 0116.657 10M10.343 3.686L3 11.03m7.313-7.344L21 10" />
-          </svg>
-          Ocozocoautla de Espinoza
-        </p>
-        <p class="text-gray-600 text-sm mt-2">
-          Yago is a jokester who can get along with everyone - dogs and humans alike! He's athletic and playful but also knows when it's time to take a break and lounge around. Yago is a very affectionate baby who would love to take naps with you when he is not running around and playing with his toys.
-          <a href="#" class="text-blue-600">Ver más</a>
-        </p>
+    <!-- info -->
+    <div class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start">
+      <div class="info-section-main ">
+          <div class="info-section_dog-text flex">
+              <p class="text-blue-600 font-bold text-lg">Cozy</p>
+              <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">Perro macho</p>
+          </div>
+          <!-- ng if si es perdido o encontrado cambia color -->
+          <p class="status-text text-red-600 font-bold">Estado: <span class="text-gray-600 text-sm md:font-normal">Perdido</span></p>
+          <p class="text-gray-600 text-sm flex items-center mt-1">
+              <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> Ocozocoautla de Espinoza
+          </p>
+          <div class="info-section-description_div mt-2 text-justify">
+              <p>Yago is a jokester who can get along with everyone - dogs and humans alike! He's athletic and playful but also knows when it's time to take a break and lounge around. Yago is a very affectionate baby who would love to take naps with you when he is not running around and playing with his toys.</p>
+          </div>
       </div>
-  
-
-      <div class="image-section flex space-x-2">
-        <img class="w-20 h-20 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" alt="Imagen de Cozy" />
-        <img class="w-20 h-20 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" alt="Imagen de Cozy" />
-        <img class="w-20 h-20 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" alt="Imagen de Cozy" />
+      <!-- imagenes -->
+      <div class="info-section-img_div flex space-x-2">
+          <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
+          <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
+          <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
+          <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
       </div>
-    </div>
-  
+  </div>
     
-    <div class="flex justify-between items-center mt-4">
-      <button class="comment-button flex items-center bg-blue-800 text-white px-4 py-1.5 rounded-md">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l5 5L19 7" />
-        </svg>
+
+
+    <div class="flex items-center mt-4">
+      <button class="comment-button flex items-center px-4 py-1.5 rounded-md mr-6">
+        <img class="h-7 w-7 mr-1" src="assets/posts/comment.svg" alt="message-icon">
         Comentar
       </button>
-      <button class="repost-button flex items-center bg-gray-200 text-gray-600 px-4 py-1.5 rounded-md">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l-4-4m0 8h4l-4 4M17 10h4l-4-4m0 8h4l-4 4" />
-        </svg>
+      <button class="repost-button flex items-center bg-gray-200 px-4 py-1.5 rounded-md">
+        <img class="h-7 w-7 mr-1" src="assets/posts/repost.svg" alt="message-icon">
         Repostear
       </button>
     </div>
-  </div>
-  
+   </div>
