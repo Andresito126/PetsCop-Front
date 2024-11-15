@@ -8,7 +8,7 @@ const routes: Routes = [
   {path:'usuario', component:ChooseUserComponent},
   {path:'usuario/registro', component:RegisterComponent},
   {path:'login', component:LoginComponent},
-  {path:'', component:ProfileSettingsPageComponent}
+  {path:'configuracion/unormal', component:ProfileSettingsPageComponent}
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
