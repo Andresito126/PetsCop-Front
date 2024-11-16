@@ -39,9 +39,9 @@ export class FormLostComponent implements OnInit {
     },
     loss_data: {
       address: {
-        zip_code: 0,
-        state: '',
-        municipality: '',
+        zip_code: 29140,
+        state: 'Chiapas',
+        municipality: 'Ocozocoautla de Espinoza',
         colony: '',
       },
       loss_date: new Date(),
@@ -59,22 +59,6 @@ export class FormLostComponent implements OnInit {
     private servicePost: PostService
   ) {
     this.formLost = this.form.group({
-      //caracteristicas
-      // petType: ['', Validators.required],
-      // petBreed: ['', Validators.required],
-      // petName: ['', Validators.required,],
-      // petAge: ['', Validators.required],
-      // characteristics: this.formBuilder.array([new FormControl('')]),
-      // //direcciones
-      // zipCode: ['', Validators.required,],
-      // state: [{ value: '', disabled: true }, Validators.required],
-      // municipality: [{ value: '', disabled: true }, Validators.required],
-      // neighborhood: ['', Validators.required],
-      // dateLost: ['', Validators.required],
-      // description: ['', Validators.required],
-      // lastSeen: ['', Validators.required],
-      // reward: [''],
-
       // Datos básicos
       petType: ['', Validators.required],
       petBreed: [''],
@@ -82,29 +66,36 @@ export class FormLostComponent implements OnInit {
       petAge: ['', Validators.required],
       characteristics: this.formBuilder.array([new FormControl('')]),
       //direcciones
-      zipCode: [{ value: '29140', disabled: true }],
-      state: [{ value: 'Chiapas', disabled: true }],
-      municipality: [{ value: 'Ocozocoautla de Espinoza', disabled: true }],
+      zipCode: [  '29140', ],
+      state: [  'Chiapas', ],
+      municipality: [  'Ocozocoautla de Espinoza', ],
       neighborhood: ['', Validators.required],
       dateLost: ['', Validators.required],
       description: ['', Validators.required],
       lastSeen: [''],
       reward: [''],
+      
       //pics
       photos: this.formBuilder.array(Array(5).fill('')),
     });
   }
 
-  ngOnInit(): void {
-    this.servicePost.showColonies().subscribe(
-      (response) => {
-        this.colonies = response;
-      },
-      (err) => {
-        console.log("Error: " + err)
-      }
-    )
-  }
+    ngOnInit(): void {
+      this.formLost.valueChanges.subscribe(valor=>{
+        console.log
+      })
+      this.formLost,
+      console.log(this.formLost.value)
+      
+      this.servicePost.showColonies().subscribe(
+        (response) => {
+          this.colonies = response;
+        },
+        (err) => {
+          console.log("Error: " + err)
+        }
+      )
+    }
 
   //METODOS
 
@@ -165,7 +156,9 @@ export class FormLostComponent implements OnInit {
   // Prueba
   onSubmitFormLost() {
     // Método que va a asignar los valores que el usuario ingresó
+    console.log("enviado:"+ this.formLost.value)
     this.assignValues();
+    console.log(this.postLostPet)
 
     this.servicePost.createPostLostPet(this.postLostPet).subscribe(
       (response) => {
