@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { IRegisterUserSerialization } from '../models/iregister-user-serialization';
 import { catchError, map, Observable, of } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,12 @@ import { catchError, map, Observable, of } from 'rxjs';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent implements OnInit {
-  constructor(private userAuthServices: UsersAuthService,private userConfigurationSerice:UserConfigurationService ,private router: Router) {}
+  constructor(
+    private userAuthServices: UsersAuthService,
+    private userConfigurationSerice:UserConfigurationService,
+    private router: Router,
+    private domSanitizer: DomSanitizer
+  ) {}
 
   // Variables
   choosenUser: string = '';
@@ -49,6 +55,9 @@ export class RegisterComponent implements OnInit {
     description: ''
   }
   
+  upload_photo: File | null = null;
+  download_photo: any;
+  id_new_photo: string = "";
 
   ngOnInit(): void {
     const userType = localStorage.getItem('userTypeInTheRegister');
@@ -61,9 +70,33 @@ export class RegisterComponent implements OnInit {
   // Métodos
 
   //img
+  postProfilePhoto(){
+    if (!this.upload_photo) return;
+  
+    console.log("Subiendo foto");
+    this.userConfigurationSerice.uploadProfilePhoto(this.upload_photo).subscribe({
+      next: (response) => {
+        console.log("Respuesta del servidor", response);
+        this.new_user_normally.profile_picture = response.id_document;
+        this.new_local_service.photo_profile = response.id_document;
+        this.id_new_photo = response.id_document;
+        this.getProfilePhoto();
+      },
+      error: (err) => console.error("Error:", err),
+    });
+  }
+
   getProfilePhoto(){
-    
-    
+    if(this.id_new_photo){
+      this.userConfigurationSerice.getOwnProfilePhoto(this.id_new_photo).subscribe(
+        response => {
+          const imgObj = URL.createObjectURL(response);
+          this.download_photo = this.domSanitizer.bypassSecurityTrustUrl(imgObj);
+        },
+        error => console.log("Error:", error)
+      );
+      console.log(this.new_user_normally.profile_picture)
+    }
   }
 
 
@@ -72,13 +105,9 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     if (this.new_user_normally.password_user === this.compare_password) {
       this.new_user_normally.type_user = this.choosenUser;
-      this.new_user_normally.profile_picture = this.id_file;
+      this.new_user_normally.profile_picture = this.id_new_photo;
       console.log(this.new_user_normally.type_user);
-      this.uploadImage().subscribe(
-        id_img => {
-          console.log(id_img)
-          this.new_user_normally.profile_picture = id_img;
-          this.getProfilePhoto
+      
           this.userAuthServices.registerNormalUser(this.new_user_normally).subscribe(
             (response) => {
               console.log("Respuesta del server:", response)
@@ -93,9 +122,6 @@ export class RegisterComponent implements OnInit {
               console.log('Error:', error)
             }
           );
-        }
-      );
-      
     } else {
       alert('Las contraseñas son diferentes');
     }
@@ -108,9 +134,7 @@ export class RegisterComponent implements OnInit {
       this.userAuthServices.registerLocalServiceAsUser(this.new_local_service_as_user).subscribe(
         (response) => {
           if(response.status === 201) {
-            this.uploadImage().subscribe(id_img => {
               this.new_local_service.type = this.choosenUser;
-              this.new_local_service.photo_profile = id_img;
               this.new_local_service.id_user = response.id; 
               
               this.userAuthServices.registerLocalService(this.new_local_service).subscribe(
@@ -124,7 +148,6 @@ export class RegisterComponent implements OnInit {
                 },
                 (error) => console.log('Error al registrar el local o servicio:', error)
               );
-            });
           }
         },
         (err) => {
@@ -139,7 +162,9 @@ export class RegisterComponent implements OnInit {
   listenImage(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      this.file = file;
+      this.upload_photo = file;
+      console.log("Ejecutando subida de foto")
+      this.postProfilePhoto();
     }
   }
 
