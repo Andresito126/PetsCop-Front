@@ -92,23 +92,28 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmitRegister(){
+    console.log("Realizando registro");
+
     try{
       await this.assignValues();
 
       if(this.formRegistrer.valid){
+        console.log("El formulario es válido")
         if(this.choosenUser === "Normal"){
+          console.log("Registrando user")
           this.registerUser();
         } else {
           this.registerLocalService();
         }
       }
-      
+
     }catch(error){
       console.log("Error:", error)
     }
   }
 
   async assignValues(){
+    console.log("Asignando valores")
     try{
       const { 
         nombre_usuario,
