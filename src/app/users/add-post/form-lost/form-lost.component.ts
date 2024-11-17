@@ -3,11 +3,9 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
-  FormControlName,
   FormArray,
   FormControl,
 } from '@angular/forms';
-import { ILossDataSerialization } from '../../models/iloss-data-serialization';
 import { ILossPostSerialization } from '../../models/iloss-post-serialization';
 import { PostService } from '../../services/post.service';
 import Swal from 'sweetalert2';
@@ -24,7 +22,7 @@ export class FormLostComponent implements OnInit {
 
   currentStep: number = 1;
   formLost: FormGroup;
-  colonies: string [] = [];
+  colonies: string[] = [];
 
   // Objeto para poder enviar la información de un Post de una mascota perdida
   postLostPet: ILossPostSerialization = {
@@ -65,37 +63,31 @@ export class FormLostComponent implements OnInit {
       petName: ['', Validators.required],
       petAge: ['', Validators.required],
       characteristics: this.formBuilder.array([new FormControl('')]),
-      //direcciones
-      zipCode: [  '29140', ],
-      state: [  'Chiapas', ],
-      municipality: [  'Ocozocoautla de Espinoza', ],
+      // Direcciones
+      // zipCode: ['29140'],
+      // state: ['Chiapas'],
+      // municipality: ['Ocozocoautla de Espinoza'],
       neighborhood: ['', Validators.required],
       dateLost: ['', Validators.required],
       description: ['', Validators.required],
       lastSeen: [''],
       reward: [''],
-      
+
       //pics
       photos: this.formBuilder.array(Array(5).fill('')),
     });
   }
 
-    ngOnInit(): void {
-      this.formLost.valueChanges.subscribe(valor=>{
-        console.log
-      })
-      this.formLost,
-      console.log(this.formLost.value)
-      
-      this.servicePost.showColonies().subscribe(
-        (response) => {
-          this.colonies = response;
-        },
-        (err) => {
-          console.log("Error: " + err)
-        }
-      )
-    }
+  ngOnInit(): void {
+    this.servicePost.showColonies().subscribe(
+      (response) => {
+        this.colonies = response;
+      },
+      (err) => {
+        console.log('Error: ' + err);
+      }
+    );
+  }
 
   //METODOS
 
@@ -138,89 +130,83 @@ export class FormLostComponent implements OnInit {
     }
   }
 
-  // trackByIndex(index: number, obj: any): any {
-  //   return index;
-  // }
-
-  //ENVIO DEL FORM
-  // onSubmitFormLost() {
-  //   if (this.formLost.valid) {
-  //     console.log(this.formLost.get('petType')?.value);
-  //     // aca se dee llamar la api creo??????
-  //     console.log(this.formLost.value);
-  //   } else {
-  //     alert('Por favor completa todos los campos obligatorios.');
-  //   }
-  // }
-
-  // Prueba
-  onSubmitFormLost() {
+  // ENVIO DEL FORM
+  async onSubmitFormLost() {
     // Método que va a asignar los valores que el usuario ingresó
-    console.log("enviado:"+ this.formLost.value)
-    this.assignValues();
-    console.log(this.postLostPet)
-
-    this.servicePost.createPostLostPet(this.postLostPet).subscribe(
-      (response) => {
-        Swal.fire({
-          title: "Publicación creada exitosamente",
-          imageUrl: "assets/imgs/img.svg",
-          imageWidth: 250,
-          imageHeight: 250,
-          width: "400px",
-          background: "rgb(35, 155, 205)",
-          color: "#ffffff",
-          showConfirmButton: false,
-          timer: 1600
-        });
-      },
-      (err) => {
-        console.log(err)
+    try {
+      await this.assignValues();
+      if (this.formLost.valid) {
+        this.servicePost.createPostLostPet(this.postLostPet).subscribe(
+          (response) => {
+            Swal.fire({
+              title: 'Publicación creada exitosamente',
+              imageUrl: 'assets/imgs/img.svg',
+              imageWidth: 250,
+              imageHeight: 250,
+              width: '400px',
+              background: 'rgb(35, 155, 205)',
+              color: '#ffffff',
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      } else {
+        alert('Por favor completa todos los campos obligatorios.');
       }
-    )
+    } catch (err) {
+      console.log('Error ' + err);
+    }
   }
 
   async assignValues() {
-    // Desestructuramos los atributos de formLost
-    const {
-      petType,
-      petBreed,
-      petName,
-      petAge,
-      characteristics,
-      zipCode,
-      state,
-      municipality,
-      neighborhood,
-      dateLost,
-      description,
-      lastSeen,
-      reward,
-    } = this.formLost.getRawValue();
+    try {
+      // Desestructuramos los atributos de formLost
+      const {
+        petType,
+        petBreed,
+        petName,
+        petAge,
+        characteristics,
+        neighborhood,
+        dateLost,
+        description,
+        lastSeen,
+        reward,
+      } = this.formLost.value;
 
-    // Datos básicos
-    this.postLostPet.basic_pet_information.type_pet = petType;
-    this.postLostPet.basic_pet_information.name = petName;
-    this.postLostPet.basic_pet_information.race = petBreed;
+      // Datos básicos
+      this.postLostPet.basic_pet_information.type_pet = petType;
+      this.postLostPet.basic_pet_information.name = petName;
+      this.postLostPet.basic_pet_information.race = petBreed;
 
-    if (petAge !== '') this.postLostPet.basic_pet_information.age = petAge;
+      if (petAge !== '') this.postLostPet.basic_pet_information.age = petAge;
 
-    this.postLostPet.basic_pet_information.main_physical_characteristics =
-      characteristics;
-    this.postLostPet.basic_pet_information.photos = await this.uploadPhotos();
+      this.postLostPet.basic_pet_information.main_physical_characteristics =
+        characteristics;
 
-    // Datos de perdida
-    this.postLostPet.loss_data.address.zip_code = zipCode;
-    this.postLostPet.loss_data.address.state = state;
-    this.postLostPet.loss_data.address.municipality = municipality;
-    this.postLostPet.loss_data.address.colony = neighborhood;
-    this.postLostPet.loss_data.loss_date = new Date(dateLost);
-    this.postLostPet.loss_data.description = description;
+      // Datos de perdida
+      this.postLostPet.loss_data.address.zip_code = 29140;
+      this.postLostPet.loss_data.address.state = 'Chiapas';
+      this.postLostPet.loss_data.address.municipality =
+        'Ocozocoautla de Espinoza';
+      this.postLostPet.loss_data.address.colony = neighborhood;
+      this.postLostPet.loss_data.loss_date = new Date(dateLost);
+      this.postLostPet.loss_data.description = description;
 
-    if (lastSeen !== '') this.postLostPet.loss_data.last_seen = lastSeen;
+      if (lastSeen !== '') this.postLostPet.loss_data.last_seen = lastSeen;
 
-    // Datos extras
-    if (reward !== '') this.postLostPet.reward = reward;
+      // Datos extras
+      if (reward !== '') this.postLostPet.reward = reward;
+
+      // Imágenes de la mascota
+      this.postLostPet.basic_pet_information.photos = await this.uploadPhotos();
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   // Form imagenes

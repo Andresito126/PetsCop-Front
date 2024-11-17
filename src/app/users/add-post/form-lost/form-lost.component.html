@@ -176,10 +176,9 @@
           <input
             type="number"
             id="zipCode"
-            formControlName="zipCode"
-            placeholder="Ingresa tu código postal"
+            value="29140"
+            disabled
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
-            required
           />
 
           <div
@@ -200,8 +199,8 @@
           <input
             type="text"
             id="state"
-            formControlName="state"
-            placeholder="Tu estado"
+            value="Chiapas"
+            disabled
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
           />
         </div>
@@ -216,8 +215,8 @@
           <input
             type="text"
             id="municipality"
-            formControlName="municipality"
-            placeholder="Tu municipio"
+            value="Ocozocoautla de Espinoza"
+            disabled
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
           />
         </div>
@@ -306,12 +305,6 @@
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
             required
           />
-          <div
-            *ngIf="hasErrors('lastSeen', 'required')"
-            class="text-red-500 text-xs mb-2"
-          >
-            El campo de la ultima vez visto es obligatorio
-          </div>
         </div>
 
         <!-- recompensa -->
@@ -329,13 +322,6 @@
             class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
             required
           />
-          <div
-            *ngIf="hasErrors('reward', 'required')"
-            class="text-red-500 text-xs mb-2"
-          >
-            El campo de la recompensa es obligatorio (Pon 0 si no quieres dar
-            alguna recompensa)
-          </div>
         </div>
 
         <!-- botones siguiente y back -->

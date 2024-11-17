@@ -12,8 +12,8 @@ export class PostService {
 
   private urlAPI = 'http://localhost:3000';
 
-  showColonies(): Observable<any> {
-    return this.http.post<any>(`${this.urlAPI}/dipomex/29140`,{});
+  showColonies(): Observable<string[]> {
+    return this.http.post<string[]>(`${this.urlAPI}/dipomex/29140`,{});
   }
 
   saveImagesDrive(images: FormData): Observable<string[]> {
