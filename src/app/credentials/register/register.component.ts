@@ -29,11 +29,42 @@ export class RegisterComponent implements OnInit {
       fecha_de_nacimiento: ['', Validators.required],
       nombre_local: ['', Validators.required],
       descripcion: ['', Validators.required],
-      correo_electronico: ['', [Validators.required, Validators.email]],
+      correo_electronico: ['', [Validators.email, Validators.required]],
       new_password: ['', Validators.required],
       compare_new_password: ['', Validators.required],
     })
   }
+
+  updateValidators(): void {
+    // Limpiar validadores de todos los campos
+    this.formRegistrer.get('nombre_usuario')?.clearValidators();
+    this.formRegistrer.get('apellidos_usuario')?.clearValidators();
+    this.formRegistrer.get('fecha_de_nacimiento')?.clearValidators();
+    this.formRegistrer.get('nombre_local')?.clearValidators();
+    this.formRegistrer.get('descripcion')?.clearValidators();
+
+    if (this.choosenUser === 'Normal') {
+      // Validaciones específicas para usuario normal
+      this.formRegistrer.get('nombre_usuario')?.setValidators([Validators.required]);
+      this.formRegistrer.get('apellidos_usuario')?.setValidators([Validators.required]);
+      this.formRegistrer.get('fecha_de_nacimiento')?.setValidators([Validators.required]);
+    } else if (this.choosenUser === 'Local') {
+      // Validaciones específicas para local
+      this.formRegistrer.get('nombre_local')?.setValidators([Validators.required]);
+      this.formRegistrer.get('descripcion')?.setValidators([Validators.required]);
+    } else if (this.choosenUser === 'Service') {
+      // Validaciones específicas para servicios
+      this.formRegistrer.get('nombre_local')?.setValidators([Validators.required]);
+    }
+
+    // Actualizar los estados de validación
+    this.formRegistrer.get('nombre_usuario')?.updateValueAndValidity();
+    this.formRegistrer.get('apellidos_usuario')?.updateValueAndValidity();
+    this.formRegistrer.get('fecha_de_nacimiento')?.updateValueAndValidity();
+    this.formRegistrer.get('nombre_local')?.updateValueAndValidity();
+    this.formRegistrer.get('descripcion')?.updateValueAndValidity();
+  }
+
 
   formRegistrer: FormGroup;
 
@@ -75,6 +106,7 @@ export class RegisterComponent implements OnInit {
   id_new_photo: string = "";
 
   ngOnInit(): void {
+    this.updateValidators(); 
     const userType = localStorage.getItem('userTypeInTheRegister');
     if (userType) {
       this.choosenUser = userType;
@@ -92,28 +124,28 @@ export class RegisterComponent implements OnInit {
   }
 
   async onSubmitRegister(){
-    console.log("Realizando registro");
-
     try{
       await this.assignValues();
 
       if(this.formRegistrer.valid){
-        console.log("El formulario es válido")
         if(this.choosenUser === "Normal"){
-          console.log("Registrando user")
           this.registerUser();
+          console.log("se mando a registar el usuario normal")
         } else {
           this.registerLocalService();
+          console.log("se mando a registar el local o servicio")
+          console.log(this.formRegistrer.value)
         }
+      }else{
+        console.log("Nel mijo tas mal")
       }
-
+      
     }catch(error){
       console.log("Error:", error)
     }
   }
 
   async assignValues(){
-    console.log("Asignando valores")
     try{
       const { 
         nombre_usuario,
