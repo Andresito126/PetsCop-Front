@@ -8,6 +8,7 @@ import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
+import { PostsModule } from './posts/posts.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HomeModule } from './home/home.module';
     AsideComponent,
     CredentialsModule,
     HttpClientModule,
-    HomeModule
+    HomeModule,
+    PostsModule
   ],
    
 

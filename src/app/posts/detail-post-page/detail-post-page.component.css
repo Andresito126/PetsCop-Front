@@ -1,0 +1,25 @@
+.card-container_main {
+    min-height: 25rem;
+    max-height: 70rem;
+    margin-left: 1.4%;
+    margin-right: 1.4%;
+    
+}
+
+.contact-button{
+    background-color: #136A93;
+}
+
+.info-pet-container-main{
+    background-color: #136A93;
+    max-width: 65%;
+    min-width: 65%;
+    height: 40rem;
+}
+
+.name-statu{
+    background-color: red;
+    height: 2rem;
+    width: 40rem;
+}
+  
