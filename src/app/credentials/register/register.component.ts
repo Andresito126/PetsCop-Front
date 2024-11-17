@@ -24,14 +24,14 @@ export class RegisterComponent implements OnInit {
     private form: FormBuilder
   ) {
     this.formRegistrer = form.group({
-      nombre_usuario: ['', Validators.required],
-      apellidos_usuario: ['', Validators.required],
+      nombre_usuario: ['', [Validators.required]],
+      apellidos_usuario: ['', [Validators.required]],
       fecha_de_nacimiento: ['', Validators.required],
-      nombre_local: ['', Validators.required],
-      descripcion: ['', Validators.required],
+      nombre_local: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
       correo_electronico: ['', [Validators.email, Validators.required]],
-      new_password: ['', Validators.required],
-      compare_new_password: ['', Validators.required],
+      new_password: ['', [Validators.required]],
+      compare_new_password: ['', [Validators.required]],
     })
   }
 
@@ -44,17 +44,19 @@ export class RegisterComponent implements OnInit {
     this.formRegistrer.get('descripcion')?.clearValidators();
 
     if (this.choosenUser === 'Normal') {
-      // Validaciones específicas para usuario normal
+      // Validaciones para usuario normal
       this.formRegistrer.get('nombre_usuario')?.setValidators([Validators.required]);
       this.formRegistrer.get('apellidos_usuario')?.setValidators([Validators.required]);
       this.formRegistrer.get('fecha_de_nacimiento')?.setValidators([Validators.required]);
+      
     } else if (this.choosenUser === 'Local') {
-      // Validaciones específicas para local
+      // Validaciones para local
       this.formRegistrer.get('nombre_local')?.setValidators([Validators.required]);
       this.formRegistrer.get('descripcion')?.setValidators([Validators.required]);
     } else if (this.choosenUser === 'Service') {
-      // Validaciones específicas para servicios
+      // Validaciones para servicios
       this.formRegistrer.get('nombre_local')?.setValidators([Validators.required]);
+      this.formRegistrer.get('descripcion')?.setValidators([Validators.required]);
     }
 
     // Actualizar los estados de validación
@@ -106,22 +108,21 @@ export class RegisterComponent implements OnInit {
   id_new_photo: string = "";
 
   ngOnInit(): void {
-    this.updateValidators(); 
+    
     const userType = localStorage.getItem('userTypeInTheRegister');
     if (userType) {
       this.choosenUser = userType;
       this.getProfilePhoto();
+      this.updateValidators(); 
     }
   }
   
   // Métodos
 
   hasErrors(controlName: string, errorType: string) {
-    return (
-      this.formRegistrer.get(controlName)?.hasError(errorType) &&
-      this.formRegistrer.get(controlName)?.touched
-    );
+    return (this.formRegistrer.get(controlName)?.hasError(errorType) && this.formRegistrer.get(controlName)?.touched);
   }
+  
 
   async onSubmitRegister(){
     try{
