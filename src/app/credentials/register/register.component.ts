@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { IRegisterUserSerialization } from '../models/iregister-user-serialization';
 import { catchError, map, Observable, of } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +20,22 @@ export class RegisterComponent implements OnInit {
     private userAuthServices: UsersAuthService,
     private userConfigurationSerice:UserConfigurationService,
     private router: Router,
-    private domSanitizer: DomSanitizer
-  ) {}
+    private domSanitizer: DomSanitizer,
+    private form: FormBuilder
+  ) {
+    this.formRegistrer = form.group({
+      nombre_usuario: ['', Validators.required],
+      apellidos_usuario: ['', Validators.required],
+      fecha_de_nacimiento: ['', Validators.required],
+      nombre_local: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      correo_electronico: ['', Validators.email, Validators.required],
+      new_password: ['', Validators.required],
+      compare_new_password: ['', Validators.required],
+    })
+  }
+
+  formRegistrer: FormGroup;
 
   // Variables
   choosenUser: string = '';
@@ -69,6 +84,65 @@ export class RegisterComponent implements OnInit {
   
   // Métodos
 
+  hasErrors(controlName: string, errorType: string) {
+    return (
+      this.formRegistrer.get(controlName)?.hasError(errorType) &&
+      this.formRegistrer.get(controlName)?.touched
+    );
+  }
+
+  async onSubmitRegister(){
+    try{
+      await this.assignValues();
+
+      if(this.formRegistrer.valid){
+        if(this.choosenUser === "Normal"){
+          this.registerUser();
+        } else {
+          this.registerLocalService();
+        }
+      }
+      
+    }catch(error){
+      console.log("Error:", error)
+    }
+  }
+
+  async assignValues(){
+    try{
+      const { 
+        nombre_usuario,
+        apellidos_usuario,
+        fecha_de_nacimiento,
+        nombre_local,
+        descripcion,
+        correo_electronico,
+        new_password,
+        compare_new_password
+       } = this.formRegistrer.value;
+
+       // Usuario normal
+       this.new_user_normally.first_name = nombre_usuario;
+       this.new_user_normally.last_name = apellidos_usuario;
+       this.new_user_normally.birthdate = fecha_de_nacimiento;
+       this.new_user_normally.email = correo_electronico;
+       this.new_user_normally.password_user = new_password;
+
+       // Local o servicio
+       this.new_local_service.name = nombre_local;
+       this.new_local_service.description = descripcion;
+
+       // Credencial de local o servicio
+       this.new_local_service_as_user.email_user = correo_electronico;
+       this.new_local_service_as_user.password_user = new_password;
+
+       // Comprobar contraseña
+       this.compare_password = compare_new_password;
+    }catch(error){
+      console.log("Error:", error);
+    }
+  }
+
   //img
   postProfilePhoto(){
     if (!this.upload_photo) return;
@@ -98,8 +172,6 @@ export class RegisterComponent implements OnInit {
       console.log(this.new_user_normally.profile_picture)
     }
   }
-
-
 
   //REGISTAR USUARIO
   registerUser() {
