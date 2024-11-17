@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILossPostSerialization } from '../models/iloss-post-serialization';
+import { IAdoptionPostSerialization } from '../models/iadoption-post-serialization';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class PostService {
 
   createPostLostPet(postLostPet: ILossPostSerialization): Observable<void> {
     return this.http.post<void>(`${this.urlAPI}/posts/createPostLostPet`, postLostPet);
+  }
+
+  createPostAdoptionPet(postAdoptionPet: IAdoptionPostSerialization): Observable<void> {
+    return this.http.post<void>(`${this.urlAPI}/posts/createPostPetAdoption`, postAdoptionPet);
   }
 }

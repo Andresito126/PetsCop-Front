@@ -1,82 +1,112 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormBuilder, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  FormBuilder,
+  FormArray,
+} from '@angular/forms';
+import { PostService } from '../../services/post.service';
+import { IAdoptionPostSerialization } from '../../models/iadoption-post-serialization';
+import { response } from 'express';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-adoption',
   templateUrl: './form-adoption.component.html',
-  styleUrl: './form-adoption.component.css'
+  styleUrl: './form-adoption.component.css',
 })
 export class FormAdoptionComponent {
-
-  //VARIABLES
+  // VARIABLES
   @Output() nextStep = new EventEmitter<void>();
   @Output() previousStep = new EventEmitter<void>();
   currentStep: number = 1;
   formAdoption: FormGroup;
-  //pics
+
+  // PICS
   photos: (string | ArrayBuffer | null)[] = Array(5).fill(null);
+  primer: string | ArrayBuffer | null = null;
 
-
-
-  constructor(private form: FormBuilder, private formBuilder: FormBuilder) {
+  constructor(
+    private form: FormBuilder,
+    private formBuilder: FormBuilder,
+    private service: PostService
+  ) {
     this.formAdoption = this.form.group({
       //caracteristicas
       petType: ['', Validators.required],
-      petBreed: ['', Validators.required],
-      petName: ['', Validators.required,],
+      petBreed: [''],
+      petName: ['', Validators.required],
       petAge: ['', Validators.required],
       characteristics: this.formBuilder.array([new FormControl('')]),
       //salud mascota
       vaccines: ['', Validators.required],
       primer: [''],
-      issues: ['', Validators.required,],
-      issuesSentence: [''],
-      operations:  ['', Validators.required],
-      operationsSentence:[''],
+      issues: ['', Validators.required],
+      issuesSentence: this.formBuilder.array([new FormControl('')]),
+      operations: ['', Validators.required],
+      operationsSentence: [''],
       //pics
       photos: this.formBuilder.array(Array(5).fill('')),
     });
-    
   }
 
-  ngOnInit(): void {
-      
+  // Objeto para enviar la información necesaria de una publicación de una mascota en adopción
+  formAdoptionToSend: IAdoptionPostSerialization = {
+    id_user: 15, // Acá lo corrijiremos con el login
+    post_type: 'Adoption',
+    basic_pet_information: {
+      type_pet: '',
+      name: '',
+      main_physical_characteristics: [],
+      photos: [],
+    },
+    medical_data: {
+      has_vaccines: false,
+      has_physical_problems: false,
+      has_operations: false,
+    },
+    publication_date: new Date(),
+  };
+
+  ngOnInit(): void {}
+
+  // METODOS
+
+  // FORM
+
+  hasErrors(controlName: string, errorType: string): boolean | undefined {
+    return (
+      this.formAdoption.get(controlName)?.hasError(errorType) &&
+      this.formAdoption.get(controlName)?.touched
+    );
   }
 
-  //METODOS
-
-  //Form
-
-  hasErrors(controlName:string, errorType:string){
-    return this.formAdoption.get(controlName)?.hasError(errorType) && this.formAdoption.get(controlName)?.touched
-  }
-
-
-  // botones next y back del form
-  onNext() {
+  // BOTONES NEXT Y BACK DEL FORMULARIO
+  onNext(): void {
     if (this.currentStep < 3) {
       this.currentStep++;
       this.nextStep.emit();
     }
-
-    
   }
 
-  onBack() {
+  onBack(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
       this.previousStep.emit();
     }
   }
 
-  //caracteristoicas
+  // CARACTERÍSTICAS
 
   get characteristics(): FormArray {
     return this.formAdoption.get('characteristics') as FormArray;
   }
 
- addCharacteristic() {
-    const lastControl = this.characteristics.at(this.characteristics.length - 1);
+  addCharacteristic(): void {
+    const lastControl = this.characteristics.at(
+      this.characteristics.length - 1
+    );
     if (lastControl && lastControl.value.trim() !== '') {
       this.characteristics.push(new FormControl(''));
     } else {
@@ -84,22 +114,111 @@ export class FormAdoptionComponent {
     }
   }
 
-  // trackByIndex(index: number, obj: any): any {
-  //   return index;
-  // }
+  get physicalProblems(): FormArray {
+    return this.formAdoption.get('issuesSentence') as FormArray;
+  }
 
-  //ENVIO DEL FORM
-  onSubmitFormAdoption() {
-    if (this.formAdoption.valid) {
-      console.log(this.formAdoption);
-      // aca se dee llamar la api creo??????
+  addPhysicalProblems(): void {
+    const lastControl = this.physicalProblems.at(
+      this.physicalProblems.length - 1
+    );
+
+    if (lastControl && lastControl.value.trim() !== '') {
+      this.physicalProblems.push(new FormControl(''));
     } else {
-      alert('Por favor completa todos los campos obligatorios.');
+      alert('Debes llenar el input anterior antes de agregar otro');
     }
   }
 
+  //ENVIO DEL FORM
+  async onSubmitFormAdoption() {
+    try {
+      if (this.formAdoption.valid) {
+        await this.assignValues();
+        this.service.createPostAdoptionPet(this.formAdoptionToSend).subscribe(
+          (response) => {
+            Swal.fire({
+              title: 'Publicación creada exitosamente',
+              imageUrl: 'assets/imgs/img.svg',
+              imageWidth: 250,
+              imageHeight: 250,
+              width: '400px',
+              background: 'rgb(35, 155, 205)',
+              color: '#ffffff',
+              showConfirmButton: false,
+              timer: 1800,
+            });
+          },
+          (err) => {
+            console.log("Erro: " + err)
+          }
+        )
+      } else {
+        alert('Por favor completa todos los campos obligatorios.');
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  //form imagenes
+  async assignValues() {
+    try {
+      // Desestructuramos los atributos de formAdoption
+      const {
+        petType,
+        petBreed,
+        petName,
+        petAge,
+        characteristics,
+        //salud mascota
+        vaccines,
+        issues,
+        issuesSentence,
+        operations,
+        operationsSentence,
+      } = this.formAdoption.value;
+
+      console.log(vaccines,issues,operations);
+
+      // Datos básicos
+      this.formAdoptionToSend.basic_pet_information.type_pet = petType;
+      this.formAdoptionToSend.basic_pet_information.name = petName;
+
+      if (petBreed !== '')
+        this.formAdoptionToSend.basic_pet_information.race = petBreed;
+
+      if (petAge !== '')
+        this.formAdoptionToSend.basic_pet_information.age = petAge;
+
+      this.formAdoptionToSend.basic_pet_information.main_physical_characteristics =
+        characteristics;
+
+      // Datos médicos
+      this.formAdoptionToSend.medical_data.has_vaccines = vaccines;
+      if (vaccines === 'Si') {
+        const photo = await this.uploadPrimer();
+        this.formAdoptionToSend.medical_data.primer = photo[0];
+      }
+
+      this.formAdoptionToSend.medical_data.has_physical_problems = issues;
+
+      if (issues === 'Si')
+        this.formAdoptionToSend.medical_data.physical_problems = issuesSentence;
+
+      this.formAdoptionToSend.medical_data.has_operations = operations;
+
+      if (operations === 'Si')
+        this.formAdoptionToSend.medical_data.operations = operationsSentence;
+
+      // Fotos
+      this.formAdoptionToSend.basic_pet_information.photos =
+        await this.uploadPhotos();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // Form imagenes
   onFileSelect(event: Event, index: number) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -116,4 +235,75 @@ export class FormAdoptionComponent {
     }
   }
 
+  onPrimerSelect(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.primer = reader.result;
+        const primerControl = this.formAdoption.get('primer');
+        if (primerControl) {
+          primerControl.setValue(this.primer);
+        }
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Método para enviar las fotos de la mascota a la API
+  uploadPhotos(): Promise<string[]> {
+    const formData = new FormData();
+
+    this.photos.forEach((photo, index) => {
+      if (photo && typeof photo === 'string') {
+        const blob = this.dataURLtoBlob(photo);
+        formData.append('files', blob, `photo_${index}.jpg`);
+      }
+    });
+
+    return new Promise((resolve, reject) => {
+      this.service.saveImagesDrive(formData).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (err) => {
+          console.error('Error al subir los archivos', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  // Método para enviar la foto de la cartilla a la API
+  uploadPrimer(): Promise<string[]> {
+    const formData = new FormData();
+
+    // Añadir la cartilla
+    if (this.primer && typeof this.primer === 'string') {
+      const blob = this.dataURLtoBlob(this.primer);
+      formData.append('files', blob, 'primer.jpg');
+    }
+
+    return new Promise((resolve, reject) => {
+      this.service.saveImagesDrive(formData).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (err) => {
+          console.error('Error al subir los archivos', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  dataURLtoBlob(dataURL: string): Blob {
+    const byteString = atob(dataURL.split(',')[1]);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const uintArray = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      uintArray[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([uintArray], { type: 'image/jpeg' });
+  }
 }

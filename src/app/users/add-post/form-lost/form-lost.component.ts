@@ -63,10 +63,7 @@ export class FormLostComponent implements OnInit {
       petName: ['', Validators.required],
       petAge: ['', Validators.required],
       characteristics: this.formBuilder.array([new FormControl('')]),
-      // Direcciones
-      // zipCode: ['29140'],
-      // state: ['Chiapas'],
-      // municipality: ['Ocozocoautla de Espinoza'],
+      // Datos de perdida
       neighborhood: ['', Validators.required],
       dateLost: ['', Validators.required],
       description: ['', Validators.required],
