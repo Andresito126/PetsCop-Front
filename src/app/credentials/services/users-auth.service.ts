@@ -19,6 +19,7 @@ export class UsersAuthService {
   private _apiURLMONGO = 'http://localhost:3000';
 
   // Registrar un usuario normal
+  // Si el método no requiere de un token, agregale el skipAuth
   registerNormalUser(newUser: IRegistrerUserNormalSerialization): Observable<IRegistrerUserNormalSerialization>{
     return this._http.post<IRegistrerUserNormalSerialization>(this._apiUrl + '/user_normally/register', newUser, {
       headers: new HttpHeaders({ 'skipAuth': 'true' })

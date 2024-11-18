@@ -14,6 +14,7 @@ export class UserConfigurationService {
 
   constructor(private _http: HttpClient) { }
 
+    // Si el método requiere del token, no le agregues nada
     getOwnProfile(id_user: number): Observable<IUserDataSerialization>{
       return this._http.get<IUserDataSerialization>(this._apiUrl + "user_normally/get_by_id/" + id_user);
     }
