@@ -9,6 +9,7 @@ import {
 import { ILossPostSerialization } from '../../models/iloss-post-serialization';
 import { PostService } from '../../services/post.service';
 import Swal from 'sweetalert2';
+import { race } from 'rxjs';
 
 @Component({
   selector: 'app-form-lost',
@@ -23,6 +24,7 @@ export class FormLostComponent implements OnInit {
   currentStep: number = 1;
   formLost: FormGroup;
   colonies: string[] = [];
+  imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null];
 
   // Objeto para poder enviar la información de un Post de una mascota perdida
   postLostPet: ILossPostSerialization = {
@@ -31,7 +33,6 @@ export class FormLostComponent implements OnInit {
     basic_pet_information: {
       type_pet: '',
       name: '',
-      race: '',
       main_physical_characteristics: [],
       photos: [],
     },
@@ -47,9 +48,6 @@ export class FormLostComponent implements OnInit {
     },
     publication_date: new Date(),
   };
-
-  // Pics
-  photos: (string | ArrayBuffer | null)[] = Array(5).fill(null);
 
   constructor(
     private form: FormBuilder,
@@ -178,7 +176,9 @@ export class FormLostComponent implements OnInit {
       // Datos básicos
       this.postLostPet.basic_pet_information.type_pet = petType;
       this.postLostPet.basic_pet_information.name = petName;
-      this.postLostPet.basic_pet_information.race = petBreed;
+
+      if (petBreed !== '') this.postLostPet.basic_pet_information.race = petBreed;
+      
 
       if (petAge !== '') this.postLostPet.basic_pet_information.age = petAge;
 
@@ -206,18 +206,18 @@ export class FormLostComponent implements OnInit {
     }
   }
 
-  // Form imagenes
-  onFileSelect(event: Event, index: number) {
+  // Método para manejar el clic y abrir el selector de archivos
+  triggerFileInputs(input: HTMLInputElement): void {
+    input.click();
+  }
+
+  // Método para manejar la selección de una imagen
+  onFileSelect(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.photos[index] = reader.result as string | ArrayBuffer;
-        const photosControl = this.formLost.get('photos') as FormArray;
-        if (!photosControl.at(index)) {
-          photosControl.push(new FormControl(''));
-        }
-        photosControl.at(index).setValue(this.photos[index]);
+        this.imageUrls[index] = reader.result as string | ArrayBuffer;
       };
       reader.readAsDataURL(input.files[0]);
     }
@@ -227,7 +227,7 @@ export class FormLostComponent implements OnInit {
   uploadPhotos(): Promise<string[]> {
     const formData = new FormData();
 
-    this.photos.forEach((photo, index) => {
+    this.imageUrls.forEach((photo, index) => {
       if (photo && typeof photo === 'string') {
         const blob = this.dataURLtoBlob(photo);
         formData.append('files', blob, `photo_${index}.jpg`);

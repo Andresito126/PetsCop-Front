@@ -136,6 +136,7 @@ export class FormAdoptionComponent {
     try {
       if (this.formAdoption.valid) {
         await this.assignValues();
+        console.log(this.formAdoptionToSend)
         this.service.createPostAdoptionPet(this.formAdoptionToSend).subscribe(
           (response) => {
             Swal.fire({
@@ -154,6 +155,7 @@ export class FormAdoptionComponent {
             console.log('Erro: ' + err);
           }
         );
+        console.log(this.formAdoption.value)
       } else {
         alert('Por favor completa todos los campos obligatorios.');
       }
@@ -210,8 +212,8 @@ export class FormAdoptionComponent {
         this.formAdoptionToSend.medical_data.operations = operationsSentence;
 
       // Fotos
-      // this.formAdoptionToSend.basic_pet_information.photos =
-      //   await this.uploadPhotos();
+      this.formAdoptionToSend.basic_pet_information.photos =
+        await this.uploadPhotos();
     } catch (err) {
       console.log(err);
     }
@@ -247,7 +249,6 @@ export class FormAdoptionComponent {
     if (input.files && input.files[0]) {
       const reader = new FileReader();
       reader.onload = () => {
-        // Guardamos la URL de la imagen en el índice correspondiente
         this.imageUrls[index] = reader.result as string | ArrayBuffer;
       };
       reader.readAsDataURL(input.files[0]);
@@ -295,28 +296,28 @@ export class FormAdoptionComponent {
   }
 
   // Método para enviar las fotos de la mascota a la API
-  // uploadPhotos(): Promise<string[]> {
-  //   const formData = new FormData();
+  uploadPhotos(): Promise<string[]> {
+    const formData = new FormData();
 
-  //   this.photos.forEach((photo, index) => {
-  //     if (photo && typeof photo === 'string') {
-  //       const blob = this.dataURLtoBlob(photo);
-  //       formData.append('files', blob, `photo_${index}.jpg`);
-  //     }
-  //   });
+    this.imageUrls.forEach((photo, index) => {
+      if (photo && typeof photo === 'string') {
+        const blob = this.dataURLtoBlob(photo);
+        formData.append('files', blob, `photo_${index}.jpg`);
+      }
+    });
 
-  //   return new Promise((resolve, reject) => {
-  //     this.service.saveImagesDrive(formData).subscribe(
-  //       (response) => {
-  //         resolve(response);
-  //       },
-  //       (err) => {
-  //         console.error('Error al subir los archivos', err);
-  //         reject(err);
-  //       }
-  //     );
-  //   });
-  // }
+    return new Promise((resolve, reject) => {
+      this.service.saveImagesDrive(formData).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (err) => {
+          console.error('Error al subir los archivos', err);
+          reject(err);
+        }
+      );
+    });
+  }
 
   // Método para enviar la foto de la cartilla a la API
   uploadPrimer(): Promise<string[]> {

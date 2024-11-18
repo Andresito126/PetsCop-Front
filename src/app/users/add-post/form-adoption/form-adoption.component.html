@@ -342,6 +342,7 @@
                 *ngIf="imageUrls[0]"
                 [src]="imageUrls[0]"
                 alt="Imagen cargada"
+                id="upload-img"
               />
               <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
               <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
@@ -365,6 +366,7 @@
                   *ngIf="imageUrls[1]"
                   [src]="imageUrls[1]"
                   alt="Imagen cargada"
+                  id="upload-img"
                 />
                 <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt=""/>
                 <input
@@ -373,7 +375,6 @@
                   (change)="onFileSelect($event, 1)"
                   accept="image/*"
                   hidden
-                  id="upload-img"
                 />
               </div>
 
@@ -385,6 +386,7 @@
                   *ngIf="imageUrls[2]"
                   [src]="imageUrls[2]"
                   alt="Imagen cargada"
+                  id="upload-img"
                 />
                 <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt=""/>
                 <input
@@ -393,7 +395,6 @@
                   (change)="onFileSelect($event, 2)"
                   accept="image/*"
                   hidden
-                  id="upload-img"
                 />
               </div>
             </div>
@@ -415,7 +416,6 @@
                   (change)="onFileSelect($event, 3)"
                   accept="image/*"
                   hidden
-                  id="upload-img"
                 />
               </div>
 
@@ -427,6 +427,7 @@
                   *ngIf="imageUrls[4]"
                   [src]="imageUrls[4]"
                   alt="Imagen cargada"
+                  id="upload-img"
                 />
                 <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
                 <input
@@ -435,7 +436,6 @@
                   (change)="onFileSelect($event, 4)"
                   accept="image/*"
                   hidden
-                  id="upload-img"
                 />
               </div>
             </div>

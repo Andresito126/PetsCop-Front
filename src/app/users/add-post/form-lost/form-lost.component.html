@@ -355,30 +355,114 @@
         >
           Fotos de la mascota
         </h1>
-        <div class="grid grid-cols-2 gap-2 mt-5 ml-10 mb-5">
-          <label *ngFor="let photo of photos; let i = index" class="block">
-            <input
-              type="file"
-              accept="image/*"
-              (change)="onFileSelect($event, i)"
-              class="hidden"
-              #fileInput
-            />
+        <div class="container-main">
+          <div class="container-img-main">
             <div
-              class="flex items-center justify-center border rounded-lg cursor-pointer bg-gray-50"
-              (click)="fileInput.click()"
+              class="sub-container-img"
+              (click)="triggerFileInputs(fileInput1)"
             >
               <img
-                *ngIf="photo; else uploadIcon"
-                [src]="photo"
-                alt="Foto {{ i === 0 ? 'principal' : 'secundaria ' + i }}"
-                class="object-cover w-full h-full rounded-lg"
+                *ngIf="imageUrls[0]"
+                [src]="imageUrls[0]"
+                alt="Imagen cargada"
+                id="upload-img"
               />
-              <ng-template #uploadIcon>
-                <span class="text-gray-500">Cargar Imagen</span>
-              </ng-template>
+              <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
+              <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
+              <input
+                #fileInput1
+                type="file"
+                (change)="onFileSelect($event, 0)"
+                accept="image/*"
+                hidden
+              />
             </div>
-          </label>
+          </div>
+
+          <div class="container-img-secondaries">
+            <div class="container-imgs-pair-1">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput2)"
+              >
+                <img
+                  *ngIf="imageUrls[1]"
+                  [src]="imageUrls[1]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt=""/>
+                <input
+                  #fileInput2
+                  type="file"
+                  (change)="onFileSelect($event, 1)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput3)"
+              >
+                <img
+                  *ngIf="imageUrls[2]"
+                  [src]="imageUrls[2]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt=""/>
+                <input
+                  #fileInput3
+                  type="file"
+                  (change)="onFileSelect($event, 2)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+            <div class="container-imgs-pair-2">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput4)"
+              >
+                <img
+                  *ngIf="imageUrls[3]"
+                  [src]="imageUrls[3]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput4
+                  type="file"
+                  (change)="onFileSelect($event, 3)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput5)"
+              >
+                <img
+                  *ngIf="imageUrls[4]"
+                  [src]="imageUrls[4]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput5
+                  type="file"
+                  (change)="onFileSelect($event, 4)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Botones -->
