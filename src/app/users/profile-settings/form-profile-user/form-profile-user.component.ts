@@ -49,22 +49,27 @@ export class FormProfileUserComponent implements OnInit{
   // Methods to consume the service 
 
   loadUserData(): void {
-    this.userConfigService.getOwnProfile(7).subscribe(
-      response => {
-        console.log("It's ok", response);
-        this.user_normaly = response;
-        this.getProfilePhoto();
-      },
-      error => console.log("Error:", error)
-    );
+    let id_user = localStorage.getItem("id_user");
+    let id_search: number = 0;
+    if(id_user){
+      id_search = parseInt(id_user, 10);
+      this.userConfigService.getOwnProfile(id_search).subscribe(
+        response => {
+          console.log("It's ok", response);
+          this.user_normaly = response;
+          this.getProfilePhoto();
+        },
+        error => console.log("Error:", error)
+      );
   
-    this.userConfigService.getOwnCredentials(7).subscribe(
-      response => {
-        console.log("It's ok", response);
-        this.user_credential = response;
-      },
-      error => console.log("Error", error)
-    );
+      this.userConfigService.getOwnCredentials(id_search).subscribe(
+        response => {
+          console.log("It's ok", response);
+          this.user_credential = response;
+        },
+        error => console.log("Error", error)
+      );
+    }
   }
   
 
