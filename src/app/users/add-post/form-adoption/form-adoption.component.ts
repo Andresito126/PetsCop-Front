@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { PostService } from '../../services/post.service';
 import { IAdoptionPostSerialization } from '../../models/iadoption-post-serialization';
-import { response } from 'express';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,6 +25,7 @@ export class FormAdoptionComponent {
   // PICS
   photos: (string | ArrayBuffer | null)[] = Array(5).fill(null);
   primer: string | ArrayBuffer | null = null;
+  imageUrl: string | ArrayBuffer | null = null;
 
   constructor(
     private form: FormBuilder,
@@ -33,20 +33,20 @@ export class FormAdoptionComponent {
     private service: PostService
   ) {
     this.formAdoption = this.form.group({
-      //caracteristicas
+      // Caracteristicas
       petType: ['', Validators.required],
       petBreed: [''],
       petName: ['', Validators.required],
       petAge: ['', Validators.required],
-      characteristics: this.formBuilder.array([new FormControl('')]),
-      //salud mascota
+      characteristics: this.formBuilder.array([new FormControl('', Validators.required)]),
+      // Salud mascota
       vaccines: ['', Validators.required],
       primer: [''],
       issues: ['', Validators.required],
       issuesSentence: this.formBuilder.array([new FormControl('')]),
       operations: ['', Validators.required],
       operationsSentence: [''],
-      //pics
+      // Pics
       photos: this.formBuilder.array(Array(5).fill('')),
     });
   }
@@ -130,7 +130,7 @@ export class FormAdoptionComponent {
     }
   }
 
-  //ENVIO DEL FORM
+  // ENVÍO DEL FORM
   async onSubmitFormAdoption() {
     try {
       if (this.formAdoption.valid) {
@@ -177,8 +177,6 @@ export class FormAdoptionComponent {
         operations,
         operationsSentence,
       } = this.formAdoption.value;
-
-      console.log(vaccines,issues,operations);
 
       // Datos básicos
       this.formAdoptionToSend.basic_pet_information.type_pet = petType;
@@ -235,6 +233,32 @@ export class FormAdoptionComponent {
     }
   }
 
+  
+  // Dispara el clic del input oculto
+  triggerFileInput(fileInput: HTMLInputElement): void {
+    fileInput.click();
+  }
+
+  // Maneja el evento de selección de archivo
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input?.files && input.files[0]) {
+      const file = input.files[0];
+
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageUrl = reader.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Por favor, selecciona un archivo de imagen.');
+      }
+    }
+  }
+
+  // Maneja el evento de selección de una foto de la cartilla
   onPrimerSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
