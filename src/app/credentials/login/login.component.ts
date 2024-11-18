@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { UsersAuthService } from '../services/users-auth.service';
-import { IUserCredentialsSerialization } from '../models/iuser-credentials-serialization';
 import { IloginUserSerialization } from '../models/ilogin-user-serialization';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,15 @@ import { IloginUserSerialization } from '../models/ilogin-user-serialization';
 })
 export class LoginComponent {
 
-  constructor(private userAuthServices: UsersAuthService){}
+  constructor(private userAuthServices: UsersAuthService, private router: Router){}
 
+  // Variables
+  logInTypeUser: string = '';
+
+  // Estrucuturas de nuestros objetos
   log_credentials: IloginUserSerialization = {
-    id_user: 0,
     email: "",
-    password_user: "",
-    type_user: ""
+    password_user: ""
   }
 
   fields = [
@@ -24,17 +27,38 @@ export class LoginComponent {
     { label: 'Contraseña', type: 'password', name: 'password', placeholder: 'Ingresa tu contraseña', required: true, ngName:"jeje" }
   ];
 
-  async onLogin(data: any) {
-    // const response = await this.usersService.login(data);
-    // console.log(response);
-  }
-
-  login(){
+  login(): void {
     this.userAuthServices.login(this.log_credentials).subscribe(
-      response => {
-        console.log("Respuesta del servidor:", response)
+      (response) => {
+        if(response.status === 200){
+          Swal.fire({
+            icon: "success",
+            title: "Acceso concedido",
+            showConfirmButton: false,
+            timer: 2500
+          }).then(() => {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('rol', JSON.stringify(response.type_user));
+            localStorage.setItem('id_user', JSON.stringify(response.id_user));
+            // this.router.navigate(['/inicio'])
+          });
+        } else if (response.status === 401) {
+          Swal.fire({
+            title: 'Credenciales inválidas',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500,
+          });
+        }
       },
-      error => console.log("Error:", error)
+      (error) => {
+        Swal.fire({
+          title: 'Error en el sevidor',
+          icon: 'error',
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
     );
   }
 }

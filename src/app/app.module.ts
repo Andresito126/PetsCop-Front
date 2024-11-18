@@ -6,13 +6,15 @@ import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
-import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
 import { PostsModule } from './posts/posts.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +27,14 @@ import { PostsModule } from './posts/posts.module';
     HomeModule,
     PostsModule
   ],
-   
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    }
 
-  providers: [],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUserDataSerialization } from '../models/iuser-data-serialization';
 import { IuserCredentialsSerialization } from '../models/iuser-credentials-serialization';
@@ -14,19 +14,35 @@ export class UserConfigurationService {
 
   constructor(private _http: HttpClient) { }
 
+    // Si el método requiere del token, no le agregues nada
     getOwnProfile(id_user: number): Observable<IUserDataSerialization>{
-      return this._http.get<IUserDataSerialization>(this._apiUrl + "get_normal_user_by_id/" + id_user);
+      return this._http.get<IUserDataSerialization>(this._apiUrl + "user_normally/get_by_id/" + id_user, {
+        headers: new HttpHeaders({ 'skipAuth': 'true' })
+      });
     }
 
     getOwnCredentials(id_user: number): Observable<IuserCredentialsSerialization> {
-      return this._http.get<IuserCredentialsSerialization>(this._apiUrl + "get_normal_user_by_id/" + id_user);
+      return this._http.get<IuserCredentialsSerialization>(this._apiUrl + "user_normally/get_by_id/" + id_user);
+    }
+
+    getOwnProfilePhoto(id_photo: string): Observable<any>{
+      return this._http.get(this._apiUrl + "drive/download/" + id_photo, {responseType: 'blob', 
+        headers: new HttpHeaders({ 'skipAuth': 'true' })
+      });
+    }
+
+    uploadProfilePhoto(file: File): Observable<any>{
+      const formData = new FormData();
+      formData.append('file', file);
+
+      return this._http.post(this._apiUrl + "drive/upload", formData);
     }
 
     updateNormalUser(user: IUserDataSerialization): Observable<IUserDataSerialization> {
-      return this._http.put<IUserDataSerialization>(`${this._apiUrl}edit_profile/${user.id_user_normally}`, user);
+      return this._http.put<IUserDataSerialization>(`${this._apiUrl}user_normally/edit_profile/${user.id_user_normally}`, user);
     }
 
     editPassword(credentials: IuserCredentialsSerialization): Observable<IuserCredentialsSerialization>{
-      return this._http.put<IuserCredentialsSerialization>(this._apiUrl + "edit_password/" + credentials.id_user, credentials);
+      return this._http.put<IuserCredentialsSerialization>(this._apiUrl + "users/edit_password/" + credentials.id_user, credentials);
     }
 }
