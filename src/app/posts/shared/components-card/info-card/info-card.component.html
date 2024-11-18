@@ -1,23 +1,29 @@
 <div class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start">
     <div class="info-section-main ">
         <div class="info-section_dog-text flex">
-            <p class="text-blue-600 font-bold text-lg">Cozy</p>
-            <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">Perro macho</p>
+            <p class="text-blue-600 font-bold text-lg">{{pet.name}}</p>
+            <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{pet.gender}}</p>
         </div>
         <!-- ng if si es perdido o encontrado cambia color -->
-        <p class="status-text text-red-600 font-bold">Estado: <span class="text-gray-600 text-sm md:font-normal">Perdido</span></p>
+        <p class="status-text font-bold" [ngClass]="{ 'text-red-600': pet.status === 'Perdido', 'text-green-600': pet.status === 'Encontrado','text-black-600': pet.status === 'Adopcion', }">
+            Estado: <span class="text-gray-600 text-sm md:font-normal">{{ pet.status }}</span>
+          </p>
         <p class="text-gray-600 text-sm flex items-center mt-1">
-            <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> Ocozocoautla de Espinoza
+            <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> {{location}}
         </p>
         <div class="info-section-description_div mt-2 text-justify">
-            <p>Yago is a jokester who can get along with everyone - dogs and humans alike! He's athletic and playful but also knows when it's time to take a break and lounge around. Yago is a very affectionate baby who would love to take naps with you when he is not running around and playing with his toys.</p>
+            <p>{{description}}</p>
         </div>
     </div>
     <!-- imagenes -->
     <div class="info-section-img_div flex space-x-2">
+        <!-- <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
-        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
-        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
+        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" /> -->
+        <img *ngFor="let image of images"
+        [src]="image"
+        class="w-28 h-28 object-cover rounded-lg shadow"
+        alt="Imagen de la mascota">
     </div>
   </div>
