@@ -1,16 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardHomeComponent } from './shared/card-home/card-home.component';
+import { PostsModule } from '../posts/posts.module';
+import { HomePageComponent } from './home-page/home-page.component';
+
 
 
 
 
 @NgModule({
   declarations: [
-    CardHomeComponent,
+    HomePageComponent
   ],
   imports: [
     CommonModule,
+    PostsModule,
   ]
 })
 export class HomeModule { }
