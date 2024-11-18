@@ -37,7 +37,9 @@ export class LoginComponent {
             showConfirmButton: false,
             timer: 2500
           }).then(() => {
-            localStorage.setItem('token', JSON.stringify(response.token));
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('rol', JSON.stringify(response.type_user));
+            localStorage.setItem('id_user', JSON.stringify(response.id_user));
             // this.router.navigate(['/inicio'])
           });
         } else if (response.status === 401) {

@@ -18,14 +18,6 @@ export class FormProfileUserComponent implements OnInit{
 
   // Variables
   @Input() profileImageUrl: string = '';
-  
-  // @Input() id_user: number=1;
-  // @Input() first_name: string = '';
-  // @Input() last_name: string = '';
-  // @Input() date_birth: string = '';
-  // @Input() phone_number: string = '';
-  // @Input() email: string = '';
-  // @Input() password: string = '';
   @Output() data_user = new EventEmitter<IUserDataSerialization>();
   @Output() credential_user = new EventEmitter<IuserCredentialsSerialization>
 
