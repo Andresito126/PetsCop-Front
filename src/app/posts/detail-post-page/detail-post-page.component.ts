@@ -14,6 +14,13 @@ export class DetailPostPageComponent {
     'https://via.placeholder.com/300/333'
   ];
 
+  //boton carcateristicas o datos basicos
+  selectedButton: string = 'datos';
+
+  selectButton(button: string): void {
+    this.selectedButton = button;
+  }
+
   // Imagen principal inicial
   mainImage = this.thumbnails[0];
 

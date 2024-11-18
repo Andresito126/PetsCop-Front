@@ -3,6 +3,7 @@
     max-height: 70rem;
     margin-left: 1.4%;
     margin-right: 1.4%;
+    max-width: 81rem;
     
 }
 
@@ -10,10 +11,11 @@
     background-color: #136A93;
 }
 
+
 .info-pet-container-main{
-    background-color: #136A93;
-    max-width: 65%;
-    min-width: 65%;
+    
+    max-width: 70%;
+    min-width: 68%;
     height: 40rem;
 }
 
@@ -22,4 +24,40 @@
     height: 2rem;
     width: 40rem;
 }
+
+.description-of-event {
+    max-width: 100%;
+    word-break: break-word;
+    white-space: normal;
+  }
   
+  /* boton seleccion datos */
+  .button-caract_button.active {
+    background-color: #0E4C6A; 
+  }
+  
+.button-caract-div{
+    width: 100%;
+    
+}
+
+.button-caract_button{
+    background-color: #1981b0;
+    width: 50%;
+}
+
+.button-caract_button:hover{
+    background-color: #136A93;
+    width: 50%;
+}
+
+.leftPlace{
+   border-top-left-radius:  10px;
+   border-bottom-left-radius: 10px;
+}
+ 
+.rightPlace{
+    border-top-right-radius:  10px;
+    border-bottom-right-radius: 10px;
+    
+ }

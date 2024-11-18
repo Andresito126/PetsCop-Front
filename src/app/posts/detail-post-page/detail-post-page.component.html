@@ -6,15 +6,11 @@
           <p class="text-sm font-semibold">Andre Julian Gutiérrez Alcazar</p>
           <p class="text-xs text-gray-500">24/10/2024 &nbsp; 10:12</p>
         </div>
-        <button class="message-button ml-auto flex items-center px-4 py-1.5 rounded-md text-sm">
-          <img class="h-7 w-7 mr-2" src="assets/posts/message.svg" alt="message-icon">
-          Enviar mensaje
-        </button>
       </div>
      
     <div class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start mb-4">
       <!-- img y boton contacto -->
-        <div class="images-and-button flex flex-col ">
+        <div class="images-and-button flex flex-col mt-4 ">
           <div class="images-container flex items-center">
             <!-- miniatutras -->
             <div class="thumbnails-container flex flex-col space-y-2 mr-4">
@@ -44,32 +40,73 @@
           >
             Contactarse con la persona
           </button>
+
         </div>
-        <div class="info-pet-container-main">
-          <div class="info-pet items-center">
-            <div class="name-statu">
-              <img src="" alt=""> 
-              <h4>YAGO</h4>
-              <img src="" alt="">
-                        
-            </div>
-            <div class="button-to-change-info">
 
-            </div>
-            <div class="data-pet" >
-            
-            </div>
-            <div class="description-of-event">
-
-            </div>
+         <!-- Información de la mascota -->
+         <div class="info-pet-container-main lg:w-2/3  border-gray-200">
+          <!-- nombre y status -->
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center space-x-2">
+              <img src="assets/posts/pata.svg"  class="h-9 w-9" />
+                <h4 class="text-xl font-semibold">YAGO</h4>
+              </div>
+                <div class="alert-pet flex items-center ml-20 ">
+                  <img class="w-12" src="assets/posts/alertLost.svg" alt="">
+                  <span class="text-red-500 font-bold text-xl">¡Perdido!</span>
+                </div>
           </div>
+           <!-- boton de caracteristicas y datos -->
+          <div class="button-caract-div">
+            <button 
+              class="button-caract_button leftPlace text-white px-4 py-1"
+              [ngClass]="{ 'active': selectedButton === 'datos' }"
+              (click)="selectButton('datos')"
+            >
+              Datos básicos de la mascota
+            </button>
+            <button 
+              class="button-caract_button rightPlace text-white px-4 py-1"
+              [ngClass]="{ 'active': selectedButton === 'caracteristicas' }"
+              (click)="selectButton('caracteristicas')"
+            >
+              Características físicas
+            </button>
+          </div>
+          
+          <!--datos basicos -->
+          <div class="data-pet text-gray-700 mb-4 flex mt-5">
+            <p class="mr-4"><span class="font-semibold">Sexo:</span > Macho</p>
+            <p class="mr-4"><span class="font-semibold">Edad:</span> 1 año y 4 meses</p>
+            <p><span class="font-semibold">Raza:</span> Chihuahua</p>
+            
+          </div>
+
+          <hr class="border-gray-300 mt-4 mb-2">
+          
+          <!-- descripcion-->
+          <div class="description-of-event text-gray-700 mb-4 max-w-full overflow-hidden">
+            <h1 class="font-semibold text-xl mt-2 mb-2" >Descripción del suceso</h1>
+            <p class="break-words">
+              Yago es un bromista que se lleva bien con todos - ¡perros y humanos por igual! Es atlético y juguetón, pero
+              también sabe cuándo es hora de descansar. Le encanta tomar siestas y jugar con sus juguetes. 
+              <span class="text-green-500 font-semibold">Recompensa: $700</span>
+            </p>
+            <hr class="border-gray-300 mt-4">
+          </div>  
+          <!-- Informacion de perdido -->
           <div class="info-pet-lost">
-         
-            <div class="cards-places" >
-
+            <p class="text-red-600 font-semibold text-xl mb-3">Perdido en:</p>
+            <div class="cards-places flex space-x-4 mb-4">
+              <div class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56">Estado <br> <p class="text-black">Chiapas</p></div>
+              <div class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56">Municipio <br><p class="text-black">Ocozocuatla de espinoza rey</p></div>
+              <div class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56 ">Colonia <br><p class="text-black">Mexico 13 de mayo</p></div>
             </div>
-            <div class="last-seen">
-
+            <div class="last-seen text-gray-600">
+              <p class="flex items-center">
+                <img src="assets/posts/ubication.svg"class="h-6 w-6 mr-2" />
+                Última vez visto: Frente al DIF
+              </p>
             </div>
           </div>
         </div>
