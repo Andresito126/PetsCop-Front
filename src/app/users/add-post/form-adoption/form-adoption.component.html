@@ -358,7 +358,7 @@
           <div class="container-img-secondaries">
             <div class="container-imgs-pair-1">
               <div
-                class="container-img-secondary-1"
+                class="container-img-secondary"
                 (click)="triggerFileInputs(fileInput2)"
               >
                 <img
@@ -366,19 +366,19 @@
                   [src]="imageUrls[1]"
                   alt="Imagen cargada"
                 />
-                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt="" />
-                <span *ngIf="!imageUrls[1]">Subir imagen</span>
+                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt=""/>
                 <input
                   #fileInput2
                   type="file"
                   (change)="onFileSelect($event, 1)"
                   accept="image/*"
                   hidden
+                  id="upload-img"
                 />
               </div>
 
               <div
-                class="container-img-secondary-2"
+                class="container-img-secondary"
                 (click)="triggerFileInputs(fileInput3)"
               >
                 <img
@@ -386,40 +386,41 @@
                   [src]="imageUrls[2]"
                   alt="Imagen cargada"
                 />
-                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt="" />
-                <span *ngIf="!imageUrls[2]">Subir imagen</span>
+                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt=""/>
                 <input
                   #fileInput3
                   type="file"
                   (change)="onFileSelect($event, 2)"
                   accept="image/*"
                   hidden
+                  id="upload-img"
                 />
               </div>
             </div>
             <div class="container-imgs-pair-2">
               <div
-                class="container-img-secondary-3"
+                class="container-img-secondary"
                 (click)="triggerFileInputs(fileInput4)"
               >
                 <img
                   *ngIf="imageUrls[3]"
                   [src]="imageUrls[3]"
                   alt="Imagen cargada"
+                  id="upload-img"
                 />
                 <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
-                <span *ngIf="!imageUrls[3]">Subir imagen</span>
                 <input
                   #fileInput4
                   type="file"
                   (change)="onFileSelect($event, 3)"
                   accept="image/*"
                   hidden
+                  id="upload-img"
                 />
               </div>
 
               <div
-                class="container-img-secondary-4"
+                class="container-img-secondary"
                 (click)="triggerFileInputs(fileInput5)"
               >
                 <img
@@ -428,13 +429,13 @@
                   alt="Imagen cargada"
                 />
                 <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
-                <span *ngIf="!imageUrls[4]">Subir imagen</span>
                 <input
                   #fileInput5
                   type="file"
                   (change)="onFileSelect($event, 4)"
                   accept="image/*"
                   hidden
+                  id="upload-img"
                 />
               </div>
             </div>
