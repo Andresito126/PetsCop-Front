@@ -13,9 +13,9 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'user_profile', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-  { path: 'publicacion/perdida', component: LostPageComponent },
-  { path: 'publicacion/adopcion', component: AdoptionPageComponent },
-
+  {path:'publicacion/perdida', component: LostPageComponent },
+  {path:'publicacion/adopcion', component: AdoptionPageComponent },
+  
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
