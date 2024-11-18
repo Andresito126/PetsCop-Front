@@ -24,40 +24,55 @@
 
 /* Estilos para el input que va a mostrar la imagen de la cartilla*/
 .upload-container {
-    width: 34rem;
-    height: auto;
-    max-height: 37rem;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    cursor: pointer;
-    overflow: hidden; 
-    background-color: #f9f9f9;
-    padding: 0.1rem;
-    margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .upload-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 0.4rem; 
-    top: 0;
-    left: 0;
-  }
-  
-  .upload-container span {
-    font-size: 16px;
-    color: #888;
-    text-align: center;
-    z-index: 1;
-  }
-  
-  input[type="file"] {
-    display: none;
-  }
-  
+  width: 34rem;
+  height: auto;
+  max-height: 37rem;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  padding: 0.1rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.upload-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.4rem;
+  top: 0;
+  left: 0;
+}
+
+.upload-container span {
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  z-index: 1;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.container-main {
+  display: flex;
+}
+
+.sub-container-img {
+  width: 20rem;
+  border-radius: 2rem;
+  border: 1px solid #e3e3e3;
+  box-shadow: 1px 1px 1px #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
