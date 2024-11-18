@@ -260,6 +260,8 @@ export class RegisterComponent implements OnInit {
     ]
   }
 
+  colognes: string[] = []
+
   days_array: string[] = [];
   free_days: boolean[] = [false, false, false, false, false, false, false]
   
@@ -275,6 +277,13 @@ export class RegisterComponent implements OnInit {
       this.getProfilePhoto();
       this.updateValidators(); 
     }
+
+    this.userAuthServices.getColognes(29140).subscribe(
+      response => {
+        console.log("Respuesta del server:", response);
+        this.colognes = response;
+      }
+    )
   }
   
   // Métodos

@@ -56,6 +56,10 @@ export class UsersAuthService {
     });
   };
 
+  getColognes(cp: number): Observable<string[]>{
+    return this._http.post<string[]>(this._apiURLMONGO + "/dipomex/" + cp, null);
+  }
+
   // EJEMPLO
   // registerUser(userData: any): Observable<any> {
   //   return this.http.post(`${this.apiUrl}/register`, userData, {
