@@ -327,96 +327,135 @@
       <!-- INICIO FORM PT3 -->
 
       <div *ngIf="currentStep === 3" class="form-step3">
-        <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6">
-            Fotos de la mascota
+        <h1
+          class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
+        >
+          Fotos de la mascota
         </h1>
         <div class="container-main">
-            <div class="container-img-main">
-                <div class="sub-container-img" (click)="triggerFileInputs(fileInput1)">
-                    <img *ngIf="imageUrls[0]" [src]="imageUrls[0]" alt="Imagen cargada" />
-                    <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
-                    <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
-                    <input
-                        #fileInput1
-                        type="file"
-                        (change)="onFileSelect($event, 0)"
-                        accept="image/*"
-                        hidden
-                    />
-                </div>
+          <div class="container-img-main">
+            <div
+              class="sub-container-img"
+              (click)="triggerFileInputs(fileInput1)"
+            >
+              <img
+                *ngIf="imageUrls[0]"
+                [src]="imageUrls[0]"
+                alt="Imagen cargada"
+              />
+              <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
+              <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
+              <input
+                #fileInput1
+                type="file"
+                (change)="onFileSelect($event, 0)"
+                accept="image/*"
+                hidden
+              />
             </div>
-    
-            <div class="container-img-secondaries">
-                <div class="container-img-secondary-1" (click)="triggerFileInputs(fileInput2)">
-                    <img *ngIf="imageUrls[1]" [src]="imageUrls[1]" alt="Imagen cargada" />
-                    <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt="" />
-                    <span *ngIf="!imageUrls[1]">Subir imagen</span>
-                    <input
-                        #fileInput2
-                        type="file"
-                        (change)="onFileSelect($event, 1)"
-                        accept="image/*"
-                        hidden
-                    />
-                </div>
-    
-                <div class="container-img-secondary-2" (click)="triggerFileInputs(fileInput3)">
-                    <img *ngIf="imageUrls[2]" [src]="imageUrls[2]" alt="Imagen cargada" />
-                    <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt="" />
-                    <span *ngIf="!imageUrls[2]">Subir imagen</span>
-                    <input
-                        #fileInput3
-                        type="file"
-                        (change)="onFileSelect($event, 2)"
-                        accept="image/*"
-                        hidden
-                    />
-                </div>
-    
-                <div class="container-img-secondary-3" (click)="triggerFileInputs(fileInput4)">
-                    <img *ngIf="imageUrls[3]" [src]="imageUrls[3]" alt="Imagen cargada" />
-                    <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
-                    <span *ngIf="!imageUrls[3]">Subir imagen</span>
-                    <input
-                        #fileInput4
-                        type="file"
-                        (change)="onFileSelect($event, 3)"
-                        accept="image/*"
-                        hidden
-                    />
-                </div>
-    
-                <div class="container-img-secondary-4" (click)="triggerFileInputs(fileInput5)">
-                    <img *ngIf="imageUrls[4]" [src]="imageUrls[4]" alt="Imagen cargada" />
-                    <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
-                    <span *ngIf="!imageUrls[4]">Subir imagen</span>
-                    <input
-                        #fileInput5
-                        type="file"
-                        (change)="onFileSelect($event, 4)"
-                        accept="image/*"
-                        hidden
-                    />
-                </div>
+          </div>
+
+          <div class="container-img-secondaries">
+            <div class="container-imgs-pair-1">
+              <div
+                class="container-img-secondary-1"
+                (click)="triggerFileInputs(fileInput2)"
+              >
+                <img
+                  *ngIf="imageUrls[1]"
+                  [src]="imageUrls[1]"
+                  alt="Imagen cargada"
+                />
+                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt="" />
+                <span *ngIf="!imageUrls[1]">Subir imagen</span>
+                <input
+                  #fileInput2
+                  type="file"
+                  (change)="onFileSelect($event, 1)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary-2"
+                (click)="triggerFileInputs(fileInput3)"
+              >
+                <img
+                  *ngIf="imageUrls[2]"
+                  [src]="imageUrls[2]"
+                  alt="Imagen cargada"
+                />
+                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt="" />
+                <span *ngIf="!imageUrls[2]">Subir imagen</span>
+                <input
+                  #fileInput3
+                  type="file"
+                  (change)="onFileSelect($event, 2)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
             </div>
+            <div class="container-imgs-pair-2">
+              <div
+                class="container-img-secondary-3"
+                (click)="triggerFileInputs(fileInput4)"
+              >
+                <img
+                  *ngIf="imageUrls[3]"
+                  [src]="imageUrls[3]"
+                  alt="Imagen cargada"
+                />
+                <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
+                <span *ngIf="!imageUrls[3]">Subir imagen</span>
+                <input
+                  #fileInput4
+                  type="file"
+                  (change)="onFileSelect($event, 3)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary-4"
+                (click)="triggerFileInputs(fileInput5)"
+              >
+                <img
+                  *ngIf="imageUrls[4]"
+                  [src]="imageUrls[4]"
+                  alt="Imagen cargada"
+                />
+                <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
+                <span *ngIf="!imageUrls[4]">Subir imagen</span>
+                <input
+                  #fileInput5
+                  type="file"
+                  (change)="onFileSelect($event, 4)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+          </div>
         </div>
-    
+
         <!-- Botones -->
         <button
-            type="submit"
-            class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4"
+          type="submit"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4"
         >
-            Enviar
+          Enviar
         </button>
         <button
-            type="button"
-            class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
-            (click)="onBack()"
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
         >
-            Anterior
+          Anterior
         </button>
-    </div>
-    
+      </div>
     </form>
   </div>
 </div>
