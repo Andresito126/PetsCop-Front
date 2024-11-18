@@ -5,3 +5,8 @@
 .aside-li_hover:hover{
     background-color: #136A93;
 }
+
+.user-img{
+    margin-right: 5%;
+    border-radius: 120px;
+}
