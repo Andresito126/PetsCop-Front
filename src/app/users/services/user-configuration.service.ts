@@ -43,6 +43,6 @@ export class UserConfigurationService {
     }
 
     editPassword(credentials: IuserCredentialsSerialization): Observable<IuserCredentialsSerialization>{
-      return this._http.put<IuserCredentialsSerialization>(this._apiUrl + "user_normally/edit_password/" + credentials.id_user, credentials);
+      return this._http.put<IuserCredentialsSerialization>(this._apiUrl + "users/edit_password/" + credentials.id_user, credentials);
     }
 }
