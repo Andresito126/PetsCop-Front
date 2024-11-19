@@ -67,4 +67,17 @@ export class HomePageComponent implements OnInit {
       error => console.log("Error:", error)
     )
   }
+
+  getOldPost(){
+    this.postServices.getOldPosts().subscribe(
+      response => {
+        console.log("It's ok!");
+        this.posts = response;
+      },
+      error => console.log("Error:", error)
+    );
+  }
+
+  getRecentPostOfAType(){
+  }
 }

@@ -27,7 +27,13 @@ export class CardPostPageComponent implements OnInit {
   time_publication: string = "";
 
   ngOnInit(): void {
-      this.date_publication = this.posts.publication_date.toISOString().split('T')[0];
-      this.time_publication = this.posts.publication_date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    const publicationDate = new Date(this.posts.publication_date); // Asegúrate de que sea un objeto Date
+    this.date_publication = publicationDate.toISOString().split('T')[0];
+    this.time_publication = publicationDate.toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit', 
+      hour12: false 
+    });
   }
 }

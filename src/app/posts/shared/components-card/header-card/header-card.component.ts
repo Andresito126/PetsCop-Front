@@ -47,7 +47,7 @@ export class HeaderCardComponent implements OnInit {
       response => {
         console.log("Respuesta del servidor:", response);
         this.credential_user = response;
-        this.compareUser
+        this.compareUser();
       },
       error => console.log("Error:", error)
     );
@@ -63,13 +63,13 @@ export class HeaderCardComponent implements OnInit {
             img_response => {
               const imgObj = URL.createObjectURL(img_response);
               this.profile_photo = this.domSanitizer.bypassSecurityTrustUrl(imgObj);
+              this.user = this.user_normaly.first_name + " " + this.user_normaly.last_name;
             },
             error => console.log("Error:", error)
           );
         },
         error => console.log("Error:", error)
       );
-      this.user = this.user_normaly.first_name + this.user_normaly.last_name;
     }
   }
 }

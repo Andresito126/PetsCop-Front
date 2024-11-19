@@ -25,6 +25,10 @@ export class PostsService {
     return this._http.post<IpostPreview[]>(this._url_mongo + "posts/getRecentPostsType/" + type_post, null);
   }
 
+  getOldPostOfAType(type_post: string): Observable<IpostPreview[]>{
+    return this._http.post<IpostPreview[]>(this._url_mongo + "posts/getRecentPostsType/" + type_post, null);
+  }
+
   getPhotosFromMongo(id_photo: string): Observable<any>{
     return this._http.get(this._url_mongo + "drive/download/" + id_photo, {responseType: 'blob'});
   }
