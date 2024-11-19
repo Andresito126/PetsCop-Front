@@ -6,6 +6,7 @@ import { HeaderFilterPostComponent } from './shared/components-card/header-filte
 import { CardPostPageComponent } from './card-post-page/card-post-page.component';
 import { HeaderCardComponent } from './shared/components-card/header-card/header-card.component';
 import { InfoCardComponent } from './shared/components-card/info-card/info-card.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,7 +22,8 @@ import { InfoCardComponent } from './shared/components-card/info-card/info-card.
  
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports:[
     CardPostPageComponent,

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header-filter-post',
@@ -6,5 +6,24 @@ import { Component } from '@angular/core';
   styleUrl: './header-filter-post.component.css'
 })
 export class HeaderFilterPostComponent {
+  @Output() executeGetRecent = new EventEmitter<void>();
+  @Output() executeGetOld = new EventEmitter<void>();
+  @Input() getRecent!: () => void;
+  @Input() getOld!: () => void;
+  value_option: number = 0;
 
+  onOptionSelected(){
+    if(this.value_option == 1)
+      this.getRecentPosts();
+    if(this.value_option == 2)
+      this.getOldPosts();
+  }
+
+  getRecentPosts(){
+    this.executeGetRecent.emit();
+  }
+
+  getOldPosts(){
+    this.executeGetOld.emit();
+  }
 }

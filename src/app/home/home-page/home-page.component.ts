@@ -58,7 +58,8 @@ export class HomePageComponent implements OnInit {
     */
   }
 
-  getRecentPost(){
+  getRecentPost(): void{
+    console.log("Obtener posts recientes")
     this.postServices.getRecentPosts().subscribe(
       response => {
         console.log("It's ok!");
@@ -68,7 +69,8 @@ export class HomePageComponent implements OnInit {
     )
   }
 
-  getOldPost(){
+  getOldPost(): void{
+    console.log("Ontener posts antigüos")
     this.postServices.getOldPosts().subscribe(
       response => {
         console.log("It's ok!");
@@ -76,8 +78,5 @@ export class HomePageComponent implements OnInit {
       },
       error => console.log("Error:", error)
     );
-  }
-
-  getRecentPostOfAType(){
   }
 }
