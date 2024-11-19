@@ -7,9 +7,6 @@
     
 }
 
-.contact-button{
-    background-color: #136A93;
-}
 
 
 .info-pet-container-main{
@@ -19,18 +16,13 @@
     height: 40rem;
 }
 
-.name-statu{
+.name-status{
     background-color: red;
     height: 2rem;
     width: 40rem;
 }
 
-.description-of-event {
-    max-width: 100%;
-    word-break: break-word;
-    white-space: normal;
-  }
-  
+
   /* boton seleccion datos */
   .button-caract_button.active {
     background-color: #0E4C6A; 
