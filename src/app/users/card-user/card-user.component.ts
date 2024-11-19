@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IUserDataSerialization } from '../models/iuser-data-serialization';
 import { UserConfigurationService } from '../services/user-configuration.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -16,7 +16,8 @@ export class CardUserComponent implements OnInit {
     private domSanitizer: DomSanitizer
   ){}
 
-  id_user_normally: number = 7;
+  @Input() id_user_normally: number = 0;
+  my_id_user: number = 0;
 
   user_normally: IUserDataSerialization = {
     id_user_normally: 0,
@@ -38,6 +39,15 @@ export class CardUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInformation();
+  }
+
+  compareIdUsers(): boolean {
+    const getting_id = localStorage.getItem("id_user");
+    this.my_id_user = getting_id ? JSON.parse(getting_id) : 0;
+    if(this.my_id_user == this.id_user_normally)
+      return true;
+    else
+      return false;
   }
 
   getUserInformation(){

@@ -1,6 +1,6 @@
 <main>
-    <app-card-user></app-card-user>
+    <app-card-user [id_user_normally]="id_user_show"></app-card-user>
     <div>
-        <p>Aquí van los posts</p>
+        <app-card-post-page *ngFor="let post of post_user" [posts]="post"></app-card-post-page>
     </div>
 </main>
