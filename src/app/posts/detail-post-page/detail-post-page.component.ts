@@ -1,14 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../services/posts.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail-post-page',
   templateUrl: './detail-post-page.component.html',
   styleUrl: './detail-post-page.component.css'
 })
-export class DetailPostPageComponent {
+export class DetailPostPageComponent implements OnInit {
 
-  //variables
+  constructor (private servicePost: PostsService, private route: ActivatedRoute) {}
 
+  // VARIABLES
+  id_post: number = 0;
+
+  // MÉTODOS
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id_post');
+
+    if (id) {
+      this.id_post = +id;
+      this.getInformationPost(this.id_post);
+    }
+  }
+  
+  getInformationPost(id_post: number): void {
+
+  }
 
   //interfaz, datos semi dinamicos
   kevPost = {
@@ -59,9 +77,7 @@ export class DetailPostPageComponent {
   };
 
 
-  ngOnInit(): void {
-    
-    }
+  
 
 
   thumbnails = [
@@ -77,6 +93,20 @@ export class DetailPostPageComponent {
   selectButton(button: string): void {
     this.selectedButton = button;
   }
+
+  date_publication: string = "";
+  time_publication: string = "";
+
+  // ngOnInit(): void {
+  //   const publicationDate = new Date(this.posts.publication_date);
+  //   this.date_publication = publicationDate.toISOString().split('T')[0];
+  //   this.time_publication = publicationDate.toLocaleTimeString('en-US', { 
+  //     hour: '2-digit', 
+  //     minute: '2-digit', 
+  //     second: '2-digit', 
+  //     hour12: false 
+  //   });
+  // }
 
   
 }

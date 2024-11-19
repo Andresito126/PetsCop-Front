@@ -64,6 +64,7 @@ export class HomePageComponent implements OnInit {
       response => {
         console.log("It's ok!");
         this.posts = response;
+        console.log(this.posts)
       },
       error => console.log("Error:", error)
     )

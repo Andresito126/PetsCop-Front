@@ -9,7 +9,7 @@ import { IpostPreview } from '../models/ipost-preview';
 })
 export class PostsService {
 
-  _url_mongo: string = 'http://localhost:3000/';
+  private _url_mongo: string = 'http://localhost:3000/';
 
   constructor(private _http: HttpClient) { }
 

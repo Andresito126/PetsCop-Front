@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrl: './header-card.component.css'
 })
 export class HeaderCardComponent implements OnInit {
+ 
 
   constructor(
     private userServices: UserConfigurationService,
@@ -33,7 +34,7 @@ export class HeaderCardComponent implements OnInit {
     profile_picture: ""
   }
 
-  user!: string;
+  @Input() user!: string;
   @Input() date!: string;
   @Input() time!: string;
   profile_photo: any;

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../models/post';
 import { IpostPreview } from '../models/ipost-preview';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-post-page',
@@ -8,6 +9,9 @@ import { IpostPreview } from '../models/ipost-preview';
   styleUrl: './card-post-page.component.css'
 })
 export class CardPostPageComponent implements OnInit {
+  constructor(private router: Router){}
+
+  // VARIABLES
   @Input() posts: IpostPreview = {
     _id: "",
     id_user: 0,
@@ -26,8 +30,9 @@ export class CardPostPageComponent implements OnInit {
   date_publication: string = "";
   time_publication: string = "";
 
+  // MÉTODOS
   ngOnInit(): void {
-    const publicationDate = new Date(this.posts.publication_date); // Asegúrate de que sea un objeto Date
+    const publicationDate = new Date(this.posts.publication_date);
     this.date_publication = publicationDate.toISOString().split('T')[0];
     this.time_publication = publicationDate.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
@@ -35,5 +40,9 @@ export class CardPostPageComponent implements OnInit {
       second: '2-digit', 
       hour12: false 
     });
+  }
+
+  redirectDetailPost(): void {
+
   }
 }
