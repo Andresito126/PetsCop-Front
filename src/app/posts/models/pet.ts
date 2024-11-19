@@ -1,5 +1,8 @@
 export interface Pet {
+    type_pet: string;
     name: string;
-    gender: string;
-    status: string;
-  }
+    race: string;
+    age: string;
+    main_physical_characteristics: string[];
+    photos: string[];
+}

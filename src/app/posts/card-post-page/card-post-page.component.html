@@ -1,22 +1,22 @@
 <!-- incio -->
 
 <div
-*ngFor="let post of posts"
   class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10"
 >
   <!-- header del nombre, datos, publi y mandar mensaje -->
   <app-header-card
-    [user]="post.user"
-    [date]="post.date"
-    [time]=" post.time"
+    [id_user]="posts.id_user"
+    [date]="date_publication"
+    [time]="time_publication"
   ></app-header-card>
   <!-- info -->
 
   <app-info-card
-  [description]="post.description"
-  [pet]="post.pet"
-  [images]="post.images"
-  [location]="post.location"
+  [description]="'descripción'"
+  [type_post]="posts.post_type"
+  [pet]="posts.basic_pet_information"
+  [images]="posts.basic_pet_information.photos"
+  [location]="'Ubicación'"
   ></app-info-card>
 
   <!-- botones comentar y repostear -->
@@ -43,7 +43,7 @@
     </button>
 
     <div>
-      <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado</button>
+      <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado!</button>
     </div>
   </div>
   

@@ -1,16 +1,19 @@
 <div class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start">
     <div class="info-section-main ">
+        <!-- ng if si es perdido o encontrado cambia color -->
+        <p class="status-text font-bold" [ngClass]="{ 'text-red-600': type_post === 'Lost', 'text-green-600': type_post === 'Found','text-black-600': type_post === 'Adoption', }">
+            Tipo de post: <span class="text-gray-600 text-sm md:font-normal">{{ type_post }}</span>
+        </p>
+
         <div class="info-section_dog-text flex">
             <p class="text-blue-600 font-bold text-lg">{{pet.name}}</p>
-            <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{pet.gender}}</p>
+            <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{pet.age}}</p>
         </div>
-        <!-- ng if si es perdido o encontrado cambia color -->
-        <p class="status-text font-bold" [ngClass]="{ 'text-red-600': pet.status === 'Perdido', 'text-green-600': pet.status === 'Encontrado','text-black-600': pet.status === 'Adopcion', }">
-            Estado: <span class="text-gray-600 text-sm md:font-normal">{{ pet.status }}</span>
-          </p>
+        <!--
         <p class="text-gray-600 text-sm flex items-center mt-1">
             <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> {{location}}
         </p>
+        -->
         <div class="info-section-description_div mt-2 text-justify">
             <p>{{description}}</p>
         </div>
@@ -21,7 +24,7 @@
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" /> -->
-        <img *ngFor="let image of images"
+        <img *ngFor="let image of imagenes"
         [src]="image"
         class="w-28 h-28 object-cover rounded-lg shadow"
         alt="Imagen de la mascota">

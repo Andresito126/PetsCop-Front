@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { JwtInterceptorService } from './shared/services/jwt-interceptor.service
     CredentialsModule,
     HttpClientModule,
     HomeModule,
-    PostsModule
+    PostsModule,
+    MascotasPagesModule,
   ],
   providers: [
     {
