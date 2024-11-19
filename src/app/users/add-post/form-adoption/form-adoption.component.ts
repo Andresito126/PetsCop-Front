@@ -21,6 +21,7 @@ export class FormAdoptionComponent {
   @Output() previousStep = new EventEmitter<void>();
   currentStep: number = 1;
   formAdoption: FormGroup;
+  idUser = localStorage.getItem('id_user');
 
   // PICS
   primer: string | ArrayBuffer | null = null;
@@ -54,7 +55,7 @@ export class FormAdoptionComponent {
 
   // Objeto para enviar la información necesaria de una publicación de una mascota en adopción
   formAdoptionToSend: IAdoptionPostSerialization = {
-    id_user: 15, // Acá lo corrijiremos con el login
+    id_user: this.idUser ? JSON.parse(this.idUser) : 0,
     post_type: 'Adoption',
     basic_pet_information: {
       type_pet: '',

@@ -25,10 +25,11 @@ export class FormLostComponent implements OnInit {
   formLost: FormGroup;
   colonies: string[] = [];
   imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null];
+  idUser = localStorage.getItem('id_user');
 
   // Objeto para poder enviar la información de un Post de una mascota perdida
   postLostPet: ILossPostSerialization = {
-    id_user: 15, // Esto es temporal, ok?
+    id_user: this.idUser ? JSON.parse(this.idUser) : 0,
     post_type: 'Lost',
     basic_pet_information: {
       type_pet: '',
