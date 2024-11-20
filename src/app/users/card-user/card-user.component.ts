@@ -63,7 +63,7 @@ export class CardUserComponent implements OnInit {
           },
           error => console.log("Error:", error)
         );
-        this.userConfigurationServies.getOwnCredentials(response.id_user_normally).subscribe(
+        this.userConfigurationServies.getOwnCredentials(response.id_user).subscribe(
           response => {
             console.log("Credenciales obtenidas");
             this.user_credentials = response;

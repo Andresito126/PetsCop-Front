@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'detallePost', component:DetailPostPageComponent},
   {path:'user/configuration', component:ProfileSettingsPageComponent},
-  {path:'user_profile', component: ViewProfileUserComponent},
+  {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
 ];
 @NgModule({
