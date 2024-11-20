@@ -10,22 +10,7 @@ import { PostsService } from '../../posts/services/posts.service';
 export class EncontradosPageComponent {
   constructor(private postServices: PostsService){}
 
-  posts: IpostPreview[] = [
-    {
-      _id: "id",
-      id_user: 9,
-      post_type: "Adoption",
-      basic_pet_information: {
-        type_pet: "Perro",
-        name: "Niky",
-        race: "Chihuahua",
-        age: "1 año",
-        main_physical_characteristics: ["Venadita", "Chiquitita"],
-        photos: []
-      },
-      publication_date: new Date
-    }
-  ];
+  posts: IpostPreview[] = [];
 
   ngOnInit(): void {
     this.getRecentPost();

@@ -5,17 +5,27 @@
             Tipo de post: <span class="text-gray-600 text-sm md:font-normal">{{ type_post }}</span>
         </p>
 
+        <!--
         <div class="info-section_dog-text flex">
             <p class="text-blue-600 font-bold text-lg">{{pet.name}}</p>
             <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{pet.age}}</p>
         </div>
-        <!--
+        
         <p class="text-gray-600 text-sm flex items-center mt-1">
             <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> {{location}}
         </p>
         -->
-        <div class="info-section-description_div mt-2 text-justify">
-            <p>{{description}}</p>
+        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Lost'">
+            <p>{{lost_data.description}}</p>
+        </div>
+        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Adoption'">
+            <p>Nombre: {{pet.name}}</p>
+            <p>Especie: {{pet.type_pet}}</p>
+            <P>Raza: {{pet.race}}</P>
+            <p>Edad: {{pet.age}}</p>
+        </div>
+        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Found'">
+            <p>{{gratitude}}</p>
         </div>
     </div>
     <!-- imagenes -->

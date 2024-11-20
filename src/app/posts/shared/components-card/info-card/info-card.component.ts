@@ -3,6 +3,7 @@ import { Pet } from '../../../models/pet';
 import { Post } from '../../../models/post';
 import { PostsService } from '../../../services/posts.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { IlossData } from '../../../models/iloss-data';
 
 @Component({
   selector: 'app-info-card',
@@ -18,6 +19,9 @@ export class InfoCardComponent implements OnInit {
 
   //variables
   @Input() description!: string;
+  @Input() lost_data!: IlossData;
+  @Input() reward!: number;
+  @Input() gratitude!: string;
   @Input() pet!: Pet;
   @Input() type_post!: string;
   @Input() images!: string[];

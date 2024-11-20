@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
   constructor(private postServices: PostsService){}
 
   posts: IpostPreview[] = [
+    /*
     {
       _id: "id",
       id_user: 9,
@@ -28,6 +29,7 @@ export class HomePageComponent implements OnInit {
       },
       publication_date: new Date
     }
+      */
   ];
 
   ngOnInit(): void {

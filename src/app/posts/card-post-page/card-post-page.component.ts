@@ -20,6 +20,21 @@ export class CardPostPageComponent implements OnInit {
       main_physical_characteristics: [],
       photos: []
     },
+    loss_data: {
+      address: {
+        zip_code: 0,
+        state: "",
+        street: "",
+        cologne: "",
+        municipality: "",
+        outside_number: 0
+      },
+      loss_date: new Date,
+      description: "",
+      last_seen: ""
+    },
+    reward: 0,
+    gratitude: "",
     publication_date: new Date
   }; 
 

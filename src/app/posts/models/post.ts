@@ -11,12 +11,5 @@ export interface Post {
     reward: number;
     gratitude: string;
     medical_data: ImedicalData;
-    
-    user: string;
-    date: string;
-    time:string;
-    location: string;
-    pet: Pet;
-    description: string;
-    images: string[];
+    publication_date: Date;
   }
