@@ -1,0 +1,42 @@
+<div class="div_lost">
+  <div
+    class="description-of-event text-gray-700 mb-4 max-w-full overflow-hidden"
+  >
+    <h1 class="font-semibold text-xl mt-2 mb-2">Descripción del suceso</h1>
+    <p class="break-words">
+      {{ description }}
+      <span class="text-green-500 font-semibold">Recompensa: {{ reward }}</span>
+    </p>
+    <hr class="border-gray-300 mt-4" />
+  </div>
+  <div class="info-pet-lost">
+    <p class="text-red-600 font-semibold text-xl mb-3">Perdido en:</p>
+    <div class="cards-places flex space-x-4 mb-4">
+      <div
+        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+      >
+        Estado <br />
+        <p class="text-black">{{ state }}</p>
+      </div>
+      <div
+        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+      >
+        Municipio <br />
+        <p class="text-black">{{ municipality }}</p>
+      </div>
+      <div
+        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+      >
+        Colonia <br />
+        <p class="text-black">{{ neighborhood }}</p>
+      </div>
+    </div>
+    <div class="last-seen text-gray-600">
+      <p class="flex items-center">
+        <img src="assets/posts/ubication.svg" class="h-6 w-6 mr-2" />
+        {{ lastSeen }}
+      </p>
+    </div>
+  </div>
+  <hr class="border-gray-300 mt-4 mb-2" />
+</div>

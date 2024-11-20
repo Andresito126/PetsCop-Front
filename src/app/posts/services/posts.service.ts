@@ -36,7 +36,7 @@ export class PostsService {
     return this._http.post<IpostPreview[]>(this._url_mongo + "/posts/getPostsUser/" + id_user, null);
   }
 
-  getPhotosFromMongo(id_photo: string): Observable<any>{
+  getPhotosFromMongo(id_photo: string | undefined): Observable<any>{
     return this._http.get(this._url_mongo + "/drive/download/" + id_photo, {responseType: 'blob'});
   }
 

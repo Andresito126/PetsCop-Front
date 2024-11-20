@@ -12,7 +12,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class DetailPostPageComponent implements OnInit {
   constructor(
-    private servicePost: PostsService,
     private postServices: PostsService,
     private route: ActivatedRoute,
     private domSanitizer: DomSanitizer
@@ -48,7 +47,7 @@ export class DetailPostPageComponent implements OnInit {
   }
 
   getInformationPost(): void {
-    this.servicePost.getInformationPost(this.id_post).subscribe(
+    this.postServices.getInformationPost(this.id_post).subscribe(
       (response) => {
         const type_post = response.post_type;
         // DEFINIMOS LOS DATOS BÁSICOS QUE INCLUYEN LOS DOS TIPOS DE PUBLICACIÓN

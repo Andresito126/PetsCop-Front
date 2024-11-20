@@ -13,6 +13,10 @@ import { BasicDataComponent } from './shared/components-detail/basic-data/basic-
 import { PetDescriptionComponent } from './shared/components-detail/pet-description/pet-description.component';
 import { LostInfoCardsComponent } from './shared/components-detail/lost-info-cards/lost-info-cards.component';
 import { FormsModule } from '@angular/forms';
+import { MoreInfoLostComponent } from './shared/components-detail/more-info-lost/more-info-lost.component';
+import { MoreInfoAdoptionComponent } from './shared/components-detail/more-info-adoption/more-info-adoption.component';
+import { MascotasPagesModule } from "../mascotas-pages/mascotas-pages.module";
+import { MoreInfoFindedComponent } from './shared/components-detail/more-info-finded/more-info-finded.component';
 
 
 
@@ -29,13 +33,17 @@ import { FormsModule } from '@angular/forms';
     NameStatusComponent,
     BasicDataComponent,
     PetDescriptionComponent,
-    LostInfoCardsComponent
+    LostInfoCardsComponent,
+    MoreInfoLostComponent,
+    MoreInfoAdoptionComponent,
+    MoreInfoFindedComponent
  
   ],
   imports: [
     CommonModule,
-    FormsModule
-  ],
+    FormsModule,
+
+],
   exports:[
     CardPostPageComponent,
     HeaderFilterPostComponent,

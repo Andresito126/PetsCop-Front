@@ -12,9 +12,7 @@
     class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start mb-4"
   >
     <!-- img y boton contacto -->
-    <app-image-gallery
-      [thumbnails]="photos"
-    ></app-image-gallery>
+    <app-image-gallery [thumbnails]="photos"></app-image-gallery>
 
     <!-- Información completa de la mascota -->
     <div class="info-pet-container-main lg:w-2/3 border-gray-200">
@@ -50,22 +48,30 @@
 
       <hr class="border-gray-300 mt-4 mb-2" />
 
-      <!-- descripcion-->
-
-      <app-pet-description
-      *ngIf="post.post_type === 'Perdido'"
+      <!-- PERDIDO descripcion, cards,e etc. -->
+      <app-more-info-lost
+        *ngIf="post.post_type === 'Perdido'"
         [description]="post.loss_data?.description"
         [reward]="post.reward"
-      ></app-pet-description>
-
-      <!-- Informacion de perdido -->
-      <app-lost-info-cards
-      *ngIf="post.post_type === 'Perdido'"
         [state]="post.loss_data?.address?.state"
         [municipality]="post.loss_data?.address?.municipality"
         [neighborhood]="post.loss_data?.address?.colony"
         [lastSeen]="post.loss_data?.last_seen"
-      ></app-lost-info-cards>
+      ></app-more-info-lost>
+
+      <!-- ADOPCION salud mascota, etc -->
+      <app-more-info-adoption
+        *ngIf="post.post_type === 'Adopción'"
+        [physical_problems]="post.medical_data?.physical_problems"
+        [operations]="post.medical_data?.operations"
+        [primer]="post.medical_data?.primer"
+      ></app-more-info-adoption>
+
+      <!-- ENCONTRADO agradecimiento -->
+      <app-more-info-finded
+        *ngIf="post.post_type === 'Encontrado'"
+        [agradecimiento]="post.gratitude"
+      ></app-more-info-finded>
     </div>
   </div>
 
