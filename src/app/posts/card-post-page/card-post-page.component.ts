@@ -43,6 +43,6 @@ export class CardPostPageComponent implements OnInit {
   }
 
   redirectDetailPost(): void {
-
+    this.router.navigate(['/detallePost', this.posts._id]);
   }
 }

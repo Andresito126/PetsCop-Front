@@ -4,5 +4,5 @@ export interface IlossData {
     address: IAdressSerialization;
     loss_date: Date;
     description: string;
-    last_seen: string
+    last_seen?: string
 }
