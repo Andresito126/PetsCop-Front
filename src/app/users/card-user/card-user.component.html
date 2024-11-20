@@ -1,0 +1,14 @@
+<div class="card-container">
+    <img [src]="user_img" class="card-user-photo">
+    <div class="card-user-info">
+        <h2 class="card-user-name"> {{user_normally.first_name}} {{user_normally.last_name}} </h2>
+        <p>CUMpleaños: {{user_normally.birthdate}} </p>
+        <p>Correo: {{user_credentials.email}} </p>
+
+        <p>Cantidad de publicaciones:  </p>
+        
+    </div>
+    <button class="card-user-button_edit">
+        Configurar
+    </button>
+</div>

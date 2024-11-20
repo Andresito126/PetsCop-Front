@@ -4,13 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
+import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
 import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-type-modal.component';
-
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -18,10 +20,17 @@ import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-typ
     UsersModule,
     NavbarComponent,
     AsideComponent,
-    PostTypeModalComponent
+    PostTypeModalComponent,
+    CredentialsModule,
+    HttpClientModule,
   ],
-   
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
