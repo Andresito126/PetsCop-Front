@@ -1,24 +1,31 @@
 <nav class="navColor p-4 flex items-center justify-between max-h-28">
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center space-x-2 ">
     <div class="logo-nav-side">
-      <img class="logo-nav-side h-10" src="/assets/nav-aside/logoPet.svg" alt="Logo">
+      <img class="logo-nav-side_img w-20 h-20" src="/assets/nav-aside/logoPet.svg" alt="Logo">
     </div>
-    <span class="text-white text-xl font-bold">PETS COP</span>
+    <span class="text-title-nav text-white  font-bold">PETS COP</span>
   </div>
 
   <div class="flex items-center space-x-4 mx-4">
-    <input
-      type="text"
-      placeholder="¿Qué es lo que quieres buscar?"
-      class="navButton-color w-96 p-2 rounded-full  focus:outline-none"
-    />
+    
+    <div class="relative w-96">
+      <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+        <img src="/assets/nav-aside/search.svg" alt="Buscar" class="w-6 h-6" />
+      </span>
+   
+      <input
+        type="text"
+        placeholder="Busca algo"
+        class="navButton-color pt-3 text-start w-full py-2 rounded-full pl-10 focus:outline-none"
+      />
+    </div>
 
     <button
     (click)="openPostTypeModal()"
       class=" navButton-color w-64 py-2 px-4 rounded-full flex items-center space-x-2 "
     >
       <img src="/assets/nav-aside/addPost.svg" alt="Añadir publicación" >
-      <span>Añadir una publicación</span>
+      <span class="mt-1">Añadir una publicación</span>
     </button>
   </div>
 
