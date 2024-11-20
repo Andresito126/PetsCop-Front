@@ -8,17 +8,16 @@ import { LostPageComponent } from './users/add-post/pages/lost-page/lost-page.co
 import { ChooseUserComponent } from './credentials/choose-user/choose-user.component';
 import { ViewProfileUserComponent } from './users/view-profile-user/view-profile-user.component';
 
+
 const routes: Routes = [
-  {path:'', component:ProfileSettingsPageComponent},
-  { path: 'publicacion/perdida', component: LostPageComponent },
-  { path: 'publicacion/adopcion', component: AdoptionPageComponent },
   {path:'usuario', component:ChooseUserComponent},
   {path:'usuario/registro', component:RegisterComponent},
   {path:'login', component:LoginComponent},
   {path:'user_profile', component: ViewProfileUserComponent},
-  {path:'configuracion/unormal', component:ProfileSettingsPageComponent}
-
-
+  {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
+  {path: 'publicacion/perdida', component: LostPageComponent },
+  {path: 'publicacion/adopcion', component: AdoptionPageComponent },
+  
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

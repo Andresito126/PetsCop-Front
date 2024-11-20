@@ -40,7 +40,7 @@ export class LoginComponent {
             localStorage.setItem('token', response.token);
             localStorage.setItem('rol', JSON.stringify(response.type_user));
             localStorage.setItem('id_user', JSON.stringify(response.id_user));
-            // this.router.navigate(['/inicio'])
+            this.router.navigate(['/'])
           });
         } else if (response.status === 401) {
           Swal.fire({
