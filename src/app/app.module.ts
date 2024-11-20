@@ -6,6 +6,7 @@ import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
+import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-type-modal.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
 
@@ -19,6 +20,7 @@ import { JwtInterceptorService } from './shared/services/jwt-interceptor.service
     UsersModule,
     NavbarComponent,
     AsideComponent,
+    PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
   ],
