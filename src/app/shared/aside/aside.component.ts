@@ -36,7 +36,6 @@ export class AsideComponent implements OnInit {
       
       this.userConfigurationServices.getOwnProfile(this.id_user).subscribe(
         response => {
-          console.log("Usuario retornado:", response);
           this.username = response.first_name + " " +  response.last_name;
           this.userConfigurationServices.getOwnProfilePhoto(response.profile_picture).subscribe(
             img => {

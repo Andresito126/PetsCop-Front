@@ -1,72 +1,74 @@
-<div class="card-container_main  p-4 rounded-lg border border-gray-300 bg-white shadow-lg  mt-10">
-    <!-- nommbre y detalles -->
-     <app-header-card
-      [user1]="kevPost.postDetails.owner"
-      [date]="kevPost.postDetails.date"
-     ></app-header-card>
-          
-    <div class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start mb-4">
-      <!-- img y boton contacto -->
-      <app-image-gallery
-      [thumbnails]="kevPost.images.thumbnails"
-      ></app-image-gallery>
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+  <!-- nommbre y detalles -->
+  <app-header-card
+    [date]="date_publication"
+    [time]="time_publication"
+    [id_user]="post.id_user"
+  ></app-header-card>
 
-         <!-- Información completa de la mascota -->
-         <div class="info-pet-container-main lg:w-2/3  border-gray-200">
+  <div
+    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start mb-4"
+  >
+    <!-- img y boton contacto -->
+    <app-image-gallery
+      [thumbnails]="photos"
+    ></app-image-gallery>
 
-          <!-- nombre y status -->
-          <app-name-status
-            [name]="kevPost.petInfo.name"
-            [status]="kevPost.petInfo.status"
-          ></app-name-status>
-          
-           <!-- boton de caracteristicas y datos -->
-           <div class="button-caract-div">
-            <button 
-              class="button-caract_button leftPlace text-white px-4 py-1"
-              [ngClass]="{ 'active': selectedButton === 'datos' }"
-              (click)="selectButton('datos')"
-            >
-              Datos básicos de la mascota
-            </button>
-            <button 
-              class="button-caract_button rightPlace text-white px-4 py-1"
-              [ngClass]="{ 'active': selectedButton === 'caracteristicas' }"
-              (click)="selectButton('caracteristicas')"
-            >
-              Características físicas
-            </button>
-          </div>
-          
-          <!--datos basicos -->
-         <app-basic-data
-         [sex]="kevPost.petInfo.sex"
-         [age]="kevPost.petInfo.age"
-         [breed]="kevPost.petInfo.breed"
-         ></app-basic-data>
+    <!-- Información completa de la mascota -->
+    <div class="info-pet-container-main lg:w-2/3 border-gray-200">
+      <!-- nombre y status -->
+      <app-name-status
+        [name]="post.basic_pet_information.name"
+        [status]="post.post_type"
+      ></app-name-status>
 
-          <hr class="border-gray-300 mt-4 mb-2">
-          
-          <!-- descripcion-->
-          
-          <app-pet-description
-            [description]="kevPost.eventDescription.description"
-            [reward]="kevPost.eventDescription.reward"
-          ></app-pet-description>
+      <!-- boton de caracteristicas y datos -->
+      <div class="button-caract-div">
+        <button
+          class="button-caract_button leftPlace text-white px-4 py-1"
+          [ngClass]="{ active: selectedButton === 'datos' }"
+          (click)="selectButton('datos')"
+        >
+          Datos básicos de la mascota
+        </button>
+        <button
+          class="button-caract_button rightPlace text-white px-4 py-1"
+          [ngClass]="{ active: selectedButton === 'caracteristicas' }"
+          (click)="selectButton('caracteristicas')"
+        >
+          Características físicas
+        </button>
+      </div>
 
-          <!-- Informacion de perdido -->
-          <app-lost-info-cards
-            [state]="kevPost.location.state"
-            [municipality]="kevPost.location.municipality"
-            [neighborhood]="kevPost.location.neighborhood"
-            [lastSeen]="kevPost.location.lastSeen"
-          ></app-lost-info-cards>
+      <!--datos basicos -->
+      <app-basic-data
+        [age]="post.basic_pet_information.age"
+        [breed]="post.basic_pet_information.race"
+      ></app-basic-data>
 
-        </div>
+      <hr class="border-gray-300 mt-4 mb-2" />
+
+      <!-- descripcion-->
+
+      <app-pet-description
+      *ngIf="post.post_type === 'Perdido'"
+        [description]="post.loss_data?.description"
+        [reward]="post.reward"
+      ></app-pet-description>
+
+      <!-- Informacion de perdido -->
+      <app-lost-info-cards
+      *ngIf="post.post_type === 'Perdido'"
+        [state]="post.loss_data?.address?.state"
+        [municipality]="post.loss_data?.address?.municipality"
+        [neighborhood]="post.loss_data?.address?.colony"
+        [lastSeen]="post.loss_data?.last_seen"
+      ></app-lost-info-cards>
     </div>
+  </div>
 
-  
-    <!-- Yorum Alanı -->
-   <app-comments></app-comments>
-    
+  <!-- Yorum Alanı -->
+  <app-comments></app-comments>
 </div>

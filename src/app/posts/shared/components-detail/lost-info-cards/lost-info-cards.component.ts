@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class LostInfoCardsComponent {
   //variables
-  @Input() state!: string;
-  @Input() municipality!: string;
-  @Input() neighborhood!: string;
-  @Input() lastSeen!: string;
+  @Input() state!: string| undefined;
+  @Input() municipality!: string | undefined;
+  @Input() neighborhood!: string | undefined;
+  @Input() lastSeen!: string | undefined;
 }

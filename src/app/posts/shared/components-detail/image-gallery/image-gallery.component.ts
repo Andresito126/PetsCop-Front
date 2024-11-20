@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-image-gallery',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ImageGalleryComponent  {
   // variables
-  @Input() thumbnails!: string[];
+  @Input() thumbnails!: SafeUrl[];
 
  
 

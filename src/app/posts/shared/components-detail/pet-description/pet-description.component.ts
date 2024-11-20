@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PetDescriptionComponent {
 //variables
-@Input() description!: string;
-@Input() reward!: number;
+@Input() description: string | null | undefined;
+@Input() reward: number | null | undefined;
 }

@@ -7,7 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class BasicDataComponent {
   //varibales
-  @Input() sex!: string;
   @Input() age!: string;
   @Input() breed!: string;
 

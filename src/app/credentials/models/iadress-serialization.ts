@@ -3,4 +3,6 @@ export interface IAdressSerialization {
     state: string;
     municipality: string;
     colony: string;
+    outside_number?: number;
+    street?: string;
 }

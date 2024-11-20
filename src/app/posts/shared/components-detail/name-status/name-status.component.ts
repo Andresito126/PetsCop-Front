@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class NameStatusComponent {
   //VARIABLES
   @Input() name!: string;
-  @Input() status!: string; 
+  @Input() status!: string;
+
 
 }
