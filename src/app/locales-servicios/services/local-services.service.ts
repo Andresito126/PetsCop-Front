@@ -18,6 +18,10 @@ export class LocalServicesService {
     return this._http.post<IlocalServicesSerialization>(this._url_mongo + "getInformationLocalService/" + _id, null);
   }
 
+  get_local_services_by_id_user(id_user: number): Observable<IlocalServicesSerialization>{
+    return this._http.get<IlocalServicesSerialization>(this._url_mongo + "get_by_id_user/" + id_user);
+  }
+
   get_credentials_of_local_services(id: number): Observable<IUserCredentialsSerialization>{
     return this._http.get<IUserCredentialsSerialization>(this._url_pg + "get_one_user" + id);
   }
