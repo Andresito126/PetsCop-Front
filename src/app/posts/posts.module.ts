@@ -25,7 +25,7 @@ import { CommentsModule } from './comments/comments.module';
 @NgModule({
   declarations: [
     DetailPostPageComponent,
-    // CommentsComponent,
+  
     HeaderFilterPostComponent,
     CardPostPageComponent,
     HeaderCardComponent,
