@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../../posts/models/post';
-import { IpostPreview } from '../../posts/models/ipost-preview';
 import { PostsService } from '../../posts/services/posts.service';
+import { IPostPreview } from '../../posts/models/ipost-preview';
 
 
 @Component({
@@ -13,24 +12,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private postServices: PostsService){}
 
-  posts: IpostPreview[] = [
-    /*
-    {
-      _id: "id",
-      id_user: 9,
-      post_type: "Adoption",
-      basic_pet_information: {
-        type_pet: "Perro",
-        name: "Niky",
-        race: "Chihuahua",
-        age: "1 año",
-        main_physical_characteristics: ["Venadita", "Chiquitita"],
-        photos: []
-      },
-      publication_date: new Date
-    }
-      */
-  ];
+  posts: IPostPreview[] = [];
 
   ngOnInit(): void {
     this.getRecentPost();
@@ -38,23 +20,21 @@ export class HomePageComponent implements OnInit {
 
   getRecentPost(): void{
     this.postServices.getRecentPosts().subscribe(
-      response => {
-        console.log("It's ok!");
+      (response) => {
         this.posts = response;
         console.log(this.posts)
       },
-      error => console.log("Error:", error)
+      (error) => console.log("Error:", error)
     )
   }
 
   getOldPost(): void{
-    console.log("Ontener posts antigüos")
     this.postServices.getOldPosts().subscribe(
-      response => {
+      (response) => {
         console.log("It's ok!");
         this.posts = response;
       },
-      error => console.log("Error:", error)
+      (error) => console.log("Error:", error)
     );
-  }
+  } 
 }

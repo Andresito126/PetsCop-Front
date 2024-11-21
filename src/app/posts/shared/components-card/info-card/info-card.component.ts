@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Pet } from '../../../models/pet';
-import { Post } from '../../../models/post';
 import { PostsService } from '../../../services/posts.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IlossData } from '../../../models/iloss-data';
@@ -17,21 +16,20 @@ export class InfoCardComponent implements OnInit {
     private domSanitizer: DomSanitizer
   ){}
 
-  //variables
+  // VARIABLES
   @Input() description!: string;
-  @Input() lost_data!: IlossData;
-  @Input() reward!: number;
-  @Input() gratitude!: string;
+  @Input() lost_data!: IlossData | undefined;
+  @Input() reward: number | undefined;
+  @Input() gratitude: string | undefined;
   @Input() pet!: Pet;
   @Input() type_post!: string;
   @Input() images!: string[];
   @Input() post!: Pet;
-  @Input() location!: string;
 
   imagenes: any[] = [];
 
   ngOnInit(): void {
-      this.getPhotos();
+    this.getPhotos();
   }
   
   getPhotos(){

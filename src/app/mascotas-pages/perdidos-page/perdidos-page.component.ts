@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IpostPreview } from '../../posts/models/ipost-preview';
 import { PostsService } from '../../posts/services/posts.service';
+import { IPostPreview } from '../../posts/models/ipost-preview';
 
 @Component({
   selector: 'app-perdidos-page',
@@ -10,7 +10,7 @@ import { PostsService } from '../../posts/services/posts.service';
 export class PerdidosPageComponent implements OnInit {
   constructor(private postServices: PostsService){}
 
-  posts: IpostPreview[] = [
+  posts: IPostPreview[] = [
     
   ];
 

@@ -53,7 +53,6 @@ export class DetailPostPageComponent implements OnInit {
         // DEFINIMOS LOS DATOS BÁSICOS QUE INCLUYEN LOS DOS TIPOS DE PUBLICACIÓN
         this.post._id = response._id;
         this.post.id_user = response.id_user;
-        console.log("respuesta desde el padre " + this.post.id_user)
 
         // DEFINIMOS EL TIPO DE PUBLICACIÓN EN ESPAÑOL
         if (type_post === 'Lost'){

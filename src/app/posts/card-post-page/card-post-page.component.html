@@ -6,21 +6,19 @@
 >
   <!-- header del nombre, datos, publi y mandar mensaje -->
   <app-header-card
-    [id_user]="posts.id_user"
+    [id_user]="post.id_user"
     [date]="date_publication"
     [time]="time_publication"
   ></app-header-card>
   <!-- info -->
 
   <app-info-card
-  [description]="'descripción'"
-  [lost_data]="posts.loss_data"
-  [gratitude]="posts.gratitude"
-  [reward]="posts.reward"
-  [type_post]="posts.post_type"
-  [pet]="posts.basic_pet_information"
-  [images]="posts.basic_pet_information.photos"
-  [location]="'Ubicación'"
+  [lost_data]="post.loss_data"
+  [reward]="post.reward"
+  [gratitude]="post.gratitude"
+  [type_post]="post.post_type"
+  [pet]="post.basic_pet_information"
+  [images]="post.basic_pet_information.photos"
   ></app-info-card>
 
   <!-- botones comentar y repostear -->
@@ -46,7 +44,7 @@
       Repostear
     </button>
 
-    <div>
+    <div *ngIf="isHome">
       <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado!</button>
     </div>
   </div>

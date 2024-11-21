@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../../posts/services/posts.service';
-import { IpostPreview } from '../../posts/models/ipost-preview';
+import { IPostPreview } from '../../posts/models/ipost-preview';
 
 @Component({
   selector: 'app-adopcion-page',
@@ -10,7 +10,7 @@ import { IpostPreview } from '../../posts/models/ipost-preview';
 export class AdopcionPageComponent {
   constructor(private postServices: PostsService){}
 
-  posts: IpostPreview[] = [];
+  posts: IPostPreview[] = [];
 
   ngOnInit(): void {
     this.getRecentPost();

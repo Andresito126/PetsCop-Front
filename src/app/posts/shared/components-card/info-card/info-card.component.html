@@ -1,42 +1,56 @@
-<div class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start">
-    <div class="info-section-main ">
-        <!-- ng if si es perdido o encontrado cambia color -->
-        <p class="status-text font-bold" [ngClass]="{ 'text-red-600': type_post === 'Lost', 'text-green-600': type_post === 'Found','text-black-600': type_post === 'Adoption', }">
-            Tipo de post: <span class="text-gray-600 text-sm md:font-normal">{{ type_post }}</span>
-        </p>
+<div
+  class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start"
+>
+  <div class="info-section-main">
+    <!-- ng if si es perdido o encontrado cambia color -->
+    <p
+      class="status-text font-bold"
+      [ngClass]="{ 'text-red-600': type_post === 'Lost', 'text-green-600': type_post === 'Found','text-black-600': type_post === 'Adoption', }"
+    >
+      Tipo de post:
+      <span class="text-gray-600 text-sm md:font-normal">{{ type_post }}</span>
+    </p>
 
-        <!--
-        <div class="info-section_dog-text flex">
-            <p class="text-blue-600 font-bold text-lg">{{pet.name}}</p>
-            <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{pet.age}}</p>
-        </div>
-        
-        <p class="text-gray-600 text-sm flex items-center mt-1">
-            <img class="h-7 w-7 mr-3" src="assets/posts/ubication.svg" alt="message-icon"> {{location}}
-        </p>
-        -->
-        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Lost'">
-            <p>{{lost_data.description}}</p>
-        </div>
-        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Adoption'">
-            <p>Nombre: {{pet.name}}</p>
-            <p>Especie: {{pet.type_pet}}</p>
-            <P>Raza: {{pet.race}}</P>
-            <p>Edad: {{pet.age}}</p>
-        </div>
-        <div class="info-section-description_div mt-2 text-justify" *ngIf="type_post === 'Encontrado'">
-            <p>{{gratitude}}</p>
-        </div>
+    <div class="info-section_dog-text flex">
+      <p class="text-blue-600 font-bold text-lg">{{ pet.name }}</p>
+      <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{ pet.age }}</p>
     </div>
-    <!-- imagenes -->
-    <div class="info-section-img_div flex space-x-2">
-        <!-- <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
+
+    <div
+      class="info-section-description_div mt-2 text-justify"
+      *ngIf="type_post === 'Lost'"
+    >
+      <p>{{ lost_data?.description }}</p>
+    </div>
+    <div
+      class="info-section-description_div mt-2 text-justify"
+      *ngIf="type_post === 'Adoption'"
+    >
+      <p>Características de la mascota:</p>
+      <ul *ngFor="let characteristic of pet.main_physical_characteristics">
+        <li>{{ characteristic }}</li>
+      </ul>
+    </div>
+
+    <div
+      class="info-section-description_div mt-2 text-justify"
+      *ngIf="type_post === 'Encontrado'"
+    >
+      <p>{{ gratitude }}</p>
+    </div>
+  </div>
+
+  <!-- imagenes -->
+  <div class="info-section-img_div flex space-x-2">
+    <!-- <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
         <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" /> -->
-        <img *ngFor="let image of imagenes"
-        [src]="image"
-        class="w-28 h-28 object-cover rounded-lg shadow"
-        alt="Imagen de la mascota">
-    </div>
+    <img
+      *ngFor="let image of imagenes"
+      [src]="image"
+      class="w-28 h-28 object-cover rounded-lg shadow"
+      alt="Imagen de la mascota"
+    />
   </div>
+</div>

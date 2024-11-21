@@ -1,11 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post';
-import { IpostPreview } from '../models/ipost-preview';
-import { IPostSerialization } from '../models/ipost-serialization';
-import { IUserSerialization } from '../models/iuser-serialization';
+import { IPostSerialization } from '../models/ipost-serialization';;
 import { ILocalServiceSerialization } from '../models/ilocal-service-serialization';
+import { IPostPreview } from '../models/ipost-preview';
 
 @Injectable({
   providedIn: 'root'
@@ -16,24 +14,24 @@ export class PostsService {
 
   constructor(private _http: HttpClient) { }
 
-  getRecentPosts(): Observable<IpostPreview[]>{
-    return this._http.get<IpostPreview[]>(this._url_mongo + "/posts/getAllRecentPosts");
+  getRecentPosts(): Observable<IPostPreview[]>{
+    return this._http.get<IPostPreview[]>(this._url_mongo + "/posts/getAllRecentPosts");
   }
 
-  getOldPosts(): Observable<IpostPreview[]>{
-    return this._http.get<IpostPreview[]>(this._url_mongo + "/posts/getAllOldPosts");
+  getOldPosts(): Observable<IPostPreview[]>{
+    return this._http.get<IPostPreview[]>(this._url_mongo + "/posts/getAllOldPosts");
   }
 
-  getRecentPostOfAType(type_post: string): Observable<IpostPreview[]>{
-    return this._http.post<IpostPreview[]>(this._url_mongo + "/posts/getRecentPostsType/" + type_post, null);
+  getRecentPostOfAType(type_post: string): Observable<IPostPreview[]>{
+    return this._http.post<IPostPreview[]>(this._url_mongo + "/posts/getRecentPostsType/" + type_post, null);
   }
 
-  getOldPostOfAType(type_post: string): Observable<IpostPreview[]>{
-    return this._http.post<IpostPreview[]>(this._url_mongo + "/posts/getRecentPostsType/" + type_post, null);
+  getOldPostOfAType(type_post: string): Observable<IPostPreview[]>{
+    return this._http.post<IPostPreview[]>(this._url_mongo + "/posts/getRecentPostsType/" + type_post, null);
   }
 
-  getPostOfAnUser(id_user: number): Observable<IpostPreview[]>{
-    return this._http.post<IpostPreview[]>(this._url_mongo + "/posts/getPostsUser/" + id_user, null);
+  getPostOfAnUser(id_user: number): Observable<IPostPreview[]>{
+    return this._http.post<IPostPreview[]>(this._url_mongo + "/posts/getPostsUser/" + id_user, null);
   }
 
   getPhotosFromMongo(id_photo: string | undefined): Observable<any>{
