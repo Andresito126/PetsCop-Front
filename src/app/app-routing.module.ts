@@ -22,8 +22,8 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'detallePost/:id_post', component:DetailPostPageComponent},
   {path:'user/configuration', component:ProfileSettingsPageComponent},
-  {path:'user_profile', component: ViewProfileUserComponent},
-  {path:'configuracion/unormal', component:ProfileSettingsPageComponent}
+  {path:'user_profile/:id_user', component: ViewProfileUserComponent},
+  {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
