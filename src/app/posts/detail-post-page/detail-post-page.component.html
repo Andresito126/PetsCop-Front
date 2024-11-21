@@ -9,7 +9,7 @@
   ></app-header-card>
 
   <div
-    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start mb-4"
+    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start"
   >
     <!-- img y boton contacto -->
     <app-image-gallery [thumbnails]="photos"></app-image-gallery>
@@ -76,5 +76,15 @@
   </div>
 
   <!-- Yorum Alanı -->
-  <app-comments></app-comments>
+  <!-- COMENTARIOS -->
 </div>
+
+
+<div
+class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+
+<app-comment-page></app-comment-page>
+
+</div>
+

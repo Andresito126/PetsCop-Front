@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailPostPageComponent } from './detail-post-page/detail-post-page.component';
-import { CommentsComponent } from './comments/comments.component';
+
 import { HeaderFilterPostComponent } from './shared/components-card/header-filter-post/header-filter-post.component';
 import { CardPostPageComponent } from './card-post-page/card-post-page.component';
 import { HeaderCardComponent } from './shared/components-card/header-card/header-card.component';
@@ -17,6 +17,7 @@ import { MoreInfoLostComponent } from './shared/components-detail/more-info-lost
 import { MoreInfoAdoptionComponent } from './shared/components-detail/more-info-adoption/more-info-adoption.component';
 import { MascotasPagesModule } from "../mascotas-pages/mascotas-pages.module";
 import { MoreInfoFindedComponent } from './shared/components-detail/more-info-finded/more-info-finded.component';
+import { CommentsModule } from './comments/comments.module';
 
 
 
@@ -24,7 +25,7 @@ import { MoreInfoFindedComponent } from './shared/components-detail/more-info-fi
 @NgModule({
   declarations: [
     DetailPostPageComponent,
-    CommentsComponent,
+    // CommentsComponent,
     HeaderFilterPostComponent,
     CardPostPageComponent,
     HeaderCardComponent,
@@ -42,6 +43,7 @@ import { MoreInfoFindedComponent } from './shared/components-detail/more-info-fi
   imports: [
     CommonModule,
     FormsModule,
+    CommentsModule
 
 ],
   exports:[

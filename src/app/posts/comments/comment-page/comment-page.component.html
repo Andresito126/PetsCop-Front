@@ -1,0 +1,46 @@
+<section class=" relative mb-16">
+    <h2 class="text-gray-900 text-4xl font-bold font-manrope leading-normal mb-8 ml-6">Comentarios</h2>
+    
+    <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+        <!-- principal -->
+        <div class="w-full flex-col justify-start items-start lg:gap-14 gap-7 inline-flex">
+          
+            <div class="w-full flex-col justify-start items-start gap-8 flex">
+                <div
+                    class="w-full lg:p-8 p-5 bg-white rounded-3xl border border-gray-200 flex-col justify-start items-start flex">
+                    <div class="w-full flex-col justify-start items-start gap-3.5 flex">
+                        <div class="w-full justify-between items-center inline-flex">
+                            <div class="justify-start items-center gap-2.5 flex">
+                                <div
+                                    class="w-10 h-10 bg-stone-300 rounded-full justify-start items-start gap-2.5 flex">
+                                    <img class="rounded-full object-cover" src="https://pagedone.io/asset/uploads/1710225753.png"
+                                        alt="John smith image" />
+                                </div>
+                                <div class="flex-col justify-start items-start gap-1 inline-flex">
+                                    <!-- nombre -->
+                                    <h5 class="text-gray-900 text-sm font-semibold leading-snug">Charlyick</h5>
+                                    <!-- fecha de publi -->
+                                    <h6 class="text-gray-500 text-xs font-normal leading-5">aca la hora pero ya vemos si si</h6>
+                                </div>
+                            </div>
+                                 <!-- botnes de editar y eliminar -->
+                                <app-edit-delete-comment></app-edit-delete-comment>
+                        </div>
+                        <p class="text-gray-800 text-sm font-normal leading-snug">Mauris luctus habitasse turpis
+                            elementum vitae in. Ut habitasse orci sed aliquam bibendum. Sem in nisl vestibulum
+                            rhoncus sed diam amet nulla. Netus feugiat nunc vulputate eros pellentesque. A at augue
+                            elementum aliquet in aliquet. Vitae amet quisque massa egestas amet. Vitae id ipsum
+                            lacus tellus facilisis sit. Nunc ut pellentesque lacus massa arcu neque mi ultrices
+                            convallis.</p>
+                    </div>
+                </div>
+
+                <!-- escribir comentario -->
+                <div class="w-full relative flex justify-between gap-2">
+
+                       <app-write-comment></app-write-comment>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
