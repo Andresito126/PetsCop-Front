@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IpostPreview } from '../../posts/models/ipost-preview';
 import { PostsService } from '../../posts/services/posts.service';
 import { ActivatedRoute } from '@angular/router';
+import { IPostPreview } from '../../posts/models/ipost-preview';
 
 @Component({
   selector: 'app-view-profile-user',
@@ -17,7 +17,7 @@ export class ViewProfileUserComponent implements OnInit {
 
   id_user_show: number = 9;
   
-  post_user: IpostPreview[] = []
+  post_user: IPostPreview[] = []
 
   ngOnInit(): void {
       this.obtainIdUser();

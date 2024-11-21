@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../models/post';
-import { IpostPreview } from '../models/ipost-preview';
+import { Router } from '@angular/router';
+import { IPostPreview } from '../models/ipost-preview';
 
 @Component({
   selector: 'app-card-post-page',
@@ -8,7 +8,10 @@ import { IpostPreview } from '../models/ipost-preview';
   styleUrl: './card-post-page.component.css'
 })
 export class CardPostPageComponent implements OnInit {
-  @Input() posts: IpostPreview = {
+  constructor(private router: Router){}
+
+  // VARIABLES
+  @Input() post: IPostPreview = {
     _id: "",
     id_user: 0,
     post_type: "",
@@ -20,29 +23,17 @@ export class CardPostPageComponent implements OnInit {
       main_physical_characteristics: [],
       photos: []
     },
-    loss_data: {
-      address: {
-        zip_code: 0,
-        state: "",
-        street: "",
-        cologne: "",
-        municipality: "",
-        outside_number: 0
-      },
-      loss_date: new Date,
-      description: "",
-      last_seen: ""
-    },
-    reward: 0,
-    gratitude: "",
     publication_date: new Date
-  }; 
+  };
+  @Input() isHome: boolean = false;
+
 
   date_publication: string = "";
   time_publication: string = "";
 
+  // MÉTODOS
   ngOnInit(): void {
-    const publicationDate = new Date(this.posts.publication_date); // Asegúrate de que sea un objeto Date
+    const publicationDate = new Date(this.post.publication_date);
     this.date_publication = publicationDate.toISOString().split('T')[0];
     this.time_publication = publicationDate.toLocaleTimeString('en-US', { 
       hour: '2-digit', 
@@ -50,5 +41,9 @@ export class CardPostPageComponent implements OnInit {
       second: '2-digit', 
       hour12: false 
     });
+  }
+
+  redirectDetailPost(): void {
+    this.router.navigate(['/detallePost', this.post._id]);
   }
 }

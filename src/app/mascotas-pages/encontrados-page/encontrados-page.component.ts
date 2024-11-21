@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IpostPreview } from '../../posts/models/ipost-preview';
 import { PostsService } from '../../posts/services/posts.service';
+import { IPostPreview } from '../../posts/models/ipost-preview';
 
 @Component({
   selector: 'app-encontrados-page',
@@ -10,31 +10,27 @@ import { PostsService } from '../../posts/services/posts.service';
 export class EncontradosPageComponent {
   constructor(private postServices: PostsService){}
 
-  posts: IpostPreview[] = [];
+  posts: IPostPreview[] = [];
 
   ngOnInit(): void {
     this.getRecentPost();
   }
 
   getRecentPost(): void{
-    console.log("Obtener posts recientes")
     this.postServices.getRecentPostOfAType("Encontrado").subscribe(
-      response => {
-        console.log("It's ok!");
+      (response) => {
         this.posts = response;
       },
-      error => console.log("Error:", error)
+      (error) => console.log("Error:", error)
     )
   }
 
   getOldPost(): void{
-    console.log("Ontener posts antigüos")
     this.postServices.getOldPostOfAType("Encontrado").subscribe(
-      response => {
-        console.log("It's ok!");
+      (response) => {
         this.posts = response;
       },
-      error => console.log("Error:", error)
+      (error) => console.log("Error:", error)
     );
   }
 }

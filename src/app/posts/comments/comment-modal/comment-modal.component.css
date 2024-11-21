@@ -1,0 +1,30 @@
+.div-main_modal{
+    width: 70%;
+    margin-left: 14rem;
+
+}
+
+.text-area_comment {
+    width: 100%;
+    min-height: 10rem;
+}
+
+.color-comment {
+    color: #0575A6;
+}
+
+.color-button_modal-save{
+    background-color: #0575A6;
+    transition: all 0.3s ease-in-out;
+}
+.color-button_modal-cancel{
+    background-color: #C2C2C2;
+    transition: all 0.3s ease-in-out;
+    color:#000000;
+}
+.color-button_modal-save:hover, .color-button_modal-cancel:hover{
+   
+    transform: scale(1.05);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); 
+
+}

@@ -1,36 +1,27 @@
 .card-container_main {
     min-height: 25rem;
-    max-height: 70rem;
+    max-height: max-content;
     margin-left: 1.4%;
     margin-right: 1.4%;
     max-width: 81rem;
-    
 }
 
-.contact-button{
-    background-color: #136A93;
-}
 
 
 .info-pet-container-main{
     
-    max-width: 70%;
+    max-width:max-content;
     min-width: 68%;
     height: 40rem;
 }
 
-.name-statu{
+.name-status{
     background-color: red;
     height: 2rem;
     width: 40rem;
 }
 
-.description-of-event {
-    max-width: 100%;
-    word-break: break-word;
-    white-space: normal;
-  }
-  
+
   /* boton seleccion datos */
   .button-caract_button.active {
     background-color: #0E4C6A; 

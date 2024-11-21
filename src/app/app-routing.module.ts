@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:'usuario', component:ChooseUserComponent},
   {path:'usuario/registro', component:RegisterComponent},
   {path:'login', component:LoginComponent},
-  {path:'detallePost', component:DetailPostPageComponent},
+  {path:'detallePost/:id_post', component:DetailPostPageComponent},
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
