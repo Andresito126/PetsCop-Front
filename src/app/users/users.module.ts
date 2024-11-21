@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CardUserComponent } from './card-user/card-user.component';
 import { ViewProfileUserComponent } from './view-profile-user/view-profile-user.component';
+import { PostsModule } from '../posts/posts.module';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ViewProfileUserComponent } from './view-profile-user/view-profile-user.
     CommonModule,
     ProfileSettingsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PostsModule,
+    RouterLink,
   ],
   exports: [
     ProfileSettingsModule,

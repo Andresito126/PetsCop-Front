@@ -1,0 +1,20 @@
+<div class="section-header flex items-center justify-between p-4 bg-gray-100 rounded-lg shadow-md mb-6">
+    <h1 class="section-header_title text-2xl font-semibold text-gray-700 text-center w-full">INICIO</h1>
+  
+     <div class="relative">
+      
+      <select [(ngModel)]="value_option" (change)="onOptionSelected()" class="filtro-button appearance-none bg-gradient-to-r cursor-pointer text-white font-semibold py-2 px-4 rounded-full shadow-md pr-8">
+        <option class="filtro-button_value" disabled selected>Opción</option>
+        <option class="filtro-button_value cursor-pointer" value="1">Recientes</option>
+        <option class="filtro-button_value cursor-pointer" value="2">Antigüos</option>
+        <!--
+        <option class="filtro-button_value cursor-pointer" value="perdido">Perdido</option>
+        <option class="filtro-button_value cursor-pointer" value="encontrado">Encontrado</option>
+        -->
+      </select>
+     
+      <svg class="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/>
+      </svg>
+    </div>
+  </div>

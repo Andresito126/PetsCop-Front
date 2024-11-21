@@ -1,0 +1,17 @@
+<div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 ">
+    <div class="div-main_modal bg-white rounded-lg shadow-lg p-6">
+      <h3 class="color-comment text-xl font-bold mb-4">Comentario</h3>
+      <textarea
+      [(ngModel)]="commentContent"
+      rows="4"
+      class="text-area_comment py-3 px-5 rounded-lg border border-gray-300 bg-white focus:outline-none text-gray-900 placeholder-gray-400 text-lg font-normal leading-relaxed"
+      name=""
+      id=""
+      placeholder="Escribir un comentario..."
+    ></textarea>
+      <div class="flex justify-end gap-2">
+        <button (click)="closeModal()" class="color-button_modal-cancel px-4 py-2  rounded-lg">Cancelar</button>
+        <button (click)="saveComment()" class="color-button_modal-save px-4 py-2  text-white rounded-lg">Guardar</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,2 @@
+<app-header-filter-post (executeGetRecent)="getRecentPost()" (executeGetOld)="getOldPost()"></app-header-filter-post>
+<app-card-post-page *ngFor="let post of posts" [post]="post" [isHome]="false"></app-card-post-page>

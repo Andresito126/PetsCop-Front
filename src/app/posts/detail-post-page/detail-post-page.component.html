@@ -1,0 +1,90 @@
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+  <!-- nommbre y detalles -->
+  <app-header-card
+    [date]="date_publication"
+    [time]="time_publication"
+    [id_user]="post.id_user"
+  ></app-header-card>
+
+  <div
+    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start"
+  >
+    <!-- img y boton contacto -->
+    <app-image-gallery [thumbnails]="photos"></app-image-gallery>
+
+    <!-- Información completa de la mascota -->
+    <div class="info-pet-container-main lg:w-2/3 border-gray-200">
+      <!-- nombre y status -->
+      <app-name-status
+        [name]="post.basic_pet_information.name"
+        [status]="post.post_type"
+      ></app-name-status>
+
+      <!-- boton de caracteristicas y datos -->
+      <div class="button-caract-div">
+        <button
+          class="button-caract_button leftPlace text-white px-4 py-1"
+          [ngClass]="{ active: selectedButton === 'datos' }"
+          (click)="selectButton('datos')"
+        >
+          Datos básicos de la mascota
+        </button>
+        <button
+          class="button-caract_button rightPlace text-white px-4 py-1"
+          [ngClass]="{ active: selectedButton === 'caracteristicas' }"
+          (click)="selectButton('caracteristicas')"
+        >
+          Características físicas
+        </button>
+      </div>
+
+      <!--datos basicos -->
+      <app-basic-data
+        [age]="post.basic_pet_information.age"
+        [breed]="post.basic_pet_information.race"
+      ></app-basic-data>
+
+      <hr class="border-gray-300 mt-4 mb-2" />
+
+      <!-- PERDIDO descripcion, cards,e etc. -->
+      <app-more-info-lost
+        *ngIf="post.post_type === 'Perdido'"
+        [description]="post.loss_data?.description"
+        [reward]="post.reward"
+        [state]="post.loss_data?.address?.state"
+        [municipality]="post.loss_data?.address?.municipality"
+        [neighborhood]="post.loss_data?.address?.colony"
+        [lastSeen]="post.loss_data?.last_seen"
+      ></app-more-info-lost>
+
+      <!-- ADOPCION salud mascota, etc -->
+      <app-more-info-adoption
+        *ngIf="post.post_type === 'Adopción'"
+        [physical_problems]="post.medical_data?.physical_problems"
+        [operations]="post.medical_data?.operations"
+        [primer]="post.medical_data?.primer"
+      ></app-more-info-adoption>
+
+      <!-- ENCONTRADO agradecimiento -->
+      <app-more-info-finded
+        *ngIf="post.post_type === 'Encontrado'"
+        [agradecimiento]="post.gratitude"
+      ></app-more-info-finded>
+    </div>
+  </div>
+
+  <!-- Yorum Alanı -->
+  <!-- COMENTARIOS -->
+</div>
+
+
+<div
+class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+
+<app-comment-page></app-comment-page>
+
+</div>
+
