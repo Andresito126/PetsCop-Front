@@ -18,7 +18,7 @@ export class EncontradosPageComponent {
 
   getRecentPost(): void{
     console.log("Obtener posts recientes")
-    this.postServices.getRecentPostOfAType("Found").subscribe(
+    this.postServices.getRecentPostOfAType("Encontrado").subscribe(
       response => {
         console.log("It's ok!");
         this.posts = response;
@@ -29,7 +29,7 @@ export class EncontradosPageComponent {
 
   getOldPost(): void{
     console.log("Ontener posts antigüos")
-    this.postServices.getOldPostOfAType("Found").subscribe(
+    this.postServices.getOldPostOfAType("Encontrado").subscribe(
       response => {
         console.log("It's ok!");
         this.posts = response;
