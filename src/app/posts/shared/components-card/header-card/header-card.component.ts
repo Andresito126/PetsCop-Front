@@ -18,19 +18,12 @@ export class HeaderCardComponent implements OnChanges {
   ) {}
 
   // VARIABLES
-  // @Input() user!: string;
   @Input() date!: string;
   @Input() time!: string;
   @Input() id_user!: number;
   type_user: string = '';
   user_name: string = '';
   profile_photo: any;
-  // credential_user: IUserCredentialsSerialization = {
-  //   id_user: 0,
-  //   email: '',
-  //   password_user: '',
-  //   type_user: '',
-  // };
   user_normaly: IUserDataSerialization = {
     id_user_normally: 0,
     id_user: 0,
@@ -45,7 +38,6 @@ export class HeaderCardComponent implements OnChanges {
   }
 
   putUser(id_user:number) {
-    console.log("Recibiendo el id desde el hijo " + id_user)
     this.userServices.getTypeUser(id_user).subscribe(
       (response) => {
         this.type_user = response.tipo_usuario;
