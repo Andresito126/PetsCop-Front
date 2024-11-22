@@ -1,1 +1,21 @@
-<p>card-schedule works!</p>
+<div class="dropdown-horizontal-container">
+
+    <input hidden id="dropdown-horizontal-checkbox" type="checkbox" />
+    
+    <label for="dropdown-horizontal-checkbox" class="dropdown-horizontal-trigger">
+        HORARIOS
+        <span class="dropdown-arrow"></span>
+      </label>
+  
+    <!-- horarios -->
+    <div class="dropdown-horizontal-list">
+      <div
+        *ngFor="let horario of horarios"
+        class="dropdown-horizontal-card"
+      >
+        <h3 class="dropdown-horizontal-card-title">{{ horario.dia }}</h3>
+        <p class="dropdown-horizontal-card-text">{{ horario.horarioEntrada }} - {{horario.horarioSalida}}</p>
+      </div>
+    </div>
+  </div>
+  
