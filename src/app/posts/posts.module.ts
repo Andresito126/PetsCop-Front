@@ -18,6 +18,9 @@ import { MoreInfoAdoptionComponent } from './shared/components-detail/more-info-
 import { MascotasPagesModule } from "../mascotas-pages/mascotas-pages.module";
 import { MoreInfoFindedComponent } from './shared/components-detail/more-info-finded/more-info-finded.component';
 import { CommentsModule } from './comments/comments.module';
+import { DetailPostLocalsPageComponent } from './detail-post-locals-page/detail-post-locals-page.component';
+import { CardScheduleComponent } from './shared/components-local-service/card-schedule/card-schedule.component';
+
 
 
 
@@ -37,7 +40,10 @@ import { CommentsModule } from './comments/comments.module';
     LostInfoCardsComponent,
     MoreInfoLostComponent,
     MoreInfoAdoptionComponent,
-    MoreInfoFindedComponent
+    MoreInfoFindedComponent,
+    DetailPostLocalsPageComponent,
+    CardScheduleComponent,
+    
  
   ],
   imports: [
