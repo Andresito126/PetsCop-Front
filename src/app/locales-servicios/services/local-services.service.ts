@@ -23,7 +23,7 @@ export class LocalServicesService {
   }
 
   get_credentials_of_local_services(id: number): Observable<IUserCredentialsSerialization>{
-    return this._http.get<IUserCredentialsSerialization>(this._url_pg + "get_one_user" + id);
+    return this._http.get<IUserCredentialsSerialization>(this._url_pg + "get_one_user/" + id);
   }
 
   edit_local_services(local_services: IlocalServicesSerialization): Observable<IlocalServicesSerialization>{

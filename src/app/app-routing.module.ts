@@ -7,6 +7,7 @@ import { AdoptionPageComponent } from './users/add-post/pages/adoption-page/adop
 import { LostPageComponent } from './users/add-post/pages/lost-page/lost-page.component';
 import { ChooseUserComponent } from './credentials/choose-user/choose-user.component';
 import { ViewProfileUserComponent } from './users/view-profile-user/view-profile-user.component';
+import { EditLocalServicesFormComponent } from './locales-servicios/edit-local-services-form/edit-local-services-form.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
   {path: 'publicacion/perdida', component: LostPageComponent },
   {path: 'publicacion/adopcion', component: AdoptionPageComponent },
-  
+  {path: 'configuracion/local_services', component: EditLocalServicesFormComponent}
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

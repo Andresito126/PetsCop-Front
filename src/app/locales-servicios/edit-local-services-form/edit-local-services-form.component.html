@@ -1,1 +1,876 @@
-<p>edit-local-services-form works!</p>
+<div
+  class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 flex justify-center"
+>
+  <div class="w-full sm:w-1/2">
+
+    <form class="mb-0 mt-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8" [formGroup]="formEdit" (ngSubmit)="onSubmitEdit()">
+      <!-- FORMULARIO DE LOCAL -->
+      <div id="comprobate">
+      <div >
+        <h1 class="text-center text-2xl font-bold text-slate-800 sm:text-3xl">
+          Editar local
+        </h1>
+        <div *ngIf="currentStep === 1" class="form-step1">
+          <!-- foto-->
+          <!-- <div class="flex items-center space-x-4 justify-center">
+            <hr class="div-hr_color flex-grow">
+            <label for="profile-picture" class="cursor-pointer relative mt-5">
+              <img
+                class ="w-20 h-20 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                alt="Photo"
+                id="profile-image"
+                [src]="download_photo"
+              />
+              <input
+                type="file"
+                id="profile-picture"
+                accept="image/*"
+                class="hidden"
+                (change)="listenImage($event)"
+              />
+            </label>
+            
+            <hr class="div-hr_color flex-grow">
+          </div>  -->
+          <div class="flex items-center space-x-4 justify-center">
+            <hr class="div-hr_color flex-grow">
+            
+            <label for="profile-picture" class="cursor-pointer relative mt-5">
+              <img
+                class ="w-20 h-20 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                [src]="photo_profile || 'assets/default-profile.png'" 
+                alt="Photo"
+                id="profile-image"
+              />
+              <input
+                type="file"
+                id="profile-picture"
+                accept="image/*"
+                class="hidden"
+                (change)="listenImage($event)"
+              />
+            </label>
+            
+            <hr class="div-hr_color flex-grow">
+          </div>
+          
+
+          <!-- nombre Local -->
+          <div>
+            <label
+              for="name"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Nombre del Local</label
+            >
+            <input
+                [ngModel]="edit_local_service.name"
+              type="text"
+              id="name"
+              formControlName="nombre_local"
+              name="name"
+              placeholder="Ingresa el nombre del local"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+            />
+            <div
+            *ngIf="hasErrors('nombre_local', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo del Nombre del local es obligatorio
+          </div>
+          </div>
+
+          <!-- descirpcion -->
+          <div>
+            <label
+              for="description"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Descripción</label
+            >
+            <textarea
+              id="description"
+              [ngModel]="edit_local_service.description"
+              formControlName="descripcion"
+              name="description"
+              placeholder="Ingresa una descripción"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            ></textarea>
+            <div
+            *ngIf="hasErrors('descripcion', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo de la descripcion es obligatorio
+          </div>
+          </div>
+
+          <!-- Teléfono -->
+          <div>
+            <label
+              for="telefono"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Teléfono del local</label
+            >
+            <input
+              type="tel"
+              id="telefono"
+              [ngModel]="edit_local_service.phone_number"
+              formControlName="telefono"
+              name="telefono"
+              placeholder="Ingresa un número de teléfono"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            >
+            <div
+            *ngIf="hasErrors('telefono', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo del teléfono es obligatorio
+          </div>
+          </div>
+
+          <div *ngIf="edit_user.type_user === 'Local'">
+          <!-- direccion -->
+          <div>
+            <label
+              for="state"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Estado del local</label
+            >
+            <input
+              type="text"
+              id="state"
+              value="CHIAPAS"
+              name="state"
+              placeholder="Ingrese el Estado"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              disabled
+            />
+          </div>
+
+          <div>
+            <label
+              for="cp"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Código postal del local</label
+            >
+            <input
+              type="text"
+              id="cp"
+              value="29140"
+              name="cp"
+              placeholder="Ingrese el código postal"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              disabled
+            />
+          </div>
+
+          <div>
+            <label
+              for="city"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Municipio del local</label
+            >
+            <input
+              type="text"
+              id="city"
+              value="OCOZOCOAUTLA DE ESPINOSA"
+              name="city"
+              placeholder="Ingrese el Municipio"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              disabled
+            />
+          </div>
+
+          <div>
+            <label
+              for="colonia"
+              class=" label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Colonia del local</label
+            >
+            <select
+              id="colonia"
+              [ngModel]="edit_local_service.address.cologne"
+              formControlName="colonia"
+              name="colonia"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+            >
+            <option [value]="colonia" *ngFor="let colonia of colognes">{{colonia}}</option>
+          </select>
+          <!--
+            <input
+              type="text"
+              id="colonia"
+              formControlName="colonia"
+              name="colonia"
+              placeholder="Ingrese la colonia del local"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            />
+          -->  
+            <div
+            *ngIf="hasErrors('colonia', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo de la colonia del local es obligatorio
+          </div>
+          </div>
+
+          <div>
+            <label
+              for="calle"
+              class="label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Calle del local</label
+            >
+            <input
+              type="text"
+              id="calle"
+              [ngModel]="edit_local_service.address.street"
+              formControlName="calle"
+              name="calle"
+              placeholder="Ingrese la calle del local"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            />
+            <div
+            *ngIf="hasErrors('calle', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo de la calle del local es obligatorio
+          </div>
+          </div>
+
+          <div>
+            <label
+              for="no_domicilio"
+              class="label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Número de domicilio del local</label
+            >
+            <input
+              type="number"
+              id="no_domicilio"
+              [ngModel]="edit_local_service.address.outside_number"
+              formControlName="no_domicilio"
+              name="no_domicilio"
+              placeholder="Ingrese el no. de domicilio del local"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            />
+            <div
+            *ngIf="hasErrors('no_domicilio', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo del número de domicilio del local es obligatorio
+          </div>
+          </div>
+
+          </div>
+
+          <button
+          type="button"
+          class="div-submit_color block w-full rounded-lg px-5 py-3  text-white mb-5"
+          (click)="onNext()"
+        >
+          Siguiente
+        </button>
+        <button
+          type="reset"
+          class="div-reset_color block w-full rounded-lg px-5 py-3  text-white"
+        >
+          Cancelar
+        </button>
+        <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots1.svg" alt="" />
+        </div>
+        </div>  
+          <!-- <div>
+    <label for="address" class="block mb-2  text-gray-900 dark:text-black">Dirección</label>
+    <input
+      type="t ext"
+      id="address"
+      [(ngModel)]="new_local_service.address"
+      name="address"
+      placeholder="Ingresa la dirección del local"
+      class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+    />
+  </div> -->
+          <!-- Apartado de Horario -->
+        <div *ngIf="currentStep === 2" class="form-step2">
+         
+          <div class="days">
+            
+            <!-- LUNES -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+              
+              <div class="flex items-center">
+              <h2 class="day-title_color text-xl font-semibold">Lunes</h2>
+
+                <!-- botones si no trabajar -->
+              <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Lunes')" (click)="dontWorksinThatDay('Lunes', 'lunes')">No trabajo este día</button>
+              <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Lunes')" (click)="worksInThatDay('Lunes', 'lunes')" >Trabajo este día</button>
+
+              </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Lunes')">
+                <!-- label apertura dia -->
+                <label for="lunes_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en lunes
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="lunes_comienzo"
+                  formControlName="lunes_comienzo"
+                  name="lunes_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('lunes_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Lunes')">
+                 <!-- label cierre dia -->
+                <label for="lunes_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en lunes
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="lunes_final"
+                  formControlName="lunes_final"
+                  name="lunes_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('lunes_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+
+              
+            </div>
+
+            <!-- MARTES -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+              
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Martes</h2>
+  
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Martes')" (click)="dontWorksinThatDay('Martes', 'martes')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Martes')" (click)="worksInThatDay('Martes', 'martes')" >Trabajo este día</button>
+  
+                </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Martes')">
+                <!-- label apertura dia -->
+                <label for="martes_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en martes
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="martes_comienzo"
+                  formControlName="martes_comienzo"
+                  name="martes_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('martes_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Martes')">
+                 <!-- label cierre dia -->
+                <label for="martes_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en martes
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="martes_final"
+                  formControlName="martes_final"
+                  name="martes_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('martes_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+
+
+            </div>
+          
+         
+            <!-- MIERCOLES -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Miércoles</h2>
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Miércoles')" (click)="dontWorksinThatDay('Miércoles', 'miercoles')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Miércoles')" (click)="worksInThatDay('Miércoles', 'miercoles')" >Trabajo este día</button>
+                </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Miércoles')">
+                <!-- label apertura dia -->
+                <label for="miercoles_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en miercoles
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="miercoles_comienzo"
+                  formControlName="miercoles_comienzo"
+                  name="miercoles_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('miercoles_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Miércoles')">
+                 <!-- label cierre dia -->
+                <label for="miercoles_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en miercoles
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="miercoles_final"
+                  formControlName="miercoles_final"
+                  name="miercoles_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('miercoles_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+
+
+            </div>
+
+            <!-- JUEVES -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+              
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Jueves</h2>
+  
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Jueves')" (click)="dontWorksinThatDay('Jueves', 'jueves')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Jueves')" (click)="worksInThatDay('Jueves', 'jueves')" >Trabajo este día</button>
+  
+              </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Jueves')">
+                <!-- label apertura dia -->
+                <label for="jueves_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en jueves
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="jueves_comienzo"
+                  formControlName="jueves_comienzo"
+                  name="jueves_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('jueves_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Jueves')">
+                 <!-- label cierre dia -->
+                <label for="jueves_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en jueves
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="jueves_final"
+                  formControlName="jueves_final"
+                  name="jueves_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('jueves_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             
+            </div>
+
+             <!-- VIERNES -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Viernes</h2>
+  
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Viernes')" (click)="dontWorksinThatDay('Viernes', 'viernes')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Viernes')" (click)="worksInThatDay('Viernes', 'viernes')" >Trabajo este día</button>
+  
+              </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Viernes')">
+                <!-- label apertura dia -->
+                <label for="viernes_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en viernes
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="viernes_comienzo"
+                  formControlName="viernes_comienzo"
+                  name="viernes_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('viernes_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Viernes')">
+                 <!-- label cierre dia -->
+                <label for="viernes_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en viernes
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="viernes_final"
+                  formControlName="viernes_final"
+                  name="viernes_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('viernes_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>   
+            </div>
+
+            <!-- SABADO -->
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+              
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Sábado</h2>
+  
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Sábado')" (click)="dontWorksinThatDay('Sábado', 'sabado')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Sábado')" (click)="worksInThatDay('Sábado', 'sabado')" >Trabajo este día</button>
+  
+              </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Sábado')">
+                <!-- label apertura dia -->
+                <label for="sabado_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en sábado
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="sabado_comienzo"
+                  formControlName="sabado_comienzo"
+                  name="sabado_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('sabado_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Sábado')">
+                 <!-- label cierre dia -->
+                <label for="sabado_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en sábado
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="sabado_final"
+                  formControlName="sabado_final"
+                  name="sabado_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('sabado_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+
+            </div>
+
+            <!-- DOMINGO -->
+
+            <div class="day mb-6 p-4 bg-white rounded-lg shadow">
+              
+              <div class="flex items-center">
+                <h2 class="day-title_color text-xl font-semibold">Domingo</h2>
+  
+                  <!-- botones si no trabajar -->
+                <button class="position-button px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600" type="button" *ngIf="isWorkThatDay('Domingo')" (click)="dontWorksinThatDay('Domingo', 'domingo')">No trabajo este día</button>
+                <button  class="day-button_close position-button px-4 py-2  text-white font-medium rounded-lg " type="button" *ngIf="!isWorkThatDay('Domingo')" (click)="worksInThatDay('Domingo', 'domingo')" >Trabajo este día</button>
+  
+              </div>
+
+              <!-- dia en abrir -->
+              <div *ngIf="isWorkThatDay('Domingo')">
+                <!-- label apertura dia -->
+                <label for="domingo_comienzo" class="block mb-2 text-gray-700 font-medium">
+                  Apertura del negocio en domingo
+                </label>
+                
+                <!-- input comienzo dia -->
+                <input
+                  type="time"
+                  id="domingo_comienzo"
+                  formControlName="domingo_comienzo"
+                  name="domingo_comienzo"
+                  placeholder="Ingrese la hora de comienzo"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('domingo_comienzo', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+             <!-- dia en cerrar -->
+              <div *ngIf="isWorkThatDay('Domingo')">
+                 <!-- label cierre dia -->
+                <label for="domingo_final" class="block mb-2 text-gray-700 font-medium">
+                  Cierre del negocio en domingo
+                </label>
+                 <!-- input cierre dia -->
+                <input
+                  type="time"
+                  id="domingo_final"
+                  formControlName="domingo_final"
+                  name="domingo_final"
+                  placeholder="Ingrese la hora de salida"
+                  class="input-text_register w-full px-4 py-2 mb-4 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                />
+                <!-- manejo error -->
+                <div
+                *ngIf="hasErrors('domingo_final', 'required')"
+                class="error-text_register text-red-500 mb-2"
+              >
+                Este campo es obligatorio
+              </div>
+
+              </div>
+            </div>
+                     
+        </div>
+
+
+            <button
+            type="button"
+            class="div-submit_color block w-full rounded-lg px-5 py-3  text-white mb-5"
+            (click)="onNext()"
+          >
+            Siguiente
+          </button>
+
+          <button
+            type="button"
+            class="div-reset_color block w-full rounded-lg px-5 py-3  text-white"
+            (click)="onBack()"
+          >
+            Anterior
+          </button>
+          <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots2.svg" alt="" />
+        </div>
+
+        </div>  
+
+         
+        <div *ngIf="currentStep === 3" class="form-step3">
+          <div>
+            <label
+              for="email"
+              class="label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Correo Electrónico</label
+            >
+            <input
+              type="email"
+              id="email"
+              [(ngModel)]="edit_user.email"
+              name="email"
+              placeholder="Ingresa el correo electrónico"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              disabled
+            />
+            <div
+            *ngIf="hasErrors('correo_electronico', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo del Correo es obligatorio
+          </div>
+          </div>
+
+          <!-- contra -->
+          <div>
+            <label
+              for="password_LS"
+              class="label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              id="password_LS"
+              name="password_LS"
+              placeholder="Ingresa la contraseña"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            />
+            <div
+            *ngIf="hasErrors('new_password', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo de la contraseña es obligatorio
+          </div>
+          </div>
+
+          <!-- confirmar contraseña  -->
+          <div>
+            <label
+              for="confirmPassword"
+              class="label_text-register block mb-2  text-gray-900 dark:text-black"
+              >Confirmar Contraseña</label
+            >
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirma la contraseña"
+              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+              
+            />
+            <div
+            *ngIf="hasErrors('compare_new_password', 'required')"
+            class="error-text_register text-red-500 mb-2"
+          >
+            El campo de la contraseña es obligatorio
+          </div>
+          </div>
+
+          <button
+          type="submit"
+          class="mt-5 div-submit_color block w-full rounded-lg px-5 py-3  text-white"
+          >
+            Registrar Local
+          </button>
+        
+          <button
+            type="button"
+            class="div-reset_color block w-full rounded-lg px-5 py-3 mt-4  text-white"
+            (click)="onBack()"
+          >
+            Anterior
+          </button>
+          <div class="flex justify-center mt-4">
+            <img src="/assets/forms/dots3.svg" alt="" />
+          </div>
+        </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

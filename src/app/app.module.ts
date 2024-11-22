@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-type-modal.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+import { LocalesServiciosModule } from './locales-servicios/locales-servicios.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { JwtInterceptorService } from './shared/services/jwt-interceptor.service
     PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
+    LocalesServiciosModule
   ],
   providers: [
     {

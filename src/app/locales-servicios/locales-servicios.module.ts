@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditLocalServicesFormComponent } from './edit-local-services-form/edit-local-services-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -9,7 +11,13 @@ import { EditLocalServicesFormComponent } from './edit-local-services-form/edit-
     EditLocalServicesFormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+  ],
+  exports: [
+    EditLocalServicesFormComponent,
   ]
 })
 export class LocalesServiciosModule { }
