@@ -32,15 +32,10 @@ const routes: Routes = [
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-<<<<<<< HEAD
   {path:'detallePostLocalService', component:DetailPostLocalsPageComponent}
-];
-=======
+
   ];
 
-
-
->>>>>>> c5ab1d81e06ee1fd541f021cd4c1c918c500b8cd
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

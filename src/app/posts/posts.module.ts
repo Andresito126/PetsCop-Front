@@ -20,6 +20,8 @@ import { MoreInfoFindedComponent } from './shared/components-detail/more-info-fi
 import { CommentsModule } from './comments/comments.module';
 import { DetailPostLocalsPageComponent } from './detail-post-locals-page/detail-post-locals-page.component';
 import { CardScheduleComponent } from './shared/components-local-service/card-schedule/card-schedule.component';
+import { NameAddressComponent } from './shared/components-local-service/name-address/name-address.component';
+import { DescriptionComponent } from './shared/components-local-service/description/description.component';
 
 
 
@@ -43,6 +45,8 @@ import { CardScheduleComponent } from './shared/components-local-service/card-sc
     MoreInfoFindedComponent,
     DetailPostLocalsPageComponent,
     CardScheduleComponent,
+    NameAddressComponent,
+    DescriptionComponent,
     
  
   ],
