@@ -1,10 +1,58 @@
+/* fuentes */
+
+@font-face {
+    font-family: 'Lalezar-titles'; 
+    src: url('/assets/fonts/Lalezar-Regular.ttf') format('truetype'); 
+    font-weight: bold; 
+    font-style: normal; 
+  }
+
+@font-face {
+  font-family: 'Abhaya Libre';
+  src: url('/assets/fonts/AbhayaLibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Abhaya Libre';
+  src: url('/assets/fonts/AbhayaLibre-SemiBold.ttf') format('truetype');
+  font-weight: 600; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Abhaya Libre';
+  src: url('/assets/fonts/AbhayaLibre-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Abhaya Libre';
+  src: url('/assets/fonts/AbhayaLibre-ExtraBold.ttf') format('truetype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     
+
 }
 
+/* maybe todavia no se */
+body {
+  font-family: 'Abhaya Libre', sans-serif;
+  font-weight: normal; 
+}
+
+
+
+
+/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

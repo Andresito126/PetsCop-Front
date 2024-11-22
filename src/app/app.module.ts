@@ -6,6 +6,7 @@ import { NavbarComponent } from "./shared/navbar/navbar.component";
 import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
+import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-type-modal.component';
 import { HomeModule } from './home/home.module';
 import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -23,6 +24,7 @@ import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
     UsersModule,
     NavbarComponent,
     AsideComponent,
+    PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
     HomeModule,

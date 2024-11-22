@@ -1,0 +1,462 @@
+<div
+  class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center"
+>
+  <div class="w-full sm:w-1/2">
+    <form
+      [formGroup]="formAdoption"
+      (ngSubmit)="onSubmitFormAdoption()"
+      action="#"
+      class="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+    >
+      <!-- INICIO FORM PT1 -->
+      <div *ngIf="currentStep === 1" class="form-step1">
+        <h1
+          class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
+        >
+          Datos básicos de la mascota
+        </h1>
+
+        <!-- tipo de mascota -->
+        <div>
+          <label
+            for="petType"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Tipo de mascota</label
+          >
+          <select
+            id="petType"
+            formControlName="petType"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option value="Dog">Perro</option>
+            <option value="Cat">Gato</option>
+          </select>
+          <div
+            *ngIf="hasErrors('petType', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Tipo de mascota es obligatorio
+          </div>
+        </div>
+
+        <!-- raza  -->
+        <div>
+          <label
+            for="petBreed"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Raza</label
+          >
+          <input
+            type="text"
+            id="petBreed"
+            formControlName="petBreed"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
+        </div>
+
+        <!-- nombre del pet -->
+        <div>
+          <label
+            for="petName"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Nombre de la mascota</label
+          >
+          <input
+            type="text"
+            id="petName"
+            formControlName="petName"
+            placeholder="Ingresa el nombre de tu mascota"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+          <div
+            *ngIf="hasErrors('petName', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Nombre de la mascota es obligatorio
+          </div>
+        </div>
+
+        <!-- edad -->
+        <div>
+          <label
+            for="petAge"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Edad</label
+          >
+          <input
+            type="text"
+            id="petAge"
+            formControlName="petAge"
+            placeholder="Edad de tu mascota"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+          <div
+            *ngIf="hasErrors('petAge', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Edad es obligatorio
+          </div>
+        </div>
+
+        <!-- caracteristicas  -->
+        <div class="flex items-center space-x-4 justify-center mt-6 mb-4">
+          <hr class="flex-grow" />
+          <p class="text-center text-lg font-medium">
+            Características físicas principales
+          </p>
+          <hr class="flex-grow" />
+        </div>
+
+        <div formArrayName="characteristics">
+          <div
+            *ngFor="
+              let characteristic of characteristics.controls;
+              let i = index
+            "
+            class="mb-2"
+          >
+            <input
+              [formControlName]="i"
+              placeholder="Añade una característica"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            />
+          </div>
+        </div>
+
+        <button
+          type="button"
+          (click)="addCharacteristic()"
+          class="text-blue-600 text-sm font-medium mt-2"
+        >
+          + Agregar nueva característica
+        </button>
+
+        <br /><br />
+
+        <!-- botones siguiente y back -->
+        <button
+          type="button"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-5"
+          (click)="onNext()"
+        >
+          Siguiente
+        </button>
+        <button
+          type="reset"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+        >
+          Cancelar
+        </button>
+
+        <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots1.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- INICIO FORM PT2 -->
+      <div *ngIf="currentStep === 2" class="form-step2">
+        <h1
+          class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
+        >
+          Salud de la mascota
+        </h1>
+
+        <!-- select  -vacunas aplicadas -->
+        <div>
+          <label
+            for="vaccines"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >¿Tiene vacunas aplicadas?</label
+          >
+          <select
+            id="vaccines"
+            formControlName="vaccines"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div
+            *ngIf="hasErrors('vaccines', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de las vacunas es obligatorio
+          </div>
+        </div>
+
+        <!-- Cartilla-->
+        <div
+          class="upload-container"
+          (click)="triggerFileInput(fileInput)"
+          *ngIf="formAdoption.get('vaccines')?.value === 'Si'"
+        >
+          <img *ngIf="imageUrl" [src]="imageUrl" alt="Imagen cargada" />
+          <span *ngIf="!imageUrl">Subir imagen</span>
+          <input
+            #fileInput
+            type="file"
+            (change)="onFileSelected($event)"
+            (change)="onPrimerSelect($event)"
+            accept="image/*"
+            hidden
+          />
+        </div>
+
+        <!-- Problemas Físicos -->
+        <div class="flex items-center space-x-4 justify-center mt-6 mb-4">
+          <hr class="flex-grow" />
+          <p class="text-center text-lg font-medium">Problemas físicos</p>
+          <hr class="flex-grow" />
+        </div>
+
+        <div>
+          <label
+            for="issues"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >¿Tiene problemas físicos?</label
+          >
+          <select
+            id="issues"
+            formControlName="issues"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div
+            *ngIf="hasErrors('issues', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de los problemas es obligatorio
+          </div>
+        </div>
+
+        <div *ngIf="formAdoption.get('issues')?.value === 'Si'">
+          <div formArrayName="issuesSentence">
+            <div
+              *ngFor="
+                let characteristic of physicalProblems.controls;
+                let i = index
+              "
+              class="mb-2"
+            >
+              <input
+                [formControlName]="i"
+                placeholder="Añade un problema físico"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+              />
+            </div>
+          </div>
+
+          <button
+            type="button"
+            (click)="addPhysicalProblems()"
+            class="text-blue-600 text-sm font-medium mt-2"
+          >
+            + Agregar nuevo problema físico
+          </button>
+        </div>
+
+        <br /><br />
+
+        <!-- SELECT OPERACIONES -->
+        <div class="-mt-5">
+          <label
+            for="operations"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >¿La mascota ha tenido alguna operación?</label
+          >
+          <select
+            id="operations"
+            formControlName="operations"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option value="Si">Si</option>
+            <option value="No">No</option>
+          </select>
+          <div
+            *ngIf="hasErrors('operations', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de las operaciones es obligatoria
+          </div>
+        </div>
+
+        <!-- operaciones -->
+        <div *ngIf="formAdoption.get('operations')?.value === 'Si'">
+          <label
+            for="operationsSentence"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Escríbelas acá:</label
+          >
+          <input
+            type="text"
+            id="operationsSentence"
+            formControlName="operationsSentence"
+            placeholder="Pequeña descripción"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+          />
+        </div>
+
+        <!-- botones siguiente y back -->
+        <button
+          type="button"
+          class="mt-10 div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-5"
+          (click)="onNext()"
+        >
+          Siguiente
+        </button>
+
+        <button
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
+        >
+          Anterior
+        </button>
+
+        <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots2.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- INICIO FORM PT3 -->
+
+      <div *ngIf="currentStep === 3" class="form-step3">
+        <h1
+          class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
+        >
+          Fotos de la mascota
+        </h1>
+        <div class="container-main">
+          <div class="container-img-main">
+            <div
+              class="sub-container-img"
+              (click)="triggerFileInputs(fileInput1)"
+            >
+              <img
+                *ngIf="imageUrls[0]"
+                [src]="imageUrls[0]"
+                alt="Imagen cargada"
+                id="upload-img"
+              />
+              <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
+              <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
+              <input
+                #fileInput1
+                type="file"
+                (change)="onFileSelect($event, 0)"
+                accept="image/*"
+                hidden
+              />
+            </div>
+          </div>
+
+          <div class="container-img-secondaries">
+            <div class="container-imgs-pair-1">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput2)"
+              >
+                <img
+                  *ngIf="imageUrls[1]"
+                  [src]="imageUrls[1]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt=""/>
+                <input
+                  #fileInput2
+                  type="file"
+                  (change)="onFileSelect($event, 1)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput3)"
+              >
+                <img
+                  *ngIf="imageUrls[2]"
+                  [src]="imageUrls[2]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt=""/>
+                <input
+                  #fileInput3
+                  type="file"
+                  (change)="onFileSelect($event, 2)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+            <div class="container-imgs-pair-2">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput4)"
+              >
+                <img
+                  *ngIf="imageUrls[3]"
+                  [src]="imageUrls[3]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput4
+                  type="file"
+                  (change)="onFileSelect($event, 3)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput5)"
+              >
+                <img
+                  *ngIf="imageUrls[4]"
+                  [src]="imageUrls[4]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput5
+                  type="file"
+                  (change)="onFileSelect($event, 4)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <button
+          type="submit"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4"
+        >
+          Enviar
+        </button>
+        <button
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
+        >
+          Anterior
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

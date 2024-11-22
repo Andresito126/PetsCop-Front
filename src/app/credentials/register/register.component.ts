@@ -547,14 +547,30 @@ export class RegisterComponent implements OnInit {
       alert('Las contraseñas son diferentes');
     }
   }
+  preview_photo: string | null = null; 
   
   listenImage(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.upload_photo = file;
-      console.log("Ejecutando subida de foto")
-      this.postProfilePhoto();
-    }
+    const file = event.target.files[0]; 
+  if (file) {
+    this.upload_photo = file;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.preview_photo = reader.result as string;
+    };
+    reader.readAsDataURL(file); 
+
+    
+    console.log("Ejecutando subida de foto");
+    this.postProfilePhoto();
+  }
+  //lo de cahrli
+    // const file = event.target.files[0];
+    // if (file) {
+    //   this.upload_photo = file;
+    //   console.log("Ejecutando subida de foto")
+    //   this.postProfilePhoto();
+    // }
   }
 
   uploadImage(): Observable<string> {

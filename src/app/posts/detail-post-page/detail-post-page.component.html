@@ -79,12 +79,13 @@
   <!-- COMENTARIOS -->
 </div>
 
-
 <div
-class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+  class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
 >
-
-<app-comment-page></app-comment-page>
-
+  <app-comment-page
+    [comments]="post.comments"
+    [id_user]="id_user"
+    [id_post]="post._id"
+    (render)="renderComponent($event)"
+  ></app-comment-page>
 </div>
-
