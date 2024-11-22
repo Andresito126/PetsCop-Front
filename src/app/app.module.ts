@@ -7,8 +7,12 @@ import { AsideComponent } from "./shared/aside/aside.component";
 import { CredentialsModule } from './credentials/credentials.module';
 import { UsersModule } from './users/users.module';
 import { PostTypeModalComponent } from './shared/modals/post-type-modal/post-type-modal.component';
+import { HomeModule } from './home/home.module';
+import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +27,9 @@ import { JwtInterceptorService } from './shared/services/jwt-interceptor.service
     PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
+    HomeModule,
+    PostsModule,
+    MascotasPagesModule,
   ],
   providers: [
     {
@@ -30,6 +37,7 @@ import { JwtInterceptorService } from './shared/services/jwt-interceptor.service
       useClass: JwtInterceptorService,
       multi: true
     }
+
   ],
   bootstrap: [AppComponent]
 })

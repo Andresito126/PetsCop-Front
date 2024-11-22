@@ -1,10 +1,10 @@
 <aside class="asideColor text-white w-64 min-h-screen flex flex-col">
     <div class="aside-li_hover">
-    <div class="flex items-center ml-6 pt-5 ">
-            <img [src]="imgProfile" alt="Photo" class="h-14 w-14 mr-0.5 mt-5 user-img">
+    <div class="flex items-center ml-6 pt-5 " (click)="goToProfile()">
+            <img [src]="imgProfile" alt="Photo" class="h-14 w-14 mr-0.5 mt-5 user-img" (click)="goToProfile()">
         
         <div>
-            <p class="text-font_name text-sm font-semibold mt-5"> {{username}} </p>
+            <p class="text-sm font-semibold mt-5" (click)="goToProfile()"> {{username}} </p>
         </div>
     </div>
 </div>

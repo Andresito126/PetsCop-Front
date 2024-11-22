@@ -216,7 +216,7 @@ export class RegisterComponent implements OnInit {
       zip_code: 29140,
       state: "Chiapas",
       municipality: "Ocozocoautla de Espinoza",
-      cologne: "",
+      colony: "",
       outside_number: 0,
       street: ""
     },
@@ -429,7 +429,7 @@ export class RegisterComponent implements OnInit {
        this.new_local_service.phone_number = telefono;
 
        // Ubicación
-       this.new_local_service.address.cologne = colonia;
+       this.new_local_service.address.colony = colonia;
        this.new_local_service.address.street = calle;
        this.new_local_service.address.outside_number = no_domicilio;
 

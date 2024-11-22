@@ -6,6 +6,8 @@ import { AddPostModule } from './add-post/add-post.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CardUserComponent } from './card-user/card-user.component';
 import { ViewProfileUserComponent } from './view-profile-user/view-profile-user.component';
+import { PostsModule } from '../posts/posts.module';
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
@@ -19,8 +21,9 @@ import { ViewProfileUserComponent } from './view-profile-user/view-profile-user.
     ProfileSettingsModule,
     FormsModule,
     AddPostModule,
-    HttpClientModule
-
+    HttpClientModule,
+    PostsModule,
+    RouterLink,
   ],
   exports: [
     ProfileSettingsModule,

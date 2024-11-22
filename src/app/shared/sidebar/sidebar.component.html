@@ -10,12 +10,18 @@
   <nav class="flex-1">
     <ul class="space-y-2">
 
-      <li class="side-li_hover font-text flex items-center p-5 pt-8 cursor-pointer">
+      <li (click)="goToProfile()" class="side-li_hover flex items-center p-5 pt-8 cursor-pointer">
         <img src="/assets/nav-aside/profile.svg" alt="" class="mr-5 ml-1">
         <span class="ml-2">PERFIL</span>
       </li>
 
-      <li class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
+
+      <li *ngIf="thisUserIsNormal()" routerLink="configuracion/unormal" class="side-li_hover flex items-center p-5 mt-5 cursor-pointer">
+        <img src="/assets/nav-aside/settings.svg" alt="" class="mr-5">
+        <span class="ml-2">CONFIGURACIÓN</span>
+      </li>
+
+      <li *ngIf="!thisUserIsNormal()" routerLink="configuracion/unormal" class="side-li_hover flex items-center p-5 mt-5 cursor-pointer">
         <img src="/assets/nav-aside/settings.svg" alt="" class="mr-5">
         <span class="ml-2">CONFIGURACIÓN</span>
       </li>

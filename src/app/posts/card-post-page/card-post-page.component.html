@@ -1,0 +1,52 @@
+<!-- incio -->
+
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 cursor-pointer"
+  (click)="redirectDetailPost()"
+>
+  <!-- header del nombre, datos, publi y mandar mensaje -->
+  <app-header-card
+    [id_user]="post.id_user"
+    [date]="date_publication"
+    [time]="time_publication"
+  ></app-header-card>
+  <!-- info -->
+
+  <app-info-card
+  [lost_data]="post.loss_data"
+  [reward]="post.reward"
+  [gratitude]="post.gratitude"
+  [type_post]="post.post_type"
+  [pet]="post.basic_pet_information"
+  [images]="post.basic_pet_information.photos"
+  ></app-info-card>
+
+  <!-- botones comentar y repostear -->
+  <div class="flex items-center mt-4">
+    <button
+      class="comment-button flex items-center px-4 py-1.5 rounded-md mr-6"
+    >
+      <img
+        class="h-7 w-7 mr-1"
+        src="assets/posts/comment.svg"
+        alt="message-icon"
+      />
+      Comentar
+    </button>
+    <button
+      class="repost-button flex items-center px-4 py-1.5 rounded-md"
+    >
+      <img
+        class="h-7 w-7 mr-1"
+        src="assets/posts/repost.svg"
+        alt="message-icon"
+      />
+      Repostear
+    </button>
+
+    <div *ngIf="isHome">
+      <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado!</button>
+    </div>
+  </div>
+  
+</div>

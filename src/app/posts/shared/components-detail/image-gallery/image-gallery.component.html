@@ -1,0 +1,32 @@
+<div class="images-and-button flex flex-col mt-4 ">
+    <div class="images-container flex items-center">
+      <!-- miniatutras -->
+      <div class="thumbnails-container flex flex-col space-y-2 mr-4">
+        <img
+        *ngFor="let thumb of thumbnails; let i = index"
+        [src]="thumb" 
+        alt="Thumbnail" 
+        class="thumbnail w-16 h-16 rounded-lg border border-blue-400 cursor-pointer"
+        (click)="setMainImage(i)"
+        
+        />
+      </div>
+
+      <!-- img principal -->
+      <div class="main-image-container">
+        <img
+          [src]="thumbnails[0]"
+          class="main-image w-64 h-72 object-cover rounded-lg border border-gray-300"
+          alt="Main Image"
+        />
+      </div>
+    </div>
+
+    <!-- boton -->
+    <button
+      class="contact-button text-white text-sm py-2 px-6 rounded-lg mt-4"
+    >
+      Contactarse con la persona
+    </button>
+
+  </div>

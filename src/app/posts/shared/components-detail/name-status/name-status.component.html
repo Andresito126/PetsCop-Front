@@ -1,0 +1,17 @@
+<div class="flex items-center justify-between mb-4">
+    <div class="flex items-center space-x-2">
+      <img src="assets/posts/pata.svg"  class="h-9 w-9" />
+        <h4 class="text-xl font-semibold">{{name}}</h4>
+      </div>
+        <div class="alert-pet flex items-center ml-20 ">
+
+          <img class="w-12" src="assets/posts/alertLost.svg" alt="status">
+          <span  class="status text-sm px-2 py-1 rounded-md"
+          [ngClass]="{
+            'bg-red-200 text-red-700': status === 'Perdido',
+            'bg-green-200 text-green-700': status === 'Encontrado',
+            'bg-yellow-200 text-yellow-700': status === 'Adopción'
+          }"
+          >¡{{status}}!</span>
+        </div>
+  </div>
