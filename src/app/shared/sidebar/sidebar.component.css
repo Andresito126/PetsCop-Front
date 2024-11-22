@@ -5,3 +5,10 @@
 .side-li_hover:hover {
     background-color: #136A93;
 }
+
+.font-text{
+    
+    font-family: 'Lalezar-titles', sans-serif;
+    font-size: 23px; 
+    
+}
