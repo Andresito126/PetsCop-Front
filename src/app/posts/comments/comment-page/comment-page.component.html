@@ -2,7 +2,7 @@
   <!-- titulo y añadir comentario -->
   <div class="w-auto h-24 flex items-center justify-between px-6">
     <h2
-    class="title-color_comments text-4xl font-bold font-manrope leading-normal"
+      class="title-color_comments text-4xl font-bold font-manrope leading-normal"
     >
       Comentarios
     </h2>
@@ -17,16 +17,15 @@
       </span>
       <p class="text">Comentar</p>
     </button>
-
   </div>
 
   <div
-    class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto "
-    *ngFor="let comment of comments"
+    class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto"
+    *ngFor="let comment of commentsUsers"
   >
     <!-- principal -->
     <div
-      class="w-full flex-col justify-start items-start lg:gap-14 gap-7 inline-flex "
+      class="w-full flex-col justify-start items-start lg:gap-14 gap-7 inline-flex"
     >
       <div class="w-full flex-col justify-start items-start gap-8 flex mb-10">
         <div
@@ -36,62 +35,70 @@
             <div class="w-full justify-between items-center inline-flex">
               <div class="justify-start items-center gap-2.5 flex">
                 <div
-                  class="w-10 h-10 bg-stone-300 rounded-full justify-start items-start gap-2.5 flex"
-                >
-                  <img
-                    class="rounded-full object-cover"
-                    [src]="comment.avatarUrl"
-                    
-                  />
-                </div>
-                <div
                   class="flex-col justify-start items-start gap-1 inline-flex"
                 >
                   <!-- nombre -->
-                  <h5 class="text-gray-900 text-sm font-semibold leading-snug">
-                    {{ comment.username }}
+                  <h5
+                    class="text-gray-900 text-sm font-semibold leading-snug"
+                    *ngIf="comment.name"
+                  >
+                    {{ comment.name }}
                   </h5>
+
+                  <h5
+                    class="text-gray-900 text-sm font-semibold leading-snug"
+                    *ngIf="comment.name_last_name"
+                  >
+                    {{ comment.name_last_name }}
+                  </h5>
+
                   <!-- fecha de publi -->
                   <h6 class="text-gray-500 text-xs font-normal leading-5">
-                    {{ comment.theDate | date : "short" }}
+                    {{ comment.creation_date + ' ' + comment.creation_time}}
                   </h6>
                 </div>
               </div>
               <!-- botnes de editar y eliminar en compoennte  -->
-              <div *ngIf="comment.autor" class="group justify-end items-center flex gap-2">
+              <div
+                *ngIf="comment.owns"
+                class="group justify-end items-center flex gap-2"
+              > 
                 <!-- editar -->
-                <button 
-                  (click)="openModal(comment.id)" 
-                  class="icon-button edit-button">
-                  <img src="assets/comments/edit.svg" alt="Editar" class="icon">
+                <button (click)="openModal(comment._id)" class="icon-button edit-button">
+                  <img
+                    src="assets/comments/edit.svg"
+                    alt="Editar"
+                    class="icon"
+                  />
                 </button>
-              
+
                 <!-- eliminar -->
-                <button 
-                  (click)="deleteComment(comment.id)" 
-                  class="icon-button delete-button">
-                  <img src="assets/comments/delete.svg" alt="Eliminar" class="icon">
+                <button
+                  (click)="deleteComment(comment._id)"
+                  class="icon-button delete-button"
+                >
+                  <img
+                    src="assets/comments/delete.svg"
+                    alt="Eliminar"
+                    class="icon"
+                  />
                 </button>
               </div>
             </div>
             <p class="text-gray-800 text-sm font-normal leading-snug">
-              {{ comment.content }}
+              {{ comment.response }}
             </p>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
-        <!-- Modal comentario-->
-        <app-comment-modal
-        [showModal]="showCommentModal"
-        [commentContent]="modalCommentContent"
-        (commentSaved)="saveComment($event)"
-        (modalClosed)="closeModal()"
-      >
-      </app-comment-modal>
+  <!-- Modal comentario-->
+  <app-comment-modal
+    [showModal]="showCommentModal"
+    [commentContent]="modalCommentContent"
+    (commentSaved)="saveComment($event)"
+    (modalClosed)="closeModal()"
+  >
+  </app-comment-modal>
 </section>
-
-

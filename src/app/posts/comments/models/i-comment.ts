@@ -1,8 +1,4 @@
 export interface IComment {
-  id: number;
-  username: string;
-  avatarUrl: string;
-  content: string;
-  theDate: Date;
-  autor: boolean; 
+  id_user: number;
+  response: string;
 }

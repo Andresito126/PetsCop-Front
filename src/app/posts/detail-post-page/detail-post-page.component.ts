@@ -18,11 +18,11 @@ export class DetailPostPageComponent implements OnInit {
   ) {}
 
   // VARIABLES
+  id_user: string | null = '';
   id_post: string | null = '';
   date_publication: string = '';
   time_publication: string = '';
   photos: SafeUrl[] = [];
-
   user: string = '';
 
   post: IPostSerialization = {
@@ -42,6 +42,7 @@ export class DetailPostPageComponent implements OnInit {
 
   // MÉTODOS
   ngOnInit(): void {
+    this.id_user = localStorage.getItem('id_user') || null;
     this.id_post = this.route.snapshot.paramMap.get('id_post');
     this.getInformationPost();
   }
@@ -104,10 +105,29 @@ export class DetailPostPageComponent implements OnInit {
     );
   }
 
-  //boton carcateristicas o datos basicos
+  // BOTÓN PARA CARACTERÍSTICAS O DATOS BÁSICOS
   selectedButton: string = 'datos';
 
   selectButton(button: string): void {
     this.selectedButton = button;
+  }
+
+  updateComments(): void {
+    this.postServices.getInformationPost(this.id_post).subscribe(
+      (response) => {
+        if (response.comments?.length !== 0) {
+          this.post.comments = response.comments;
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+  
+  renderComponent(flag: boolean) {
+    if (flag) {
+      this.updateComments();
+    }
   }
 }

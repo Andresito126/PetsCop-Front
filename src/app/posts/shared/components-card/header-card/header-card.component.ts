@@ -53,7 +53,6 @@ export class HeaderCardComponent implements OnChanges {
     if (this.type_user === 'Normal') {
       this.userServices.getOwnProfile(this.id_user).subscribe(
         (response) => {
-          console.log(response);
           this.user_normaly = response;
           this.userServices.getOwnProfilePhoto(response.profile_picture).subscribe(
             (img_response) => {
