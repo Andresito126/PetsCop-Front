@@ -63,7 +63,6 @@
               >Nombre del Local</label
             >
             <input
-                [ngModel]="edit_local_service.name"
               type="text"
               id="name"
               formControlName="nombre_local"
@@ -88,7 +87,6 @@
             >
             <textarea
               id="description"
-              [ngModel]="edit_local_service.description"
               formControlName="descripcion"
               name="description"
               placeholder="Ingresa una descripción"
@@ -113,7 +111,6 @@
             <input
               type="tel"
               id="telefono"
-              [ngModel]="edit_local_service.phone_number"
               formControlName="telefono"
               name="telefono"
               placeholder="Ingresa un número de teléfono"
@@ -189,7 +186,6 @@
             >
             <select
               id="colonia"
-              [ngModel]="edit_local_service.address.cologne"
               formControlName="colonia"
               name="colonia"
               class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
@@ -224,7 +220,6 @@
             <input
               type="text"
               id="calle"
-              [ngModel]="edit_local_service.address.street"
               formControlName="calle"
               name="calle"
               placeholder="Ingrese la calle del local"
@@ -248,7 +243,6 @@
             <input
               type="number"
               id="no_domicilio"
-              [ngModel]="edit_local_service.address.outside_number"
               formControlName="no_domicilio"
               name="no_domicilio"
               placeholder="Ingrese el no. de domicilio del local"
@@ -782,80 +776,13 @@
 
          
         <div *ngIf="currentStep === 3" class="form-step3">
-          <div>
-            <label
-              for="email"
-              class="label_text-register block mb-2  text-gray-900 dark:text-black"
-              >Correo Electrónico</label
-            >
-            <input
-              type="email"
-              id="email"
-              [(ngModel)]="edit_user.email"
-              name="email"
-              placeholder="Ingresa el correo electrónico"
-              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
-              disabled
-            />
-            <div
-            *ngIf="hasErrors('correo_electronico', 'required')"
-            class="error-text_register text-red-500 mb-2"
-          >
-            El campo del Correo es obligatorio
-          </div>
-          </div>
-
-          <!-- contra -->
-          <div>
-            <label
-              for="password_LS"
-              class="label_text-register block mb-2  text-gray-900 dark:text-black"
-              >Contraseña</label
-            >
-            <input
-              type="password"
-              id="password_LS"
-              name="password_LS"
-              placeholder="Ingresa la contraseña"
-              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
-              
-            />
-            <div
-            *ngIf="hasErrors('new_password', 'required')"
-            class="error-text_register text-red-500 mb-2"
-          >
-            El campo de la contraseña es obligatorio
-          </div>
-          </div>
-
-          <!-- confirmar contraseña  -->
-          <div>
-            <label
-              for="confirmPassword"
-              class="label_text-register block mb-2  text-gray-900 dark:text-black"
-              >Confirmar Contraseña</label
-            >
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Confirma la contraseña"
-              class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
-              
-            />
-            <div
-            *ngIf="hasErrors('compare_new_password', 'required')"
-            class="error-text_register text-red-500 mb-2"
-          >
-            El campo de la contraseña es obligatorio
-          </div>
-          </div>
+          
 
           <button
           type="submit"
           class="mt-5 div-submit_color block w-full rounded-lg px-5 py-3  text-white"
           >
-            Registrar Local
+            Editar información
           </button>
         
           <button
@@ -871,6 +798,87 @@
         </div>
         </div>
       </div>
+    </form>
+  </div>
+  <div class="w-full sm:w-1/2">
+    <form class="mb-0 mt-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8" [formGroup]="passwordFormEdit" (ngSubmit)="editPassword()">
+      <div>
+        <label
+          for="email"
+          class="label_text-register block mb-2  text-gray-900 dark:text-black"
+          >Correo Electrónico</label
+        >
+        <input
+          type="email"
+          id="email"
+          [value]="edit_user.email"
+          name="email"
+          placeholder="Ingresa el correo electrónico"
+          class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+          disabled
+        />
+        <div
+        *ngIf="hasErrors('correo_electronico', 'required')"
+        class="error-text_register text-red-500 mb-2"
+      >
+        El campo del Correo es obligatorio
+      </div>
+      </div>
+
+      <!-- contra -->
+      <div>
+        <label
+          for="password_LS"
+          class="label_text-register block mb-2  text-gray-900 dark:text-black"
+          >Contraseña</label
+        >
+        <input
+          type="password"
+          id="password_LS"
+          formControlName="new_password"
+          name="password_LS"
+          placeholder="Ingresa la contraseña"
+          class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+          
+        />
+        <div
+        *ngIf="hasErrors('new_password', 'required')"
+        class="error-text_register text-red-500 mb-2"
+      >
+        El campo de la contraseña es obligatorio
+      </div>
+      </div>
+
+      <!-- confirmar contraseña  -->
+      <div>
+        <label
+          for="confirmPassword"
+          class="label_text-register block mb-2  text-gray-900 dark:text-black"
+          >Confirmar Contraseña</label
+        >
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          formControlName="compare_new_password"
+          placeholder="Confirma la contraseña"
+          class="input-text_register mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:placeholder-gray-400"
+          
+        />
+        <div
+        *ngIf="hasErrors('compare_new_password', 'required')"
+        class="error-text_register text-red-500 mb-2"
+      >
+        El campo de la contraseña es obligatorio
+      </div>
+      </div>
+
+      <button
+          type="submit"
+          class="mt-5 div-submit_color block w-full rounded-lg px-5 py-3  text-white"
+          >
+            Editar contraseña
+      </button>
     </form>
   </div>
 </div>

@@ -107,8 +107,6 @@ export class EditLocalServicesFormComponent implements OnInit {
     this.formEdit = form.group({
       nombre_local: ['', ],
       descripcion: ['', ],
-      new_password: ['', ],
-      compare_new_password: ['', ],
       //codigo_postal : ['', ],
       //estado: ['', ],
       //municipio: ['', ],
@@ -130,10 +128,16 @@ export class EditLocalServicesFormComponent implements OnInit {
       sabado_final: ['19:00', ],
       domingo_comienzo: ['08:00', ],
       domingo_final: ['19:00', ],
+    });
+
+    this.passwordFormEdit = form.group({
+      new_password: ['', ],
+      compare_new_password: ['', ],
     })
   }
 
   formEdit: FormGroup;
+  passwordFormEdit: FormGroup;
 
 
   ngOnInit(): void {
@@ -213,7 +217,10 @@ export class EditLocalServicesFormComponent implements OnInit {
 
         this.localServicesServices.get_credentials_of_local_services(response.id_user).subscribe(
           (credentials) => {
+            console.log("Credenciales:", credentials)
             this.edit_user = credentials;
+            console.log(this.edit_user)
+            this.getProfilePhoto();
             this.setFormValues(); // Establece los valores originales en el formulario
           },
           (error) => console.log("Error al obtener credenciales:", error)
@@ -331,6 +338,9 @@ export class EditLocalServicesFormComponent implements OnInit {
     this.assignValues();
     
     if (this.formEdit.valid) {
+      if(this.new_photo){
+        this.pushImg();
+      } else {
       this.localServicesServices.edit_local_services(this.edit_local_service).subscribe(
         (response) => {
           Swal.fire({
@@ -349,6 +359,7 @@ export class EditLocalServicesFormComponent implements OnInit {
           });
         }
       );
+    }
     } else {
       Swal.fire({
         icon: "error",
@@ -360,7 +371,6 @@ export class EditLocalServicesFormComponent implements OnInit {
   }
 
   editLocalServices(){
-    if(this.edit_user.password_user === this.compare_password){
       this.localServicesServices.edit_local_services(this.edit_local_service).subscribe(
         (response) => {
           console.log("Respuesta del server:", response);
@@ -373,27 +383,65 @@ export class EditLocalServicesFormComponent implements OnInit {
         },
         (error) => console.log("Error:", error)
       )
-    }else{
-      // Aquí va una alerta Swal
+  }
+
+  editPassword(){
+    const formData = this.passwordFormEdit.value;
+    this.edit_user.password_user = formData.new_password;
+    this.compare_password = formData.compare_new_password;
+    if(this.edit_user.password_user === this.compare_password){
+      this.userConfiguration.editPassword(this.edit_user).subscribe(
+        (response) => {
+          console.log("Respuesta del servidor:", response);
+          Swal.fire({
+            icon: "success",
+            title: "Contraseña editada",
+            showConfirmButton: false,
+            timer: 2500
+          })
+        },
+        (error) => console.log("Error:", error)
+      );
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Contraseñas distintas, ingrese la misma contraseña 2 veces",
+        showConfirmButton: false,
+        timer: 2500
+      })
     }
   }
 
   preview_photo: string | null = null;
 
+  pushImg(){
+    if(this.new_photo){
+      this.userConfiguration.uploadProfilePhoto(this.new_photo).subscribe({
+        next: (response) => {
+          console.log("Respuesta del servidor", response);
+          this.edit_local_service.photo_profile = response.id_document;
+          this.editLocalServices();
+          console.log(this.edit_local_service.photo_profile);
+        },
+        error: (err) => console.error("Error:", err),
+      });
+    }
+  }
+
   listenImage(event: any): void {
     const file = event.target.files[0]; 
     if (file) {
-    this.new_photo = file;
+      this.new_photo = file;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.preview_photo = reader.result as string;
-    };
-    reader.readAsDataURL(file); 
-
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.preview_photo = reader.result as string;
+        this.photo_profile = this.preview_photo;
+      };
+      reader.readAsDataURL(file); 
     
-    console.log("Ejecutando subida de foto");
-    //this.postProfilePhoto();
+      console.log("Ejecutando subida de foto");
+      //this.postProfilePhoto();
     }
   }
 }
