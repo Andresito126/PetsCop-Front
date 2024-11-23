@@ -419,6 +419,10 @@ export class EditLocalServicesFormComponent implements OnInit {
       this.userConfiguration.uploadProfilePhoto(this.new_photo).subscribe({
         next: (response) => {
           console.log("Respuesta del servidor", response);
+          this.userConfiguration.deleteProfilePhoto(this.edit_local_service.photo_profile).subscribe(
+            response => console.log("Respuesta del servidor:", response),
+            error => console.log("Error:", error)
+          )
           this.edit_local_service.photo_profile = response.id_document;
           this.editLocalServices();
           console.log(this.edit_local_service.photo_profile);
@@ -442,6 +446,23 @@ export class EditLocalServicesFormComponent implements OnInit {
     
       console.log("Ejecutando subida de foto");
       //this.postProfilePhoto();
+    }
+  }
+
+  // Es esta parte se maneja a fondo la lógica de subir todas las imágenes de un negocio / local
+
+  post_new_photos(){}
+
+  getPhotos(){
+    for(let i: number = 0; i < this.edit_local_service.photos.length; i++){
+      this.localServicesServices.get_photo_of_local_services(this.edit_local_service.photos[i]).subscribe(
+        img => {
+          console.log("Obteniendo foto");
+          const objImg = URL.createObjectURL(img);
+          this.photos_array.push(this.domSanitizer.bypassSecurityTrustUrl(objImg));
+        },
+        error => console.log("Error:", error)
+      );
     }
   }
 }
