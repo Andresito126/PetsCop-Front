@@ -38,7 +38,7 @@ export class LocalServicesService {
     return this._http.get(this._url_mongo + "drive/download/" + id_photo, { responseType: 'blob' });
   }
 
-  post_photo_into_local_services(images: FormData): Observable<string>{
-    return this._http.post<string>(this._url_mongo + "/drive/uploadImages", images);
+  post_photo_into_local_services(images: FormData): Observable<string[]>{
+    return this._http.post<string[]>(this._url_mongo + "drive/uploadImages", images);
   }
 }

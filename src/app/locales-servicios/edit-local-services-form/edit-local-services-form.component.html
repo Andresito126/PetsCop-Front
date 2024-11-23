@@ -777,7 +777,6 @@
          
         <div *ngIf="currentStep === 3" class="form-step3">
           
-
           <button
           type="submit"
           class="mt-5 div-submit_color block w-full rounded-lg px-5 py-3  text-white"
@@ -798,6 +797,130 @@
         </div>
         </div>
       </div>
+    </form>
+  </div>
+  <div class="w-full sm:w-1/2">
+    <form class="mb-0 mt-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8" (ngSubmit)="uploadPhotos()">
+      <h1
+      class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
+    >
+      Fotos de la mascota
+    </h1>
+    <div class="container-main">
+      <div class="container-img-main">
+        <div
+          class="sub-container-img"
+          (click)="triggerFileInputs(fileInput1)"
+        >
+          <img
+            *ngIf="photos_array[0]"
+            [src]="photos_array[0]"
+            alt="Imagen cargada"
+            id="upload-img"
+          />
+          <img *ngIf="photos_array[0] == null" src="assets/forms/dog1.svg" alt="" />
+          <span *ngIf="photos_array[0] == null">Foto principal de la mascota</span>
+          <input
+            #fileInput1
+            type="file"
+            (change)="onFileSelect($event, 0)"
+            accept="image/*"
+            hidden
+          />
+        </div>
+      </div>
+
+      <div class="container-img-secondaries">
+        <div class="container-imgs-pair-1">
+          <div
+            class="container-img-secondary"
+            (click)="triggerFileInputs(fileInput2)"
+          >
+            <img
+              *ngIf="photos_array[1]"
+              [src]="photos_array[1]"
+              alt="Imagen cargada"
+              id="upload-img"
+            />
+            <img *ngIf="photos_array[1] == null" src="assets/forms/dog2.svg" alt=""/>
+            <input
+              #fileInput2
+              type="file"
+              (change)="onFileSelect($event, 1)"
+              accept="image/*"
+              hidden
+            />
+          </div>
+
+          <div
+            class="container-img-secondary"
+            (click)="triggerFileInputs(fileInput3)"
+          >
+            <img
+              *ngIf="photos_array[2]"
+              [src]="photos_array[2]"
+              alt="Imagen cargada"
+              id="upload-img"
+            />
+            <img *ngIf="photos_array[2] == null" src="assets/forms/dog2.svg" alt=""/>
+            <input
+              #fileInput3
+              type="file"
+              (change)="onFileSelect($event, 2)"
+              accept="image/*"
+              hidden
+            />
+          </div>
+        </div>
+        <div class="container-imgs-pair-2">
+          <div
+            class="container-img-secondary"
+            (click)="triggerFileInputs(fileInput4)"
+          >
+            <img
+              *ngIf="photos_array[3]"
+              [src]="photos_array[3]"
+              alt="Imagen cargada"
+              id="upload-img"
+            />
+            <img *ngIf="photos_array[3] == null" src="assets/forms/dog2.svg" alt="" />
+            <input
+              #fileInput4
+              type="file"
+              (change)="onFileSelect($event, 3)"
+              accept="image/*"
+              hidden
+            />
+          </div>
+
+          <div
+            class="container-img-secondary"
+            (click)="triggerFileInputs(fileInput5)"
+          >
+            <img
+              *ngIf="photos_array[4]"
+              [src]="photos_array[4]"
+              alt="Imagen cargada"
+              id="upload-img"
+            />
+            <img *ngIf="photos_array[4] == null" src="assets/forms/dog2.svg" alt="" />
+            <input
+              #fileInput5
+              type="file"
+              (change)="onFileSelect($event, 4)"
+              accept="image/*"
+              hidden
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+          type="submit"
+          class="mt-5 div-submit_color block w-full rounded-lg px-5 py-3  text-white"
+          >
+            Cambiar fotos
+      </button>
     </form>
   </div>
   <div class="w-full sm:w-1/2">

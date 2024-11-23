@@ -88,7 +88,9 @@ export class EditLocalServicesFormComponent implements OnInit {
 
   new_photo: File | null = null;
   photo_profile: any;
-  photos_array: any[] = [];
+  photos_array: any[] = [null,null,null,null,null];
+  new_photos: File[] = [];
+  imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null];
 
   @Output() nextStep = new EventEmitter<void>();
   @Output() previousStep = new EventEmitter<void>();
@@ -222,6 +224,7 @@ export class EditLocalServicesFormComponent implements OnInit {
             console.log(this.edit_user)
             this.getProfilePhoto();
             this.setFormValues(); // Establece los valores originales en el formulario
+            this.getPhotos();
           },
           (error) => console.log("Error al obtener credenciales:", error)
         );
@@ -451,18 +454,73 @@ export class EditLocalServicesFormComponent implements OnInit {
 
   // Es esta parte se maneja a fondo la lógica de subir todas las imágenes de un negocio / local
 
-  post_new_photos(){}
+  triggerFileInputs(input: HTMLInputElement): void {
+    input.click();
+  }
+
+  // Método para manejar la selección de una imagen
+  onFileSelect(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrls[index] = reader.result as string | ArrayBuffer;
+        this.photos_array[index] = reader.result as string | ArrayBuffer;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Método para enviar las fotos a la API
+  uploadPhotos() {
+    this.imageUrls.forEach((photo, index) => {
+      console.log("Iteración:", index)
+      const formData = new FormData();
+      if (photo && typeof photo === 'string') {
+        const blob = this.dataURLtoBlob(photo);
+        formData.append('files', blob, `photo_${index}.jpg`);
+      }
+      if(this.photos_array[index] === this.imageUrls[index]){
+        console.log("Ejecutando if")
+      new Promise((resolve, reject) => {
+        this.localServicesServices.post_photo_into_local_services(formData).subscribe(
+          (response) => {
+            resolve(response);
+            console.log(response);
+            this.edit_local_service.photos[index] = response[0];
+            console.log(this.edit_local_service.photos);
+            this.editLocalServices();
+          },
+          (err) => {
+            console.error('Error al subir los archivos', err);
+            reject(err);
+          }
+        );
+      });}
+    }); 
+  }
+
+  dataURLtoBlob(dataURL: string): Blob {
+    const byteString = atob(dataURL.split(',')[1]);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const uintArray = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      uintArray[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([uintArray], { type: 'image/jpeg' });
+  }
 
   getPhotos(){
     for(let i: number = 0; i < this.edit_local_service.photos.length; i++){
-      this.localServicesServices.get_photo_of_local_services(this.edit_local_service.photos[i]).subscribe(
-        img => {
-          console.log("Obteniendo foto");
-          const objImg = URL.createObjectURL(img);
-          this.photos_array.push(this.domSanitizer.bypassSecurityTrustUrl(objImg));
-        },
-        error => console.log("Error:", error)
-      );
+        this.localServicesServices.get_photo_of_local_services(this.edit_local_service.photos[i]).subscribe(
+          img => {
+            console.log("Obteniendo foto");
+            const objImg = URL.createObjectURL(img);
+            //this.imageUrls[i] = this.domSanitizer.bypassSecurityTrustUrl(objImg);
+            this.photos_array[i] = this.domSanitizer.bypassSecurityTrustUrl(objImg);
+          },
+          error => console.log("Error:", error)
+        );
     }
   }
 }
