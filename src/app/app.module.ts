@@ -12,6 +12,7 @@ import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
 import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
+import { ChatModule } from './chat/chat.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
     HomeModule,
     PostsModule,
     MascotasPagesModule,
+    ChatModule
   ],
   providers: [
     {

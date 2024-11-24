@@ -12,6 +12,7 @@ import { HomePageComponent } from './home/home-page/home-page.component';
 import { PerdidosPageComponent } from './mascotas-pages/perdidos-page/perdidos-page.component';
 import { EncontradosPageComponent } from './mascotas-pages/encontrados-page/encontrados-page.component';
 import { AdopcionPageComponent } from './mascotas-pages/adopcion-page/adopcion-page.component';
+import { ViewChatComponent } from './chat/view-chat/view-chat.component';
 
 
 
@@ -31,9 +32,8 @@ const routes: Routes = [
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-  ];
-
-
+  {path: 'chat', component: ViewChatComponent},
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

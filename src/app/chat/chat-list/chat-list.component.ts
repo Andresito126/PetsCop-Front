@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IchatSerialization } from '../models/ichat-serialization';
 import { ChatService } from '../services/chat.service';
 
@@ -7,13 +7,22 @@ import { ChatService } from '../services/chat.service';
   templateUrl: './chat-list.component.html',
   styleUrl: './chat-list.component.css'
 })
-export class ChatListComponent {
+export class ChatListComponent implements OnInit {
   @Input() id_user: number = 0;
   chat_list: IchatSerialization[] = [];
+  @Output() id_chat_to_pass = new EventEmitter<string>()
 
   constructor(
     private chatServices: ChatService,
   ){}
+
+  ngOnInit(): void {
+      this.get_chats();
+  }
+
+  pass_chat_id(id: string){
+    this.id_chat_to_pass.emit(id);
+  }
 
   get_chats(){
     this.chatServices.get_chats(this.id_user).subscribe(

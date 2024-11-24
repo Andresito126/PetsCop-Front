@@ -1,0 +1,13 @@
+.content{
+    width: 100%;
+    display: flex;
+}
+
+.content_chat_list{
+    width: 40%;
+    background-color: gray;
+}
+
+.content_chat{
+    width: 60%;
+}

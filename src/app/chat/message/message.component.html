@@ -1,0 +1,12 @@
+<main>
+    <div *ngIf="message.id_user == id_user">
+        <p> {{message.body_message}} </p>
+        <div>
+            <button (click)="editMessage()">Editar</button>
+            <button (click)="deleteMessage(message._id)">Eliminar</button>
+        </div>
+    </div>
+    <div *ngIf="message.id_user != id_user">
+        <p> {{message.body_message}} </p>
+    </div>
+</main>

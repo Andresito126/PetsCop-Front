@@ -1,1 +1,9 @@
-<p>messages-chat works!</p>
+<main>
+    <div>
+        <app-message *ngFor="let message of messages" [id_chat]="id_chat" [id_user]="id_user" [message]="message" (edit_this_message)="editingMessage($event)"></app-message>
+    </div>
+    <div>
+        <app-input-new-message [id_user]="id_user" [id_chat]="id_chat" *ngIf="!message_is_editing"></app-input-new-message>
+        <app-input-edit-message [id_chat]="id_chat" [edit_this_message]="send_this_message_to_edit" *ngIf="message_is_editing" (close_input)="closeEditMessage($event)"></app-input-edit-message>
+    </div>
+</main>
