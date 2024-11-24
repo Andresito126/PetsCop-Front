@@ -14,6 +14,7 @@ export class MoreInfoAdoptionComponent implements OnInit{
   @Input() operations: string | null | undefined;
   @Input() primer: string | undefined  = '';
   img: SafeUrl = '';
+  @Input() showCartilla: boolean = false;
 
   ngOnInit(): void {
     this.uploadImg();

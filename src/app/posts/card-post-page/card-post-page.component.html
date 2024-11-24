@@ -1,8 +1,7 @@
 <!-- incio -->
 
 <div
-  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 cursor-pointer"
-  (click)="redirectDetailPost()"
+  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 "
 >
   <!-- header del nombre, datos, publi y mandar mensaje -->
   <app-header-card
@@ -13,6 +12,8 @@
   <!-- info -->
 
   <app-info-card
+  class="cursor-pointer"
+  (click)="redirectDetailPost()"
   [lost_data]="post.loss_data"
   [reward]="post.reward"
   [gratitude]="post.gratitude"

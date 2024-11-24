@@ -9,7 +9,7 @@
   ></app-header-card>
 
   <div
-    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start"
+    class=" card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start"
   >
     <!-- img y boton contacto -->
     <app-image-gallery [thumbnails]="photos"></app-image-gallery>
@@ -30,6 +30,7 @@
           (click)="selectButton('datos')"
         >
           Datos básicos de la mascota
+          
         </button>
         <button
           class="button-caract_button rightPlace text-white px-4 py-1"
@@ -40,6 +41,7 @@
         </button>
       </div>
 
+
       <!--datos basicos -->
       <app-basic-data
         [age]="post.basic_pet_information.age"
@@ -48,6 +50,10 @@
 
       <hr class="border-gray-300 mt-4 mb-2" />
 
+      
+      <!-- CARACT DE DATOS -->
+    <div *ngIf="selectedButton === 'datos'">
+      
       <!-- PERDIDO descripcion, cards,e etc. -->
       <app-more-info-lost
         *ngIf="post.post_type === 'Perdido'"
@@ -57,6 +63,7 @@
         [municipality]="post.loss_data?.address?.municipality"
         [neighborhood]="post.loss_data?.address?.colony"
         [lastSeen]="post.loss_data?.last_seen"
+
       ></app-more-info-lost>
 
       <!-- ADOPCION salud mascota, etc -->
@@ -64,7 +71,7 @@
         *ngIf="post.post_type === 'Adopción'"
         [physical_problems]="post.medical_data?.physical_problems"
         [operations]="post.medical_data?.operations"
-        [primer]="post.medical_data?.primer"
+        [showCartilla]="false" 
       ></app-more-info-adoption>
 
       <!-- ENCONTRADO agradecimiento -->
@@ -72,10 +79,29 @@
         *ngIf="post.post_type === 'Encontrado'"
         [agradecimiento]="post.gratitude"
       ></app-more-info-finded>
+
+    </div>
+
+
+   <!-- caract fisicas -->
+   <div *ngIf="selectedButton === 'caracteristicas'">
+    <h3 class="text-lg font-semibold mb-2">Características físicas</h3>
+    <ul class="">
+      <li class="text-informationPet" *ngFor="let char of post.basic_pet_information.main_physical_characteristics">
+        -{{ char }}
+      </li>
+    </ul>
+
+     <app-more-info-adoption
+    *ngIf="post.post_type === 'Adopción'"
+    [primer]="post.medical_data?.primer"
+    [showCartilla]="true" 
+  ></app-more-info-adoption>
+  </div>
+
     </div>
   </div>
 
-  <!-- Yorum Alanı -->
   <!-- COMENTARIOS -->
 </div>
 
