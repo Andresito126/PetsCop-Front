@@ -61,12 +61,6 @@ export class DetailPostLocalsPageComponent implements OnInit {
   
   }
 
- 
- 
-   
-
-
-
     // MÉTODOS
     ngOnInit(): void {
       this.id_user = localStorage.getItem('id_user') || null;

@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-  {path:'detallePostLocalService', component:DetailPostLocalsPageComponent}
+  {path:'detallePostServicios', component:DetailPostLocalsPageComponent}
 
   ];
 

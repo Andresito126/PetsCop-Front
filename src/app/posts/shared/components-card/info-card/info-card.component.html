@@ -3,32 +3,58 @@
 >
   <div class="info-section-main">
     <!-- ng if si es perdido o encontrado cambia color -->
-    <p
-      class="status-text font-bold"
-      [ngClass]="{ 'text-red-600': type_post === 'Lost', 'text-green-600': type_post === 'Found','text-black-600': type_post === 'Adoption', }"
+     <div *ngIf="type_post==='Lost'">
+      <p
+      class="text-status  text-red-600"
     >
-      Tipo de post:
-      <span class="text-gray-600 text-sm md:font-normal">{{ type_post }}</span>
+      ESTADO:
+      <span  class="text-gray-600">Perdido</span>
     </p>
+   
+  
+     </div>
+
+     <div *ngIf="type_post==='Found'">
+      <p
+      class="text-status  text-green-600"
+    >
+      ESTADO:
+      <span class="text-gray-600">Encontrado</span>
+    </p>
+     </div>
+
+     <div *ngIf="type_post==='Adoption'">
+      <p
+      class="text-status  text-fuchsia-500"
+    >
+      ESTADO:
+      <span  class="text-gray-600">Adopción</span>
+    </p>
+     </div>
+  
 
     <div class="info-section_dog-text flex">
-      <p class="text-blue-600 font-bold text-lg">{{ pet.name }}</p>
-      <p class="text-gray-600 text-sm ml-3 mt-1 md:font-bold">{{ pet.age }}</p>
+      <p class=" text-status text-blue-800 text-transform: uppercase ">{{ pet.name }}</p>
     </div>
 
     <div
       class="info-section-description_div mt-2 text-justify"
       *ngIf="type_post === 'Lost'"
     >
-      <p>{{ lost_data?.description }}</p>
+    <div class="flex mt-2 mb-1 items-center">
+      <img class="w-7 h-7 mr-2" src="assets/posts/ubication.svg" alt="">
+      <p class="div-text text-subtitles mt-0.5">{{ lost_data?.address?.colony }}</p>
+      </div>
+
+      <p class="div-text text-informationPet">{{ lost_data?.description }}</p>    
     </div>
     <div
       class="info-section-description_div mt-2 text-justify"
       *ngIf="type_post === 'Adoption'"
     >
-      <p>Características de la mascota:</p>
-      <ul *ngFor="let characteristic of pet.main_physical_characteristics">
-        <li>{{ characteristic }}</li>
+      <p class=" text-subtitles">Características de la mascota:</p>
+      <ul class="div-text"  *ngFor="let characteristic of pet.main_physical_characteristics">
+        <li  class="text-informationPet" >- {{ characteristic }}</li>
       </ul>
     </div>
 
@@ -36,16 +62,12 @@
       class="info-section-description_div mt-2 text-justify"
       *ngIf="type_post === 'Encontrado'"
     >
-      <p>{{ gratitude }}</p>
+      <p class="text-informationPet">{{ gratitude }}</p>
     </div>
   </div>
 
   <!-- imagenes -->
   <div class="info-section-img_div flex space-x-2">
-    <!-- <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
-        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
-        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" />
-        <img class="w-28 h-2w-28 object-cover rounded-lg shadow" src="https://via.placeholder.com/100" /> -->
     <img
       *ngFor="let image of imagenes"
       [src]="image"

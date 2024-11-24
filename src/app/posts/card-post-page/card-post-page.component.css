@@ -1,6 +1,6 @@
 .card-container_main {
     min-height: 25rem;
-    max-height: 25rem;
+    max-height: max-content;
     overflow: hidden; 
     margin-left: 1.4%;
     margin-right: 1.4%;
