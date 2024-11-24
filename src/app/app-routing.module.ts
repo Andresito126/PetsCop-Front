@@ -13,8 +13,6 @@ import { PerdidosPageComponent } from './mascotas-pages/perdidos-page/perdidos-p
 import { EncontradosPageComponent } from './mascotas-pages/encontrados-page/encontrados-page.component';
 import { AdopcionPageComponent } from './mascotas-pages/adopcion-page/adopcion-page.component';
 
-
-
 const routes: Routes = [
   {path:'', component:HomePageComponent},
   {path:'perdidos', component: PerdidosPageComponent},
@@ -26,7 +24,8 @@ const routes: Routes = [
   {path:'detallePost/:id_post', component:DetailPostPageComponent},
   {path:'user_profile', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-  {path: 'publicacion/perdida', component: LostPageComponent },
+  {path: 'crear-publicacion-perdida', component: LostPageComponent },
+  {path: 'actualizar-publicacion-perdida/:id_post', component: LostPageComponent},
   {path: 'publicacion/adopcion', component: AdoptionPageComponent },
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},

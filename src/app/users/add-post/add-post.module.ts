@@ -8,6 +8,7 @@ import { Step1Component } from './form-step/step1/step1.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormLostComponent } from './form-lost/form-lost.component';
 import { FormAdoptionComponent } from './form-adoption/form-adoption.component';
+import { FormUpdateLostComponent } from './form-update-lost/form-update-lost.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FormAdoptionComponent } from './form-adoption/form-adoption.component';
     Step3Component,
     FormLostComponent,
     FormAdoptionComponent,
+    FormUpdateLostComponent,
   ],
   imports: [
     FormsModule,

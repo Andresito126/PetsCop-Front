@@ -1,1 +1,2 @@
-<app-form-lost></app-form-lost>
+<app-form-lost *ngIf="form === 'crear-publicacion-perdida'"></app-form-lost>
+<app-form-update-lost *ngIf="form === 'actualizar-publicacion-perdida'"></app-form-update-lost>
