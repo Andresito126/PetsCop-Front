@@ -22,6 +22,8 @@ import { DetailPostLocalsPageComponent } from './detail-post-locals-page/detail-
 import { CardScheduleComponent } from './shared/components-local-service/card-schedule/card-schedule.component';
 import { NameAddressComponent } from './shared/components-local-service/name-address/name-address.component';
 import { DescriptionComponent } from './shared/components-local-service/description/description.component';
+import { CardPostsLocalsPageComponent } from './card-posts-locals-page/card-posts-locals-page.component';
+import { CardPostMainComponent } from './shared/components-local-service/card-post-main/card-post-main.component';
 
 
 
@@ -47,6 +49,8 @@ import { DescriptionComponent } from './shared/components-local-service/descript
     CardScheduleComponent,
     NameAddressComponent,
     DescriptionComponent,
+    CardPostsLocalsPageComponent,
+    CardPostMainComponent,
     
  
   ],
@@ -59,7 +63,7 @@ import { DescriptionComponent } from './shared/components-local-service/descript
   exports:[
     CardPostPageComponent,
     HeaderFilterPostComponent,
-  
+    CardPostsLocalsPageComponent
   ]
 })
 export class PostsModule { }

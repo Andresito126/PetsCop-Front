@@ -7,7 +7,7 @@
     [date]="simulador.date_publication"
     [time]="simulador.time_publication"
     [id_user]="simulador.id_user"
-    
+    [showButtonMessage]="false"
   ></app-header-card>
 
   <div
@@ -16,7 +16,7 @@
     <!-- img y boton contacto -->
     <app-image-gallery [thumbnails]="simulador.photos"></app-image-gallery>
 
-    <!-- Información completa de la mascota -->
+    <!-- Información completa de locales y servicios -->
     <div class="info-pet-container-main lg:w-2/3 border-gray-200">
       <!-- nombre y status -->
       <app-name-address

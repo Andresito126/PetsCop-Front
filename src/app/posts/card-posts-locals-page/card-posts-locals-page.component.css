@@ -1,0 +1,47 @@
+.card-container_main {
+    min-height: 25rem;
+    max-height: max-content;
+    overflow: hidden; 
+    margin-left: 1.4%;
+    margin-right: 1.4%;
+    
+}
+
+.comment-button {
+    background-color: #136A93;
+    color: #ffffff;
+}
+
+.repost-button {
+    background-color: #C5C5C5;
+    color: #000000;
+}
+
+.iFind-button {
+    background-color: #599B4F;
+    color: #ffffff;
+    margin-left: 40rem;
+}
+
+.comment-button:hover, 
+.message-button:hover{
+    background-color: #2b6cb0; 
+    color: black; 
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out; 
+}
+
+.iFind-button:hover {
+    background-color: #63cd52; 
+    color: black; 
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out; 
+}
+
+.repost-button:hover{
+    background-color: #929292; 
+    color: white; 
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out; 
+
+}

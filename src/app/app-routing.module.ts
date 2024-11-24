@@ -13,6 +13,7 @@ import { PerdidosPageComponent } from './mascotas-pages/perdidos-page/perdidos-p
 import { EncontradosPageComponent } from './mascotas-pages/encontrados-page/encontrados-page.component';
 import { AdopcionPageComponent } from './mascotas-pages/adopcion-page/adopcion-page.component';
 import { DetailPostLocalsPageComponent } from './posts/detail-post-locals-page/detail-post-locals-page.component';
+import { LocalsPageComponent } from './local-services/pages/locals-page/locals-page.component';
 
 
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
   {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
-  {path:'detallePostServicios', component:DetailPostLocalsPageComponent}
+  {path:'detallePostServicios', component:DetailPostLocalsPageComponent},
+  {path:'publicacion/locales', component:LocalsPageComponent},
 
   ];
 

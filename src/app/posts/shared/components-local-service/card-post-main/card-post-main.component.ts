@@ -1,22 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Pet } from '../../../models/pet';
+import { IlocalServicePost } from '../../../models/ilocal-service-post';
 import { PostsService } from '../../../services/posts.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IlossData } from '../../../models/iloss-data';
-
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.component.html',
-  styleUrl: './info-card.component.css'
+  selector: 'app-card-post-main',
+  templateUrl: './card-post-main.component.html',
+  styleUrl: './card-post-main.component.css'
 })
-export class InfoCardComponent implements OnInit {
-
+export class CardPostMainComponent {
   constructor(
     private postServices: PostsService,
     private domSanitizer: DomSanitizer
   ){}
 
   // VARIABLES
+  @Input() postLocal!: IlocalServicePost;
+
+
   @Input() description!: string;
   @Input() lost_data!: IlossData | undefined;
   @Input() reward: number | undefined;
