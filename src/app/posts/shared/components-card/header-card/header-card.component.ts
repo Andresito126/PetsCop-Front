@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { PostsService } from '../../../services/posts.service';
 import { ChatService } from '../../../../chat/services/chat.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header-card',
@@ -108,11 +109,23 @@ export class HeaderCardComponent implements OnChanges {
     this.chatServices.init_chat(this.own_id_user, this.id_user).subscribe(
       (response) => {
         console.log("Iniciando chat:", response)
-        this.router.navigate(["/chat"]);
+        Swal.fire({
+          icon: "success",
+          title: "Chat inicializado",
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => this.router.navigate(['/chat']));
+        // this.router.navigate(["/chat"]);
       },
       (error) => {
         console.log("Error:", error);
-        this.router.navigate(["/chat"]);
+        Swal.fire({
+          icon: "success",
+          title: "Chat existente",
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => this.router.navigate(['/chat']));
+        // this.router.navigate(["/chat"]);
       }
     );
   }
