@@ -45,4 +45,8 @@ export class PostsService {
   getInformationLocalService(id_user: number): Observable<ILocalServiceSerialization> {
     return this._http.post<ILocalServiceSerialization>(`${this._url_mongo}/posts/getNameAndPhotolocalService/${id_user}`, {});
   }
+
+  pass_post_of_lost_to_found(id_post: string, gratitude: string): Observable<string>{
+    return this._http.put<string>(`${this._url_mongo}/posts/updatePostLostPetToFoundPet/${id_post}`, {gratitude});
+  }
 }

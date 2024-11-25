@@ -1,0 +1,45 @@
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+  <p>detail-post-locals-page works!</p>
+  <!-- nommbre y detalles -->
+  <app-header-card
+    [date]="simulador.date_publication"
+    [time]="simulador.time_publication"
+    [id_user]="simulador.id_user"
+    [showButtonMessage]="false"
+  ></app-header-card>
+
+  <div
+    class="card-container_info rounded-lg border border-gray-300 bg-white shadow-md p-5 flex justify-between items-start"
+  >
+    <!-- img y boton contacto -->
+    <app-image-gallery [thumbnails]="simulador.photos"></app-image-gallery>
+
+    <!-- Información completa de locales y servicios -->
+    <div class="info-pet-container-main lg:w-2/3 border-gray-200">
+      <!-- nombre y status -->
+      <app-name-address
+        [name]="simulador.nameLocalS"
+        [address]="simulador.colonia"
+      ></app-name-address>
+
+      <app-description [description]="simulador.description"></app-description>
+    </div>
+  </div>
+
+  <div class="info-schedule border-gray-200">
+    <app-card-schedule></app-card-schedule>
+  </div>
+</div>
+
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-300 bg-white shadow-lg mt-10"
+>
+  <app-comment-page
+    [comments]="post.comments"
+    [id_user]="id_user"
+    [id_post]="post._id"
+    (render)="renderComponent($event)"
+  ></app-comment-page>
+</div>

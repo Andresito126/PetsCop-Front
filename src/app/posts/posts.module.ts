@@ -18,6 +18,14 @@ import { MoreInfoAdoptionComponent } from './shared/components-detail/more-info-
 import { MascotasPagesModule } from "../mascotas-pages/mascotas-pages.module";
 import { MoreInfoFindedComponent } from './shared/components-detail/more-info-finded/more-info-finded.component';
 import { CommentsModule } from './comments/comments.module';
+import { DetailPostLocalsPageComponent } from './detail-post-locals-page/detail-post-locals-page.component';
+import { CardScheduleComponent } from './shared/components-local-service/card-schedule/card-schedule.component';
+import { NameAddressComponent } from './shared/components-local-service/name-address/name-address.component';
+import { DescriptionComponent } from './shared/components-local-service/description/description.component';
+import { CardPostsLocalsPageComponent } from './card-posts-locals-page/card-posts-locals-page.component';
+import { CardPostMainComponent } from './shared/components-local-service/card-post-main/card-post-main.component';
+import { FindedModalComponent } from "../shared/modals/finded-modal/finded-modal.component";
+
 
 
 
@@ -37,19 +45,26 @@ import { CommentsModule } from './comments/comments.module';
     LostInfoCardsComponent,
     MoreInfoLostComponent,
     MoreInfoAdoptionComponent,
-    MoreInfoFindedComponent
+    MoreInfoFindedComponent,
+    DetailPostLocalsPageComponent,
+    CardScheduleComponent,
+    NameAddressComponent,
+    DescriptionComponent,
+    CardPostsLocalsPageComponent,
+    CardPostMainComponent,
+    
  
   ],
   imports: [
     CommonModule,
     FormsModule,
-    CommentsModule
-
+    CommentsModule,
+    FindedModalComponent
 ],
   exports:[
     CardPostPageComponent,
     HeaderFilterPostComponent,
-  
+    CardPostsLocalsPageComponent
   ]
 })
 export class PostsModule { }

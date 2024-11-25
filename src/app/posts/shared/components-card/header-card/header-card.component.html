@@ -1,10 +1,17 @@
 <div class="card-header flex items-center mb-3">
     <img class="profile-image w-12 h-12 rounded-full border border-gray-300" [src]="profile_photo" alt="Foto de perfil" />
-    <div class="ml-4">
+
+    <div *ngIf="showInfoData" class="ml-4">
       <p class="user-name font-bold">{{ user_name }}</p>
-      <p class="post-date text-sm text-gray-500">{{ date }} {{time}}</p>
     </div>
-    <button class="message-button ml-auto flex items-center px-4 py-1.5 rounded-md text-sm">
+    
+    <div *ngIf="showInfoLocal" class="ml-4" >
+      <p class="user-name font-bold">{{ user_name }}</p>
+     <p>hjasdhjahdhjas</p>
+    </div>
+    <button 
+      *ngIf="showButtonMessage"
+      class="message-button ml-auto flex items-center px-4 py-1.5 rounded-md text-sm">
       <img class="h-7 w-7 mr-2" src="assets/posts/message.svg" alt="message-icon">
       Enviar mensaje
     </button>

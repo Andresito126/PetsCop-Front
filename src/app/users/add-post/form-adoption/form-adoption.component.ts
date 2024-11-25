@@ -26,6 +26,7 @@ export class FormAdoptionComponent {
   // PICS
   primer: string | ArrayBuffer | null = null;
   imageUrl: string | ArrayBuffer | null = null;
+  imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null];
 
   constructor(
     private form: FormBuilder,
@@ -219,25 +220,6 @@ export class FormAdoptionComponent {
       console.log(err);
     }
   }
-
-  // Form imagenes
-  // onFileSelect(event: Event, index: number) {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files[0]) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => {
-  //       this.photos[index] = reader.result as string | ArrayBuffer;
-  //       const photosControl = this.formAdoption.get('photos') as FormArray;
-  //       if (!photosControl.at(index)) {
-  //         photosControl.push(new FormControl(''));
-  //       }
-  //       photosControl.at(index).setValue(this.photos[index]);
-  //     };
-  //     reader.readAsDataURL(input.files[0]);
-  //   }
-  // }
-
-  imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null]; // Array para almacenar las imágenes
 
   // Método para manejar el clic y abrir el selector de archivos
   triggerFileInputs(input: HTMLInputElement): void {

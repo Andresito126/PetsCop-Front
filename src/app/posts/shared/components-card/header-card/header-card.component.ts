@@ -21,6 +21,10 @@ export class HeaderCardComponent implements OnChanges {
   @Input() date!: string;
   @Input() time!: string;
   @Input() id_user!: number;
+  @Input() showButtonMessage: boolean=false;
+  @Input() showInfoLocal: boolean=false
+  @Input() showInfoData: boolean=false
+
   type_user: string = '';
   user_name: string = '';
   profile_photo: any;
