@@ -10,6 +10,8 @@ import { ImessageSerialization } from '../models/imessage-serialization';
 export class MessagesChatComponent implements OnInit, OnDestroy {
   @Input() id_chat: string = "";
   @Input() id_user: number = 0;
+  @Input() user_name: string = "";
+  @Input() photo: any;
   messages: ImessageSerialization[] = [];
   message_is_editing: boolean = false;
   send_this_message_to_edit: ImessageSerialization = {

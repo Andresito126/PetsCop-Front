@@ -1,3 +1,12 @@
+.user-img{
+    border-radius: 90px;
+    margin-right: 10px;
+}
+
+.contact-name{
+    font-weight: 600;
+}
+
 .list-messages {
     flex: 1;
     padding: 10px;
