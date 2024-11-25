@@ -28,4 +28,13 @@ export class InputEditMessageComponent {
     }
     this.close_input.emit(false);
   }
+
+  cancel(){
+    this.edit_this_message = {
+      _id: "",
+      id_user: 0,
+      body_message: "",
+    }
+    this.close_input.emit(false);
+  }
 }

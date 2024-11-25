@@ -1,0 +1,9 @@
+.content_chat_list {
+    height: 100%; /* O un porcentaje específico */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 10px;
+    border-right: 1px solid #ddd; /* Separación visual */
+    background-color: #f9f9f9; /* Fondo opcional */
+}

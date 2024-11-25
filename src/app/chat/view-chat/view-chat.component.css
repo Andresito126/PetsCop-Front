@@ -4,10 +4,10 @@
 }
 
 .content_chat_list{
-    width: 40%;
-    background-color: gray;
+    width: 25%;
 }
 
 .content_chat{
-    width: 60%;
+    width: 75%;
+    overflow-y: auto;
 }

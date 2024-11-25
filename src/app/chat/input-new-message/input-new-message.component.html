@@ -1,4 +1,15 @@
-<main>
-    <textarea [(ngModel)]="body"></textarea>
-    <button (click)="sendMessage()">Enviar</button>
+<main class="input-container">
+    <input 
+        type="text" 
+        [(ngModel)]="body" 
+        placeholder="Escribe un mensaje..." 
+        class="input-send"
+    >
+    <button 
+        (click)="sendMessage()" 
+        class="button-send" 
+        aria-label="Enviar"
+    >
+        <i class="fa fa-paper-plane"></i>
+    </button>
 </main>
