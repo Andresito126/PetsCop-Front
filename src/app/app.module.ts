@@ -11,6 +11,7 @@ import { HomeModule } from './home/home.module';
 import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+
 import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
 
 import { LocalServicesModule } from './local-services/local-services.module';
@@ -18,6 +19,9 @@ import { LocalServicesModule } from './local-services/local-services.module';
 
 import { ChatModule } from './chat/chat.module';
 
+
+
+import { LocalesServiciosModule } from './locales-servicios/locales-servicios.module';
 
 
 @NgModule({
@@ -34,11 +38,15 @@ import { ChatModule } from './chat/chat.module';
     PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
+
     HomeModule,
     PostsModule,
     MascotasPagesModule,
     LocalServicesModule,
-    ChatModule
+    ChatModule,
+
+
+    LocalesServiciosModule
 
   ],
   providers: [

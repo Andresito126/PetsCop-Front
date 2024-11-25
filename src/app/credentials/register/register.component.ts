@@ -9,6 +9,7 @@ import { IRegisterUserSerialization } from '../models/iregister-user-serializati
 import { catchError, map, Observable, of } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LocalServicesService } from '../../locales-servicios/services/local-services.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private userAuthServices: UsersAuthService,
     private userConfigurationSerice:UserConfigurationService,
+    private localServiceServices: LocalServicesService,
     private router: Router,
     private domSanitizer: DomSanitizer,
     private form: FormBuilder
@@ -233,6 +235,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     id_user: '',
     type: '',
     photo_profile: '',
+    photos: [],
     name: '',
     description: '',
     address : {
@@ -358,16 +361,26 @@ export class RegisterComponent implements OnInit, OnDestroy {
       await this.assignValues();
 
       if(this.formRegistrer.valid){
-        if(this.download_photo){
-          if(this.choosenUser === "Normal"){
-            this.registerUser();
-            console.log("se mando a registar el usuario normal")
-          } else {
-            this.saveDaysOfJob();
-            this.registerLocalService();
-            console.log("se mando a registar el local o servicio")
-            console.log(this.formRegistrer.value)
-          }
+        if(this.download_photo && this.upload_photo){
+          this.userConfigurationSerice.uploadProfilePhoto(this.upload_photo).subscribe(
+            (response) => {
+              console.log("Respuesta del servidor", response);
+              this.new_user_normally.profile_picture = response.id_document;
+              this.new_local_service.photo_profile = response.id_document;
+              this.id_new_photo = response.id_document;
+              if(this.choosenUser === "Normal"){
+                this.registerUser();
+                console.log("se mando a registar el usuario normal")
+              } else {
+                this.saveDaysOfJob();
+                this.registerLocalService();
+                console.log("se mando a registar el local o servicio")
+                console.log(this.formRegistrer.value)
+              }
+            },
+            (error) => console.log("Error al subir foto: ", error)
+          );
+          
         } else {
           Swal.fire({
             icon: "error",
@@ -479,7 +492,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.new_user_normally.profile_picture = response.id_document;
         this.new_local_service.photo_profile = response.id_document;
         this.id_new_photo = response.id_document;
-        this.getProfilePhoto();
       },
       error: (err) => console.error("Error:", err),
     });
@@ -504,7 +516,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.new_user_normally.type_user = this.choosenUser;
       this.new_user_normally.profile_picture = this.id_new_photo;
       console.log(this.new_user_normally.type_user);
-      
           this.userAuthServices.registerNormalUser(this.new_user_normally).subscribe(
             (response) => {
               console.log("Respuesta del server:", response)
@@ -533,7 +544,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
           if(response.status === 201) {
               this.new_local_service.type = this.choosenUser;
               this.new_local_service.id_user = response.id; 
-              
+              if(this.imageUrls){
+                this.uploadPhotos();
+              } else {
               this.userAuthServices.registerLocalService(this.new_local_service).subscribe(
                 () => {
                   Swal.fire({
@@ -545,6 +558,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                 },
                 (error) => console.log('Error al registrar el local o servicio:', error)
               );
+              }
           }
         },
         (err) => {
@@ -559,26 +573,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
   listenImage(event: any): void {
     const file = event.target.files[0]; 
-  if (file) {
-    this.upload_photo = file;
+      if (file) {
+      this.upload_photo = file;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.preview_photo = reader.result as string;
-    };
-    reader.readAsDataURL(file); 
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.preview_photo = reader.result as string;
+        this.download_photo = reader.result as string;
+      };
+      reader.readAsDataURL(file); 
 
     
-    console.log("Ejecutando subida de foto");
-    this.postProfilePhoto();
-  }
-  //lo de cahrli
-    // const file = event.target.files[0];
-    // if (file) {
-    //   this.upload_photo = file;
-    //   console.log("Ejecutando subida de foto")
-    //   this.postProfilePhoto();
-    // }
+      // console.log("Ejecutando subida de foto");
+      // this.postProfilePhoto();
+    }
   }
 
   uploadImage(): Observable<string> {
@@ -599,4 +607,68 @@ export class RegisterComponent implements OnInit, OnDestroy {
     return of('');
   }
   
+  imageUrls: (string | ArrayBuffer | null)[] = [null, null, null, null, null];
+
+  // Método para manejar el clic y abrir el selector de archivos
+  triggerFileInputs(input: HTMLInputElement): void {
+    input.click();
+  }
+
+  // Método para manejar la selección de una imagen
+  onFileSelect(event: Event, index: number): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrls[index] = reader.result as string | ArrayBuffer;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  // Método para enviar las fotos a la API
+  uploadPhotos(): Promise<string[]> {
+    const formData = new FormData();
+
+    this.imageUrls.forEach((photo, index) => {
+      if (photo && typeof photo === 'string') {
+        const blob = this.dataURLtoBlob(photo);
+        formData.append('files', blob, `photo_${index}.jpg`);
+      }
+    });
+
+    return new Promise((resolve, reject) => {
+      this.localServiceServices.post_photo_into_local_services(formData).subscribe(
+        (response) => {
+          resolve(response);
+          this.new_local_service.photos = response;
+          this.userAuthServices.registerLocalService(this.new_local_service).subscribe(
+            () => {
+              Swal.fire({
+                icon: "success",
+                title: "Te haz registrado exitosamente",
+                showConfirmButton: false,
+                timer: 2500
+              }).then(() => this.router.navigate(['/login']));
+            },
+            (error) => console.log('Error al registrar el local o servicio:', error)
+          );
+        },
+        (err) => {
+          console.error('Error al subir los archivos', err);
+          reject(err);
+        }
+      );
+    });
+  }
+
+  dataURLtoBlob(dataURL: string): Blob {
+    const byteString = atob(dataURL.split(',')[1]);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const uintArray = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      uintArray[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([uintArray], { type: 'image/jpeg' });
+  }
 }

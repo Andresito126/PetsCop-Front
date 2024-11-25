@@ -5,6 +5,7 @@ export interface IRegisterUserLocalServiceSerialization {
     id_user: string;
     type: string;
     photo_profile: string;
+    photos: string[],
     name: string;
     description: string;
     address: IAdressSerialization;

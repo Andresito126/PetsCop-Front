@@ -8,11 +8,15 @@ import { LostPageComponent } from './users/add-post/pages/lost-page/lost-page.co
 import { DetailPostPageComponent } from './posts/detail-post-page/detail-post-page.component';
 import { ChooseUserComponent } from './credentials/choose-user/choose-user.component';
 import { ViewProfileUserComponent } from './users/view-profile-user/view-profile-user.component';
+
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { PerdidosPageComponent } from './mascotas-pages/perdidos-page/perdidos-page.component';
 import { EncontradosPageComponent } from './mascotas-pages/encontrados-page/encontrados-page.component';
 import { AdopcionPageComponent } from './mascotas-pages/adopcion-page/adopcion-page.component';
 import { ViewChatComponent } from './chat/view-chat/view-chat.component';
+
+import { EditLocalServicesFormComponent } from './locales-servicios/edit-local-services-form/edit-local-services-form.component';
+
 
 import { DetailPostLocalsPageComponent } from './posts/detail-post-locals-page/detail-post-locals-page.component';
 import { LocalsPageComponent } from './local-services/pages/locals-page/locals-page.component';
@@ -33,6 +37,7 @@ const routes: Routes = [
   {path:'detallePost/:id_post', component:DetailPostPageComponent},
   {path: 'publicacion/perdida', component: LostPageComponent },
   {path: 'publicacion/adopcion', component: AdoptionPageComponent },
+
   {path:'user/configuration', component:ProfileSettingsPageComponent},
   // {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
@@ -41,13 +46,14 @@ const routes: Routes = [
   {path:'detallePostServicios', component:DetailPostLocalsPageComponent},
   {path:'publicacion/locales', component:LocalsPageComponent},
   
-
-
   { path: 'crear-publicacion-perdida', component: LostPageComponent },
+ 
   { path: 'actualizar-publicacion-perdida/:id_post',component: UpdateLostPageComponent},
   { path: 'crear-publicacion-adopcion', component: AdoptionPageComponent },
   { path: 'actualizar-publicacion-adopcion/:id_post', component: UpdateAdoptionPageComponent},
   {path: 'chat', component: ViewChatComponent},
+
+  {path: 'configuracion/local_services', component: EditLocalServicesFormComponent}
   ];
 
 
