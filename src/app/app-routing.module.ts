@@ -38,8 +38,8 @@ const routes: Routes = [
   {path: 'publicacion/perdida', component: LostPageComponent },
   {path: 'publicacion/adopcion', component: AdoptionPageComponent },
 
-  {path:'user/configuration', component:ProfileSettingsPageComponent},
-  // {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
+  // {path:'user/configuration', component:ProfileSettingsPageComponent},
+  {path:'configuracion/unormal', component:ProfileSettingsPageComponent},
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
 
   // {path:'user_profile', component: ViewProfileUserComponent},
