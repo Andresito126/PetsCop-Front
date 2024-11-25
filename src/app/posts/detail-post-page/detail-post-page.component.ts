@@ -19,7 +19,6 @@ export class DetailPostPageComponent implements OnInit {
   // VARIABLES
   @Input () buttonAdopted: boolean = false;
   petFindedModal = false;
-
   id_user: string | null = '';
   id_post: string | null = '';
   date_publication: string = '';
