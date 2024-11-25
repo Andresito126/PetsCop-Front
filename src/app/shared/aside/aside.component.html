@@ -14,10 +14,41 @@
                 <img src="/assets/nav-aside/home.svg" alt="" class="mr-5 mt-5">
                 <span class="mt-5" >INICIO</span>
             </li>
-            <li class="aside-li_hover text-font flex items-center p-4 cursor-pointer">
-                <img src="/assets/nav-aside/paws.svg" alt=""class="mr-5 mt-5">
-                <span class="mt-5" >MASCOTAS</span>
+            <li class="relative text-font flex flex-col">
+                
+                <div
+                    class="aside-li_hover flex items-center p-4 cursor-pointer"
+                    (click)="toggleDropdown()"
+                >
+                    <img src="/assets/nav-aside/paws.svg" alt="Mascotas Icon" class="mr-5 mt-5">
+                    <span class="mt-5">MASCOTAS</span>
+                    <img
+                        src="/assets/nav-aside/arrow.svg"
+                        alt="dropdown"
+                        class="ml-auto mt-3 w-5 h-5 transition-transform duration-300"
+                        [class.rotate-90]="isDropdownOpen"
+                    />
+                </div>
+            
+                
+                <ul
+                    *ngIf="isDropdownOpen"
+                    class="pl-12                                                                                                           text-white rounded-md space-y-1 mt-1"
+                >
+                    <li class="cursor-pointer py-2 hover:bg-[#136A93]" (click)="navigateTo('publicacion/encontrado')">
+                        Encontrados
+                    </li>
+                    <li class="cursor-pointer py-2 hover:bg-[#136A93]" (click)="navigateTo('publicacion/perdida')">
+                        Perdidos
+                    </li>
+                    <li class="cursor-pointer py-2 hover:bg-[#136A93]" (click)="navigateTo('publicacion/adopcion')">
+                        Adopciones
+                    </li>
+                </ul>
             </li>
+            
+            
+            
             <li class="aside-li_hover text-font flex items-center p-4 cursor-pointer">
                <img src="/assets/nav-aside/ubication.svg" alt=""class="mr-5 mt-5">  
                 <span class="mt-5" >LOCALES Y SERVICIOS</span>

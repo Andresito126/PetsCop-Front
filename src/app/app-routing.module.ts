@@ -38,6 +38,7 @@ const routes: Routes = [
   // {path:'user_profile', component: ViewProfileUserComponent},
   {path:'detallePostServicios', component:DetailPostLocalsPageComponent},
   {path:'publicacion/locales', component:LocalsPageComponent},
+  
 
 
   { path: 'crear-publicacion-perdida', component: LostPageComponent },

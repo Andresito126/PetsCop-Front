@@ -11,12 +11,28 @@ import { Router } from '@angular/router';
   templateUrl: './aside.component.html',
   styleUrl: './aside.component.css'
 })
+
+
+
 export class AsideComponent implements OnInit {
+
+  isDropdownOpen: boolean = false;
+
   constructor(
     private userConfigurationServices: UserConfigurationService,
     private domSanitizer: DomSanitizer,
     private router: Router
   ){}
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+
+  navigateTo(route: string): void {
+    this.isDropdownOpen = false;
+    this.router.navigate([route]);
+  }
 
   imgProfile: any;
   username: string = "";
