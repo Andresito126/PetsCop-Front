@@ -19,6 +19,7 @@ import { LocalsPageComponent } from './local-services/pages/locals-page/locals-p
 import { UpdateLostPageComponent } from './users/add-post/pages/update-lost-page/update-lost-page.component';
 import { UpdateAdoptionPageComponent } from './users/add-post/pages/update-adoption-page/update-adoption-page.component';
 
+import { UserTypeGuard } from './guards/user-type.guard';
 
 const routes: Routes = [
   {path:'', component:HomePageComponent},
@@ -26,7 +27,7 @@ const routes: Routes = [
   {path:'encontrados', component: EncontradosPageComponent},
   {path:'adopcion', component: AdopcionPageComponent},
   {path:'usuario', component:ChooseUserComponent},
-  {path:'usuario/registro', component:RegisterComponent},
+  {path:'usuario/registro', component:RegisterComponent, canActivate: [UserTypeGuard] },
   {path:'login', component:LoginComponent},
   {path:'detallePost/:id_post', component:DetailPostPageComponent},
   {path: 'publicacion/perdida', component: LostPageComponent },

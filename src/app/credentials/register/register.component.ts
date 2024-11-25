@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { UsersAuthService } from '../services/users-auth.service';
 import { IRegistrerUserNormalSerialization } from '../models/iregistrer-user-normal-serialization';
 import { IRegisterUserLocalServiceSerialization } from '../models/iregister-user-local-service-serialization';
@@ -15,7 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   constructor(
     private userAuthServices: UsersAuthService,
     private userConfigurationSerice:UserConfigurationService,
@@ -55,6 +55,29 @@ export class RegisterComponent implements OnInit {
       domingo_final: ['19:00', [Validators.required]],
     })
   }
+    // cuando el usuario cirra la vista se destruye
+    ngOnDestroy(): void {
+      localStorage.removeItem('userTypeInTheRegister'); 
+      console.log('Se ha eliminado el tipo de usuario del registro');
+    }
+
+    ngOnInit(): void {
+    
+      const userType = localStorage.getItem('userTypeInTheRegister');
+      if (userType) {
+        this.choosenUser = userType;
+        this.getProfilePhoto();
+        this.updateValidators(); 
+      }
+  
+      this.userAuthServices.getColognes(29140).subscribe(
+        response => {
+          console.log("Respuesta del server:", response);
+          this.colognes = response;
+        }
+      )
+    }
+  
 
   updateValidators(): void {
     // Limpiar validadores de todos los campos
@@ -269,22 +292,7 @@ export class RegisterComponent implements OnInit {
   download_photo: any;
   id_new_photo: string = "";
 
-  ngOnInit(): void {
-    
-    const userType = localStorage.getItem('userTypeInTheRegister');
-    if (userType) {
-      this.choosenUser = userType;
-      this.getProfilePhoto();
-      this.updateValidators(); 
-    }
-
-    this.userAuthServices.getColognes(29140).subscribe(
-      response => {
-        console.log("Respuesta del server:", response);
-        this.colognes = response;
-      }
-    )
-  }
+ 
   
   // Métodos
 
