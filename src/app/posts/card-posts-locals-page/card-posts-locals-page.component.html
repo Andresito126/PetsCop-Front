@@ -1,43 +1,28 @@
 <div
   class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10"
 >
-  <app-header-card
-
-    [showInfoLocal]="true"
+  <app-header-card-local-service
     [showButtonMessage]="true"
-  ></app-header-card>
-
-
+    [id_user]="localService.id_user"
+  ></app-header-card-local-service>
 
   <app-card-post-main
-  (click)="redirectDetailPost()"
-  class="cursor-pointer"
-  [postLocal]="postLocal"
+    (click)="redirectDetailPost()"
+    class="cursor-pointer"
+    [localService]="localService"
   ></app-card-post-main>
 
-    <!-- botones comentar y repostear -->
-    <div class="flex items-center mt-4">
-        <button
-          class="comment-button flex items-center px-4 py-1.5 rounded-md mr-6"
-        >
-          <img
-            class="h-7 w-7 mr-1"
-            src="assets/posts/comment.svg"
-            alt="message-icon"
-          />
-          Comentar
-        </button>
-        <button
-          class="repost-button flex items-center px-4 py-1.5 rounded-md"
-        >
-          <img
-            class="h-7 w-7 mr-1"
-            src="assets/posts/repost.svg"
-            alt="message-icon"
-          />
-          Repostear
-        </button>
-    
-      </div>
-  
+  <!-- botones comentar y repostear -->
+  <div class="flex items-center mt-4">
+    <button
+      class="comment-button flex items-center px-4 py-1.5 rounded-md mr-6"
+    >
+      <img
+        class="h-7 w-7 mr-1"
+        src="assets/posts/comment.svg"
+        alt="message-icon"
+      />
+      Comentar
+    </button>
+  </div>
 </div>

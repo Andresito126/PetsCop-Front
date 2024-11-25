@@ -1,2 +1,1 @@
-<app-header-filter-post (executeGetRecent)="getRecentPost()" (executeGetOld)="getOldPost()"></app-header-filter-post>
-<app-card-posts-locals-page></app-card-posts-locals-page>
+<app-card-posts-locals-page *ngFor="let card of local_services" [localService]="card"></app-card-posts-locals-page>
