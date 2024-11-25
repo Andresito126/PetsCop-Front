@@ -24,6 +24,7 @@ import { NameAddressComponent } from './shared/components-local-service/name-add
 import { DescriptionComponent } from './shared/components-local-service/description/description.component';
 import { CardPostsLocalsPageComponent } from './card-posts-locals-page/card-posts-locals-page.component';
 import { CardPostMainComponent } from './shared/components-local-service/card-post-main/card-post-main.component';
+import { FindedModalComponent } from "../shared/modals/finded-modal/finded-modal.component";
 
 
 
@@ -57,8 +58,8 @@ import { CardPostMainComponent } from './shared/components-local-service/card-po
   imports: [
     CommonModule,
     FormsModule,
-    CommentsModule
-
+    CommentsModule,
+    FindedModalComponent
 ],
   exports:[
     CardPostPageComponent,

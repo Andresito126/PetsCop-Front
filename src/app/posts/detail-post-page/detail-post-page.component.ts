@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { ActivatedRoute } from '@angular/router';
 import { IPostSerialization } from '../models/ipost-serialization';
@@ -18,12 +18,29 @@ export class DetailPostPageComponent implements OnInit {
   ) {}
 
   // VARIABLES
+  @Input () buttonAdopted: boolean = false;
+  petFindedModal = false;
+
   id_user: string | null = '';
   id_post: string | null = '';
   date_publication: string = '';
   time_publication: string = '';
   photos: SafeUrl[] = [];
   user: string = '';
+
+
+  //modal
+  toggleModal(): void {
+    this.petFindedModal = !this.petFindedModal;
+    console.log('Modal toggled, petFindedModal is now:', this.petFindedModal);
+  }
+  
+  handlePetFinded(): void {
+    // logica de perrito????
+    console.log('Mascota marcada como encontrada');
+    this.petFindedModal = false;
+  }
+  
 
   post: IPostSerialization = {
     _id: '',
