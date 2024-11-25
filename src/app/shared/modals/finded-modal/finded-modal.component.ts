@@ -14,11 +14,11 @@ export class FindedModalComponent {
   @Output() close = new EventEmitter<void>();
   @Output() confirm = new EventEmitter<void>();
 
-  closeModal(): void {
+  closeFindedModal(): void {
     this.close.emit();
   }
 
-  confirmAction(): void {
+  sendFindedModal(): void {
     this.confirm.emit();
   }
 }
