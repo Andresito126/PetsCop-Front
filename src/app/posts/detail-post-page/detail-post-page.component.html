@@ -113,7 +113,7 @@
   <app-finded-modal
   *ngIf="petFindedModal"
   (close)="toggleModal()"
-  (confirm)="handlePetFinded()"
+  (confirm)="handlePetFinded()" [id_post]="id_post"
 >
 </app-finded-modal>
 
