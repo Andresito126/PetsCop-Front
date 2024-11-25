@@ -3,15 +3,33 @@
       <img src="assets/posts/pata.svg"  class="h-9 w-9" />
         <h4 class="text-xl font-semibold">{{name}}</h4>
       </div>
-        <div class="alert-pet flex items-center ml-20 ">
+        <div *ngIf="status==='Perdido'" class="alert-pet flex items-center ml-20 ">
 
           <img class="w-12" src="assets/posts/alertLost.svg" alt="status">
-          <span  class="status text-sm px-2 py-1 rounded-md"
+          <span  class="status-texto  px-2 py-1 "
           [ngClass]="{
-            'bg-red-200 text-red-700': status === 'Perdido',
-            'bg-green-200 text-green-700': status === 'Encontrado',
-            'bg-yellow-200 text-yellow-700': status === 'Adopción'
+            ' text-yellow-400': status === 'Perdido',
           }"
           >¡{{status}}!</span>
         </div>
+        <div *ngIf="status==='Encontrado'" class="alert-pet flex items-center ml-20 ">
+
+          <img class="w-12" src="assets/posts/alertFinded.svg" alt="status">
+          <span  class="status-texto  px-2 py-1 "
+          [ngClass]="{
+            ' text-green-700': status === 'Encontrado',
+          }"
+          >¡{{status}}!</span>
+        </div>
+        <div *ngIf="status==='Adopción'" class="alert-pet flex items-center ml-20 ">
+
+          <img class="w-12" src="assets/posts/alertAdoption.svg" alt="status">
+          <span  class="status-texto  px-2 py-1 "
+          [ngClass]="{
+            ' text-violet-700': status === 'Adopción'
+          }"
+          >¡{{status}}!</span>
+        </div>
+
+        
   </div>

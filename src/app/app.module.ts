@@ -12,11 +12,14 @@ import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
 import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
+import { LocalServicesModule } from './local-services/local-services.module';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
     HomeModule,
     PostsModule,
     MascotasPagesModule,
+    LocalServicesModule
   ],
   providers: [
     {

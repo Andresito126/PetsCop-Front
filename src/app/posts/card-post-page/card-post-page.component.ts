@@ -25,7 +25,7 @@ export class CardPostPageComponent implements OnInit {
     },
     publication_date: new Date
   };
-  @Input() isHome: boolean = false;
+
 
 
   date_publication: string = "";

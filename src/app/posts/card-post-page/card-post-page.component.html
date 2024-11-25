@@ -1,18 +1,21 @@
 <!-- incio -->
 
 <div
-  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 cursor-pointer"
-  (click)="redirectDetailPost()"
+  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 "
 >
   <!-- header del nombre, datos, publi y mandar mensaje -->
   <app-header-card
     [id_user]="post.id_user"
     [date]="date_publication"
     [time]="time_publication"
+    [showButtonMessage]="true"
+    [showInfoData]="true"
   ></app-header-card>
   <!-- info -->
 
   <app-info-card
+  class="cursor-pointer"
+  (click)="redirectDetailPost()"
   [lost_data]="post.loss_data"
   [reward]="post.reward"
   [gratitude]="post.gratitude"
@@ -44,9 +47,9 @@
       Repostear
     </button>
 
-    <div *ngIf="isHome">
-      <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado!</button>
-    </div>
+
+   
+
   </div>
   
 </div>
