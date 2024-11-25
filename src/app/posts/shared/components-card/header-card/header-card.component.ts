@@ -120,7 +120,6 @@ export class HeaderCardComponent implements OnChanges {
       (error) => {
         console.log("Error:", error);
         Swal.fire({
-          icon: "success",
           title: "Chat existente",
           showConfirmButton: false,
           timer: 2500
