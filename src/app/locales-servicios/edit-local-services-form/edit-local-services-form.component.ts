@@ -29,7 +29,7 @@ export class EditLocalServicesFormComponent implements OnInit {
       zip_code: 0,
       state: "",
       municipality: "",
-      cologne: "",
+      colony: "",
       street: "",
       outside_number: 0
     },
@@ -170,7 +170,7 @@ export class EditLocalServicesFormComponent implements OnInit {
       nombre_local: this.edit_local_service.name,
       descripcion: this.edit_local_service.description,
       telefono: this.edit_local_service.phone_number,
-      colonia: this.edit_local_service.address.cologne,
+      colonia: this.edit_local_service.address.colony,
       calle: this.edit_local_service.address.street,
       no_domicilio: this.edit_local_service.address.outside_number,
       lunes_comienzo: this.edit_local_service.opening_hours[0]?.start_time,
@@ -317,8 +317,8 @@ export class EditLocalServicesFormComponent implements OnInit {
     if (formData.telefono !== this.edit_local_service.phone_number)
       this.edit_local_service.phone_number = formData.telefono;
   
-    if (formData.colonia !== this.edit_local_service.address.cologne)
-      this.edit_local_service.address.cologne = formData.colonia;
+    if (formData.colonia !== this.edit_local_service.address.colony)
+      this.edit_local_service.address.colony = formData.colonia;
   
     if (formData.calle !== this.edit_local_service.address.street)
       this.edit_local_service.address.street = formData.calle;
