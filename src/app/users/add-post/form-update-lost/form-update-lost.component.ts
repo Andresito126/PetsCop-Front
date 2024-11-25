@@ -128,19 +128,18 @@ export class FormUpdateLostComponent implements OnInit {
     this.formLost.setControl('characteristics', characteristicsArray);
 
     this.formLost.patchValue({
+      // DATOS BÁSICOS
       petType: response.basic_pet_information.type_pet,
       petBreed: response.basic_pet_information.race,
       petName: response.basic_pet_information.name,
       petAge: response.basic_pet_information.age,
-      // Datos de perdida
+      photos: response.basic_pet_information.photos,
+      // DATOS DE PERDIDA
       neighborhood: response.loss_data?.address.colony,
       dateLost: formattedDate,
       description: response.loss_data?.description,
       lastSeen: response.loss_data?.last_seen,
       reward: response.reward,
-
-      //pics
-      photos: response.basic_pet_information.photos,
     });
 
     this.id_post = response._id;
@@ -167,7 +166,6 @@ export class FormUpdateLostComponent implements OnInit {
     });
   }
 
-  //Form
   hasErrors(controlName: string, errorType: string) {
     return (
       this.formLost.get(controlName)?.hasError(errorType) &&
@@ -190,7 +188,7 @@ export class FormUpdateLostComponent implements OnInit {
     }
   }
 
-  //caracteristoicas
+  // CARACTERÍSTICAS
   get characteristics(): FormArray {
     return this.formLost.get('characteristics') as FormArray;
   }
@@ -216,7 +214,6 @@ export class FormUpdateLostComponent implements OnInit {
 
   // ENVÍO DEL FORM
   async onSubmitFormLost() {
-    // Método que va a asignar los valores que el usuario ingresó
     try {
       if (this.formLost.valid) {
         await this.assignValues();
@@ -251,7 +248,7 @@ export class FormUpdateLostComponent implements OnInit {
 
   async assignValues() {
     try {
-      // Desestructuramos los atributos de formLost
+      // DESESTRUCTURAMOS LOS ATRIBUTOS DE FORMLOST
       const {
         petType,
         petBreed,
@@ -265,7 +262,7 @@ export class FormUpdateLostComponent implements OnInit {
         reward,
       } = this.formLost.value;
 
-      // Datos básicos
+      // DATOS BÁSICOS
       this.postLostPet.basic_pet_information.type_pet = petType;
       this.postLostPet.basic_pet_information.name = petName;
 
@@ -277,7 +274,7 @@ export class FormUpdateLostComponent implements OnInit {
       this.postLostPet.basic_pet_information.main_physical_characteristics =
         characteristics;
 
-      // Datos de perdida
+      // DATOS DE PERDIDA
       this.postLostPet.loss_data.address.zip_code = 29140;
       this.postLostPet.loss_data.address.state = 'Chiapas';
       this.postLostPet.loss_data.address.municipality =
@@ -288,28 +285,33 @@ export class FormUpdateLostComponent implements OnInit {
 
       if (lastSeen !== '') this.postLostPet.loss_data.last_seen = lastSeen;
 
-      // Datos extras
+      // DATOS EXTRAS
       if (reward !== '') this.postLostPet.reward = reward;
 
-      // Imágenes de la mascota
-      if (this.modifiedImageIndexes.size > 0 || this.newImagesIndexes.size > 0) {
-        console.log("Enntrando al if")
-        this.postLostPet.basic_pet_information.photos = await this.uploadPhotos();
-        console.log(this.postLostPet.basic_pet_information.photos)
+      // IMÁGENES DE LA MASCOTA
+      if (
+        this.modifiedImageIndexes.size > 0 ||
+        this.newImagesIndexes.size > 0
+      ) {
+        this.postLostPet.basic_pet_information.photos =
+          await this.uploadPhotos();
+        console.log(this.postLostPet.basic_pet_information.photos);
       } else {
-        this.postLostPet.basic_pet_information.photos = this.urls.filter((value: string) => value.trim() !== '');
+        this.postLostPet.basic_pet_information.photos = this.urls.filter(
+          (value: string) => value.trim() !== ''
+        );
       }
     } catch (err) {
       console.log(err);
     }
   }
 
-  // Método para manejar el clic y abrir el selector de archivos
+  // MÉTODO PARA MANEJAR EL CLIC Y ABRIR EL SELECTOR DE ARCHIVOS
   triggerFileInputs(input: HTMLInputElement): void {
     input.click();
   }
 
-  // Método para enviar las fotos a la API
+  // MANEJA EL EVENTO DE SELECCIÓN DE LA FOTO DE LA MASCOTA
   onFileSelect(event: Event, index: number): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files[0]) {
@@ -327,7 +329,8 @@ export class FormUpdateLostComponent implements OnInit {
     }
   }
 
-  async uploadPhotos(): Promise<string []> {
+  // MÉTODO PARA ENVIAR LAS FOTOS A LA API
+  async uploadPhotos(): Promise<string[]> {
     const formData = new FormData();
     const changedIndexes = Array.from(this.modifiedImageIndexes);
     let new_url_imgs: string[] = [...this.urls];

@@ -39,7 +39,7 @@ export class PostService {
     );
   }
 
-  updateInformationPost(id_post: string, data: ILossPostSerialization): Observable<void> {
+  updateInformationPost(id_post: string, data: ILossPostSerialization | IAdoptionPostSerialization): Observable<void> {
     return this.http.put<void>(`${this.urlAPI}/posts/updateInformationPost/${id_post}`,data);
   }
    
