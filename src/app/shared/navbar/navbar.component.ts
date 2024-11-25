@@ -18,6 +18,8 @@ export class NavbarComponent {
   showModalTypePost = false;
   menuOpen = false; 
 
+  
+
   constructor(private router: Router) {}
 
   //modals
@@ -25,6 +27,8 @@ export class NavbarComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+
   openPostTypeModal() {
     this.showModalTypePost = true; 
   }

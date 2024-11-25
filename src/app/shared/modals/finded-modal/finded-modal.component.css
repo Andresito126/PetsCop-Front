@@ -23,4 +23,41 @@
     font-size: 1.1rem; 
     color: #7d7575;
   }
+
+  .button-modal-post-primary {
+    background: linear-gradient(135deg, #126b93, #0a3e5c);
+    color: #fff;
+    border: 2px solid #0d5572;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-modal-post-primary:hover {
+    background: linear-gradient(135deg, #0a3e5c, #126b93);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .button-modal-post-primary:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Botón secundario */
+  .button-modal-post-secondary {
+    background: linear-gradient(135deg, #555555, #404040);
+    color: #fff;
+    border: 2px solid #3d3d3d;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .button-modal-post-secondary:hover {
+    background: linear-gradient(135deg, #404040, #555555);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .button-modal-post-secondary:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  }
   

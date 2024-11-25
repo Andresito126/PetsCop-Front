@@ -1,7 +1,37 @@
-.button-modal-post-secundary{
-    background-color: #0575A6 ;
-}
 
-.button-modal-post-secundary:hover{
-    background-color: #1f6584;
-}
+.modal-container {
+    max-width: 65vw; 
+    width: 90%; 
+    margin: 0 auto; 
+  }
+  
+  
+  .modal-content {
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 2rem; 
+  }
+  
+  
+
+  
+  
+
+  .button-modal-post-secundary {
+    border: 2px solid #0d5572;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  .button-modal-post-secundary:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  }
+  .button-modal-post-secundary:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+
+  button {
+    transition: all 0.3s ease-in-out;
+  }
+  

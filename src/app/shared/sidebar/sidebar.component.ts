@@ -22,8 +22,10 @@ export class SidebarComponent {
   rol_user: string = "";
   link_configuration_user: string = "";
 
+  
   toggleMenu() {
     this.menuToggle.emit(); 
+    
   }
 
   goToProfile(){
@@ -31,13 +33,17 @@ export class SidebarComponent {
     this.id_user = getting_id ? JSON.parse(getting_id) : 0;
     console.log(this.id_user)
     this.router.navigate(["/user_profile", this.id_user]);
+    
   }
 
   thisUserIsNormal(): boolean{
     const getting_rol = localStorage.getItem("rol");
     this.rol_user = getting_rol ? JSON.parse(getting_rol) : "";
+    
     if(this.rol_user === "Normal")
+      
       return true;
+    
     else
       return false;
   }
