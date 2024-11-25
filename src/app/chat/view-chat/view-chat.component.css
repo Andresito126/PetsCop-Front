@@ -1,0 +1,13 @@
+.content{
+    width: 100%;
+    display: flex;
+}
+
+.content_chat_list{
+    width: 25%;
+}
+
+.content_chat{
+    width: 75%;
+    overflow-y: auto;
+}

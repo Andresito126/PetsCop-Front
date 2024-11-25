@@ -1,0 +1,16 @@
+<main>
+    <div *ngIf="message.id_user == id_user" class="right_messages">
+        <div class="own_messages message">
+            <p> {{message.body_message}} </p>
+            <div>
+                <button (click)="editMessage()" class="button-edit">Editar</button>
+                <button (click)="deleteMessage(message._id)" class="button-delete">Eliminar</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="message.id_user != id_user" class="left_messages">
+        <div class="other_messages message">
+            <p> {{message.body_message}} </p>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,26 @@
+.user-img{
+    border-radius: 90px;
+    margin-right: 10px;
+}
+
+.contact-name{
+    font-weight: 600;
+}
+
+.list-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    box-sizing: border-box;
+}
+
+.input-message {
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+}

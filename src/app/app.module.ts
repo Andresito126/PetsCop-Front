@@ -12,7 +12,11 @@ import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
 import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
+
 import { LocalServicesModule } from './local-services/local-services.module';
+
+
+import { ChatModule } from './chat/chat.module';
 
 
 
@@ -33,7 +37,9 @@ import { LocalServicesModule } from './local-services/local-services.module';
     HomeModule,
     PostsModule,
     MascotasPagesModule,
-    LocalServicesModule
+    LocalServicesModule,
+    ChatModule
+
   ],
   providers: [
     {

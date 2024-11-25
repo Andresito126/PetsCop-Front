@@ -1,0 +1,71 @@
+.message {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 10px;
+    width:max-content;
+    max-width: 60%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.own_messages {
+    background-color: rgb(71, 156, 192);
+    color: white;
+    text-align: right;
+    justify-content: right;
+    margin-left: auto;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 2px;
+}
+
+.button-edit {
+    background-color: rgb(118, 191, 223);
+    color: black;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 4px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.button-edit:hover{
+    background-color: rgb(44, 127, 162);
+    color: white;
+    transform: scale(1.1);
+}
+
+.button-delete{
+    background-color: rgb(217, 97, 97);
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 4px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-delete:hover{
+    background-color: rgb(194, 69, 69);
+    transform: scale(1.1);
+}
+
+.right_messages{
+    justify-content: right;
+}
+
+.left_messages{
+    justify-content: left;
+}
+
+.other_messages {
+    background-color: rgb(213, 213, 213);
+    color: black;
+    text-align: left;
+    justify-content: left;
+    margin-right: auto;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 2px;
+}
