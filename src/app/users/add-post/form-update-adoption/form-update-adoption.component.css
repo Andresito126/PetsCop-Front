@@ -1,0 +1,119 @@
+.div-submit_color {
+    background-color: #136a93;
+  }
+  
+  .div-submit_color:hover {
+    background-color: rgb(35, 150, 203);
+  }
+  
+  .div-reset_color,
+  .div-hr_color {
+    background-color: #c2c2c2;
+  }
+  
+  .div-reset_color:hover {
+    background-color: #7c7c7c;
+  }
+  
+  .div-select-pet {
+    appearance: none;
+    background-image: url("/assets/forms/vector.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1.5rem) center;
+  }
+  
+  /* Estilos para el input que va a mostrar la imagen de la cartilla*/
+  .upload-container {
+    width: 34rem;
+    height: auto;
+    max-height: 37rem;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    padding: 0.1rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .upload-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.4rem;
+  }
+  
+  .upload-container span {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  .container-main {
+    display: flex;
+  }
+  
+  .sub-container-img {
+    width: 23rem;
+    height: 23rem;
+    border-radius: 2rem;
+    border: 1px solid #e3e3e3;
+    box-shadow: 1px 1px 1px #e3e3e3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container-img-secondaries {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+  
+  .container-img-secondary {
+    width: 11rem;
+    height: 11rem;
+    border-radius: 2rem;
+    border: 1px solid #e3e3e3;
+    box-shadow: 1px 1px 1px #e3e3e3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #upload-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 2rem;
+  }
+  
+  .container-imgs-pair-2, .container-imgs-pair-1 {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  
+  

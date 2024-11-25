@@ -13,7 +13,8 @@ import { RouterLink } from '@angular/router';
 @NgModule({
   declarations: [
     CardUserComponent,
-    ViewProfileUserComponent
+    ViewProfileUserComponent,
+
   ],
 
   imports: [

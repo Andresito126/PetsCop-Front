@@ -168,6 +168,7 @@ export class CommentPageComponent implements OnChanges {
         response: content,
         creation_date: new Date()
       }
+
       this.serviceComment
         .createCommentToPost(this.id_post, this.id_user, new_comment)
         .subscribe(
