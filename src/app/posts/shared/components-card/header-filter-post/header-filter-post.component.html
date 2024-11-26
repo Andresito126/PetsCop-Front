@@ -3,8 +3,11 @@
   
      <div class="relative">
       
-      <select [(ngModel)]="value_option" (change)="onOptionSelected()" class="filtro-button appearance-none bg-gradient-to-r cursor-pointer text-white font-semibold py-2 px-4 rounded-full shadow-md pr-8">
-        <option class="filtro-button_value" disabled selected>Opción</option>
+      <select 
+      [(ngModel)]="value_option"
+      (change)="onOptionSelected()" 
+      class="filtro-button appearance-none bg-gradient-to-r cursor-pointer text-white py-2 px-4 rounded-full shadow-md pr-8">
+        <option class="filtro-button_value" value="0" selected  disabled >Opción</option>
         <option class="filtro-button_value cursor-pointer" value="1">Recientes</option>
         <option class="filtro-button_value cursor-pointer" value="2">Antigüos</option>
       </select>
