@@ -4,6 +4,9 @@ import { IUserDataSerialization } from '../../../../users/models/iuser-data-seri
 import { UserConfigurationService } from '../../../../users/services/user-configuration.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PostsService } from '../../../services/posts.service';
+import { ChatService } from '../../../../chat/services/chat.service';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header-card',
@@ -14,7 +17,9 @@ export class HeaderCardComponent implements OnChanges {
   constructor(
     private userServices: UserConfigurationService,
     private servicePost: PostsService,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private chatServices: ChatService,
+    private router: Router,
   ) {}
 
   // VARIABLES
@@ -28,6 +33,10 @@ export class HeaderCardComponent implements OnChanges {
   type_user: string = '';
   user_name: string = '';
   profile_photo: any;
+
+
+
+  own_id_user: number = 0;
 
   user_normaly: IUserDataSerialization = {
     id_user_normally: 0,
@@ -96,5 +105,32 @@ export class HeaderCardComponent implements OnChanges {
       );
     }
   
+  }
+
+  init_chat(){
+    const getting_id = localStorage.getItem("id_user");
+    this.own_id_user = getting_id ? JSON.parse(getting_id) : 0;
+
+    this.chatServices.init_chat(this.own_id_user, this.id_user).subscribe(
+      (response) => {
+        console.log("Iniciando chat:", response)
+        Swal.fire({
+          icon: "success",
+          title: "Chat inicializado",
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => this.router.navigate(['/chat']));
+        // this.router.navigate(["/chat"]);
+      },
+      (error) => {
+        console.log("Error:", error);
+        Swal.fire({
+          title: "Chat existente",
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => this.router.navigate(['/chat']));
+        // this.router.navigate(["/chat"]);
+      }
+    );
   }
 }
