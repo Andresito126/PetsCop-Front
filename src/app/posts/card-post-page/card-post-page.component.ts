@@ -26,7 +26,7 @@ export class CardPostPageComponent implements OnInit {
     publication_date: new Date
   };
 
-
+  
 
   date_publication: string = "";
   time_publication: string = "";

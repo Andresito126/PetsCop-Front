@@ -64,4 +64,10 @@ export class UserConfigurationService {
       credentials
     );
   }
+
+  getCurrentUserId(): number | null {
+    const id = localStorage.getItem('id_user');
+    return id ? JSON.parse(id) : null; 
+  }
+
 }
