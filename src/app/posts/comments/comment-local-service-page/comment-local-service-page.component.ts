@@ -1,34 +1,28 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { UserConfigurationService } from '../../../users/services/user-configuration.service';
-import { ICommentUser } from '../models/icomment-user';
 import { PostsService } from '../../services/posts.service';
 import { Icomments } from '../../models/icomments';
-import { CommentService } from '../services/comment.service';
-import { ICreateComment } from '../models/icreate-comment';
+import { ICommentUser } from '../models/icomment-user';
 import { IUpdateComment } from '../models/iupdate-comment';
+import { ICreateComment } from '../models/icreate-comment';
+import { CommentToLocalServiceService } from '../services/comment-to-local-service.service';
+
 @Component({
-  selector: 'app-comment-page',
-  templateUrl: './comment-page.component.html',
-  styleUrl: './comment-page.component.css',
+  selector: 'app-comment-local-service-page',
+  templateUrl: './comment-local-service-page.component.html',
+  styleUrl: './comment-local-service-page.component.css'
 })
-export class CommentPageComponent implements OnChanges {
+export class CommentLocalServicePageComponent implements OnChanges {
   constructor(
     private serviceUser: UserConfigurationService,
     private servicePost: PostsService,
-    private serviceComment: CommentService
+    private serviceComment: CommentToLocalServiceService
   ) {}
 
   // VARIABLES
   @Input() comments: Icomments[] | undefined;
   commentsUsers: ICommentUser[] = [];
   @Input() id_user: any;
-  @Input() id_post: string = '';
   @Input() id_local_service: string = '';
   @Output() render = new EventEmitter<boolean>();
 
@@ -41,11 +35,11 @@ export class CommentPageComponent implements OnChanges {
   // MÉTODOS
   ngOnChanges(): void {
     if (this.comments?.length !== 0) {
-      this.getInformationUsers();
+      this.getCommentsLocalService();
     }
   }
 
-  getInformationUsers(): void {
+  getCommentsLocalService(): void {
     this.comments?.forEach((comment) => {
       this.serviceUser.getTypeUser(comment.id_user).subscribe(
         (response) => {
@@ -151,7 +145,7 @@ export class CommentPageComponent implements OnChanges {
     
       if (comment) {
         update_comment.new_response = content;
-        this.serviceComment.updateCommentToPost(this.id_post, comment._id, update_comment).subscribe(
+        this.serviceComment.updateCommentToLocalService(this.id_local_service, comment._id, update_comment).subscribe(
           (response) => {
             alert("Comentario actualizado")
             this.commentsUsers = [];
@@ -170,8 +164,7 @@ export class CommentPageComponent implements OnChanges {
         creation_date: new Date()
       }
 
-      this.serviceComment
-        .createCommentToPost(this.id_post, this.id_user, new_comment)
+      this.serviceComment.createCommentToLocalService(this.id_local_service, this.id_user, new_comment)
         .subscribe(
           (response) => {
             this.commentsUsers = [];
@@ -191,7 +184,7 @@ export class CommentPageComponent implements OnChanges {
 
   // ELIMINAR COMENTARIO
   deleteComment(id: string) {
-    this.serviceComment.deleteCommentToPost(this.id_post, id).subscribe(
+    this.serviceComment.deleteCommentToLocalService(this.id_local_service, id).subscribe(
       (response) => {
         alert('Comentario eliminado');
       },
@@ -199,6 +192,7 @@ export class CommentPageComponent implements OnChanges {
         console.log(err);
       }
     );
+    
     this.commentsUsers = this.commentsUsers.filter(comment => comment._id !== id);
   }
 }

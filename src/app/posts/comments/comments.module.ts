@@ -5,6 +5,7 @@ import { EditDeleteCommentComponent } from './edit-delete-comment/edit-delete-co
 import { WriteCommentComponent } from './write-comment/write-comment.component';
 import { CommentModalComponent } from './comment-modal/comment-modal.component';
 import { FormsModule } from '@angular/forms';
+import { CommentLocalServicePageComponent } from './comment-local-service-page/comment-local-service-page.component';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
     CommentPageComponent,
     EditDeleteCommentComponent,
     WriteCommentComponent,
-    CommentModalComponent
+    CommentModalComponent,
+    CommentLocalServicePageComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports:[
     CommentPageComponent,
+    CommentLocalServicePageComponent
   ]
 })
 export class CommentsModule { }

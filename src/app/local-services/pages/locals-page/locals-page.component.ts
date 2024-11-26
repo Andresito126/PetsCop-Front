@@ -1,40 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { IPostPreview } from '../../../posts/models/ipost-preview';
 import { PostsService } from '../../../posts/services/posts.service';
+import { ILocalService } from '../../models/ilocal-service-serialization';
+import { LocalServiceService } from '../../../posts/shared/components-local-service/services/local-service.service';
 
 @Component({
   selector: 'app-locals-page',
   templateUrl: './locals-page.component.html',
-  styleUrl: './locals-page.component.css'
+  styleUrl: './locals-page.component.css',
 })
-export class LocalsPageComponent implements OnInit{
+export class LocalsPageComponent implements OnInit {
+  constructor(
+    private localServices: LocalServiceService,
+  ) {}
 
+  // VARIABLES
+  local_services: ILocalService[] = [];
 
-  constructor(private postServices: PostsService){}
-
-  posts: IPostPreview[] = [];
-
+  // MÉTODOS
   ngOnInit(): void {
-    this.getRecentPost();
+    this.getLocalServices();
   }
 
-  getRecentPost(): void{
-    this.postServices.getRecentPosts().subscribe(
+  getLocalServices(): void {
+    this.localServices.getAllLocalServices().subscribe(
       (response) => {
-        this.posts = response;
-        console.log(this.posts)
+        console.log(response)
+        this.local_services = response;
       },
-      (error) => console.log("Error:", error)
-    )
-  }
-
-  getOldPost(): void{
-    this.postServices.getOldPosts().subscribe(
-      (response) => {
-        console.log("It's ok!");
-        this.posts = response;
-      },
-      (error) => console.log("Error:", error)
+      (err) => {
+        console.log(err)
+      }
     );
-  } 
+  }
 }

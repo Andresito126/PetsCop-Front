@@ -45,7 +45,7 @@ const routes: Routes = [
   {path:'user_profile/:id_user', component: ViewProfileUserComponent},
 
   // {path:'user_profile', component: ViewProfileUserComponent},
-  {path:'detallePostServicios', component:DetailPostLocalsPageComponent},
+  {path:'detalleLocalServicio/:id_local_servicio', component:DetailPostLocalsPageComponent},
   {path:'publicacion/locales', component:LocalsPageComponent},
   
   { path: 'crear-publicacion-perdida', component: LostPageComponent },

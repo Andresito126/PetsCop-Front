@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { IlocalServicePost } from '../models/ilocal-service-post';
+import { ILocalService } from '../../local-services/models/ilocal-service-serialization';
 @Component({
   selector: 'app-card-posts-locals-page',
   templateUrl: './card-posts-locals-page.component.html',
@@ -10,21 +10,18 @@ export class CardPostsLocalsPageComponent {
 
   constructor(private router: Router){}
 
-  //VARIABLE
-  @Input()postLocal: IlocalServicePost = {
-    _id : "",
+  // VARIABLES
+  @Input() localService: ILocalService = {
+    _id: '',
     id_user: 0,
-    data: {
-      name: "",
-    photo_profile: "",
-    },
-    description: "",
-
+    photo_profile: '',
+    photos: [],
+    name: '',
+    description: ''
   }
 
-  
   redirectDetailPost(): void {
-    this.router.navigate(['/detallePost']);
-    // this.router.navigate(['/detallePost', this.post._id]);
+    this.router.navigate(['/detalleLocalServicio', this.localService._id]);
   }
+
 }

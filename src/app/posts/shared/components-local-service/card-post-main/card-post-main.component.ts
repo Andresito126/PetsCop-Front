@@ -1,49 +1,64 @@
-import { Component, Input } from '@angular/core';
-import { Pet } from '../../../models/pet';
-import { IlocalServicePost } from '../../../models/ilocal-service-post';
+import { Component, Input, OnChanges } from '@angular/core';
 import { PostsService } from '../../../services/posts.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { IlossData } from '../../../models/iloss-data';
+import { ILocalService } from '../../../../local-services/models/ilocal-service-serialization';
+import { UserConfigurationService } from '../../../../users/services/user-configuration.service';
 @Component({
   selector: 'app-card-post-main',
   templateUrl: './card-post-main.component.html',
   styleUrl: './card-post-main.component.css'
 })
-export class CardPostMainComponent {
+export class CardPostMainComponent implements OnChanges{
   constructor(
     private postServices: PostsService,
+    private userService: UserConfigurationService,
     private domSanitizer: DomSanitizer
   ){}
 
   // VARIABLES
-  @Input() postLocal!: IlocalServicePost;
-
-
-  @Input() description!: string;
-  @Input() lost_data!: IlossData | undefined;
-  @Input() reward: number | undefined;
-  @Input() gratitude: string | undefined;
-  @Input() pet!: Pet;
-  @Input() type_post!: string;
-  @Input() images!: string[];
-  @Input() post!: Pet;
-
-
-  imagenes: any[] = [];
-
-  ngOnInit(): void {
-    this.getPhotos();
+  @Input() localService: ILocalService = {
+    _id: '',
+    id_user: 0,
+    photo_profile: '',
+    photos: [],
+    name: '',
+    description: ''
   }
-  
-  getPhotos(){
-    for(let i:number = 0; i < 3; i++){
-      this.postServices.getPhotosFromMongo(this.images[i]).subscribe(
-        response => {
+
+  imgs: (string | SafeUrl) [] = []
+
+  type_user: string = '';
+
+  // MÉTODOS
+  ngOnChanges(): void {
+    this.getTypeUser();
+    this.assignImgs();
+  }
+
+  getTypeUser(): void {
+    this.userService.getTypeUser(this.localService.id_user).subscribe(
+      (response) => {
+        this.type_user = response.tipo_usuario;
+      },
+      (err) => {
+        console.log(err)
+      }
+    );
+  }
+
+  assignImgs(): void {
+    this.localService.photos.forEach((photo, index) => {
+      this.postServices.getPhotosFromMongo(photo).subscribe(
+        (response) => {
           const img = URL.createObjectURL(response);
-          this.imagenes.push(this.domSanitizer.bypassSecurityTrustUrl(img));
+          this.imgs[index] = this.domSanitizer.bypassSecurityTrustUrl(img);
         },
-        error => console.log("Error:", error)
-      )
-    }
+        (err) => {
+          console.log(err)
+        }
+      );
+    });
   }
+
 }

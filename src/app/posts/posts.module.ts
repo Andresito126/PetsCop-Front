@@ -25,6 +25,7 @@ import { DescriptionComponent } from './shared/components-local-service/descript
 import { CardPostsLocalsPageComponent } from './card-posts-locals-page/card-posts-locals-page.component';
 import { CardPostMainComponent } from './shared/components-local-service/card-post-main/card-post-main.component';
 import { FindedModalComponent } from "../shared/modals/finded-modal/finded-modal.component";
+import { HeaderCardLocalServiceComponent } from './shared/components-local-service/header-card-local-service/header-card-local-service.component';
 
 
 
@@ -52,6 +53,7 @@ import { FindedModalComponent } from "../shared/modals/finded-modal/finded-modal
     DescriptionComponent,
     CardPostsLocalsPageComponent,
     CardPostMainComponent,
+    HeaderCardLocalServiceComponent,
     
  
   ],
