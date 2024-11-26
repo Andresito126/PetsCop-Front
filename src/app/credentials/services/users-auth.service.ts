@@ -15,8 +15,8 @@ export class UsersAuthService {
 
   constructor(private _http: HttpClient) { }
 
-  private _apiUrl = 'http://127.0.0.1:5000';
-  private _apiURLMONGO = 'http://localhost:3000';
+  private _apiUrl = 'https://petscopeapi2.integrador.xyz';
+  private _apiURLMONGO = 'https://petscopapi.integrador.xyz';
 
   // Registrar un usuario normal
   // Si el método no requiere de un token, agregale el skipAuth

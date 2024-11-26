@@ -9,8 +9,8 @@ import { IUserCredentialsSerialization } from '../../credentials/models/iuser-cr
 })
 export class LocalServicesService {
 
-  _url_mongo: string = "http://localhost:3000/";
-  _url_pg: string = "http://127.0.0.1:5000/users/";
+  _url_mongo: string = "https://petscopapi.integrador.xyz/";
+  _url_pg: string = "https://petscopeapi2.integrador.xyz/users/";
 
   constructor(private _http: HttpClient) { }
 

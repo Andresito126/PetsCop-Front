@@ -10,7 +10,7 @@ import { IAdoptionPostSerialization } from '../models/iadoption-post-serializati
 export class PostService {
   constructor(private http: HttpClient) {}
 
-  private urlAPI = 'http://localhost:3000';
+  private urlAPI = 'https://petscopapi.integrador.xyz';
 
   showColonies(): Observable<string[]> {
     return this.http.post<string[]>(`${this.urlAPI}/dipomex/29140`, {});

@@ -13,7 +13,7 @@ export class PostsService {
   
   constructor(private _http: HttpClient){}
 
-  private _url_mongo: string = 'http://localhost:3000';
+  private _url_mongo: string = 'https://petscopapi.integrador.xyz';
 
   getRecentPosts(): Observable<IPostPreview[]>{
     return this._http.get<IPostPreview[]>(this._url_mongo + "/posts/getAllRecentPosts");

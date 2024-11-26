@@ -8,7 +8,7 @@ import { IuserCredentialsSerialization } from '../models/iuser-credentials-seria
   providedIn: 'root',
 })
 export class UserConfigurationService {
-  private _apiUrl = 'http://127.0.0.1:5000/';
+  private _apiUrl = 'https://petscopeapi2.integrador.xyz/';
 
   constructor(private _http: HttpClient) {}
 
