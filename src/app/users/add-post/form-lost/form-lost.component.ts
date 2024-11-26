@@ -9,7 +9,6 @@ import {
 import { ILossPostSerialization } from '../../models/iloss-post-serialization';
 import { PostService } from '../../services/post.service';
 import Swal from 'sweetalert2';
-import { race } from 'rxjs';
 
 @Component({
   selector: 'app-form-lost',

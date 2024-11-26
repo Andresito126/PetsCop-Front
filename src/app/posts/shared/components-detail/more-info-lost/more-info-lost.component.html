@@ -10,33 +10,33 @@
     <hr class="border-gray-300 mt-4" />
   </div>
   <div class="info-pet-lost">
-    <p class="text-red-600 font-semibold text-xl mb-3">Perdido en:</p>
+    <p class="font-semibold text-xl mb-3">Perdido en:</p>
     <div class="cards-places flex space-x-4 mb-4">
       <div
-        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Estado <br />
-        <p class="text-black">{{ state }}</p>
+        <p class="text-white">{{ state }}</p>
       </div>
       <div
-        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Municipio <br />
-        <p class="text-black">{{ municipality }}</p>
+        <p class="text-white">{{ municipality }}</p>
       </div>
       <div
-        class="bg-red-200 text-red-600 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Colonia <br />
-        <p class="text-black">{{ neighborhood }}</p>
+        <p class="text-white">{{ neighborhood }}</p>
       </div>
     </div>
-    <div class="last-seen text-gray-600">
-      <p class="flex items-center">
-        <img src="assets/posts/ubication.svg" class="h-6 w-6 mr-2" />
-        {{ lastSeen }}
+    <div class="last-seen text-gray-600 mt-5">
+      <p class="text-informationPet flex items-center">
+        <img src="assets/posts/ubication.svg" class=" h-10 w-10 mr-2" />
+        Última vez vista:  {{ lastSeen }}
       </p>
     </div>
   </div>
-  <hr class="border-gray-300 mt-4 mb-2" />
+  <hr class=" border-gray-300 mt-4 mb-2" />
 </div>

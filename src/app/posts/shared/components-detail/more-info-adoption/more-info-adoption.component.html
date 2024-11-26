@@ -2,20 +2,24 @@
   <div
     class="description-of-event text-gray-700 mb-4 max-w-full overflow-hidden"
   >
-    
+
+  <div *ngIf="showCartilla===false">
     <h1 class="font-semibold text-xl mt-3 mb-2">Problemas físicos de la mascota</h1>    
-    <p *ngFor="let physical_problem of physical_problems">
-      {{ physical_problem }}
+    <p class="text-informationPet" *ngFor="let physical_problem of physical_problems">
+     -  {{ physical_problem }}
     </p>
     <hr class="border-gray-300 mt-4" />
 
     <h1 class="font-semibold text-xl mt-3 mb-2">Operaciones de la mascota</h1>
-    <p class="break-words">
-      {{ operations }}
+    <p  class="text-informationPet">
+     - {{ operations }}
     </p>
-    <hr class="border-gray-300 mt-4" />
-    
-    <h1 class="font-semibold text-xl mt-3 mb-2">Cartilla de la mascota</h1>
-    <img [src]="img" alt="Vacuna" />
+  </div>
+    <div  *ngIf="showCartilla">
+
+      <hr class="border-gray-300 mt-4" />
+      <h1 class="font-semibold text-xl mt-3 mb-2">Cartilla de la mascota</h1>
+      <img width="25" height="25" [src]="img" alt="Vacuna" />
+    </div>
   </div>
 </div>

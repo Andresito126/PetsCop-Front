@@ -10,33 +10,33 @@
   <nav class="flex-1">
     <ul class="space-y-2">
 
-      <li (click)="goToProfile()" class="side-li_hover flex items-center p-5 pt-8 cursor-pointer">
+      <li (click)="goToProfile(); toggleMenu()" class="side-li_hover font-text flex items-center p-5 pt-8 cursor-pointer">
         <img src="/assets/nav-aside/profile.svg" alt="" class="mr-5 ml-1">
         <span class="ml-2">PERFIL</span>
       </li>
 
 
-      <li *ngIf="thisUserIsNormal()" routerLink="configuracion/unormal" class="side-li_hover flex items-center p-5 mt-5 cursor-pointer">
+      <li *ngIf="thisUserIsNormal();" routerLink="configuracion/unormal" (click)="toggleMenu()"  class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
         <img src="/assets/nav-aside/settings.svg" alt="" class="mr-5">
         <span class="ml-2">CONFIGURACIÓN</span>
       </li>
 
-      <li *ngIf="!thisUserIsNormal()" routerLink="configuracion/unormal" class="side-li_hover flex items-center p-5 mt-5 cursor-pointer">
+      <li *ngIf="!thisUserIsNormal()"  routerLink="configuracion/local_services" (click)="toggleMenu()"  class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
         <img src="/assets/nav-aside/settings.svg" alt="" class="mr-5">
         <span class="ml-2">CONFIGURACIÓN</span>
       </li>
 
-      <li [routerLink]="['/login']"  class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
+      <li [routerLink]="['/login']" (click)="toggleMenu()"  class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
        <img src="/assets/nav-aside/logIn.svg" alt="" class="mr-5 ml-0"> 
         <span class="ml-3">INICIAR SESIÓN</span>
       </li>
 
-      <li [routerLink]="['/usuario']" class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
+      <li [routerLink]="['/usuario']" (click)="toggleMenu()" class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
           <img src="/assets/nav-aside/addUser.svg" alt="" class="mr-5 ml-2"> 
         <span class="ml-1">REGISTRARSE</span>
       </li>
 
-      <li class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
+      <li (click)="logOut();toggleMenu()"  class="side-li_hover font-text flex items-center p-5 mt-5 cursor-pointer">
         <img src="/assets/nav-aside/logOut.svg" alt="" class="mr-5 ml-2">
         <span class="ml-1">CERRAR SESIÓN</span>
       </li>

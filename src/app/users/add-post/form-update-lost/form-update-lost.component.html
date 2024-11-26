@@ -1,0 +1,506 @@
+<div
+  class="mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8 flex justify-center"
+>
+
+    <form
+      [formGroup]="formLost"
+      (ngSubmit)="onSubmitFormLost()"
+      action="#"
+      class=""
+    >
+      <!-- INICIO FORM PT1 -->
+      <div *ngIf="currentStep === 1" class="form-step1 mb-0 mt-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+        <h1
+        class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl">
+          Formulario de pérdida
+        </h1>
+        <hr class="flex-grow mb-2" />
+        <h1
+          class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
+        >
+
+          Datos básicos de la mascota
+        </h1>
+
+        <!-- tipo de mascota -->
+        <div>
+          <label
+            for="petType"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Tipo de mascota</label
+          >
+          <select
+            id="petType"
+            formControlName="petType"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option value="Dog">Perro</option>
+            <option value="Cat">Gato</option>
+          </select>
+          <div
+            *ngIf="hasErrors('petType', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Tipo de mascota es obligatorio
+          </div>
+        </div>
+
+        <!-- raza  -->
+        <div>
+          <label
+            for="petBreed"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Raza</label
+          >
+          <input
+            type="text"
+            name="petBreed"
+            id="petBreed"
+            formControlName="petBreed"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          />
+        </div>
+
+        <!-- nombre del pet -->
+        <div>
+          <label
+            for="petName"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Nombre de la mascota</label
+          >
+          <input
+            type="text"
+            id="petName"
+            formControlName="petName"
+            placeholder="Ingresa el nombre de tu mascota"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+          <div
+            *ngIf="hasErrors('petName', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Nombre de la mascota es obligatorio
+          </div>
+        </div>
+
+        <!-- edad -->
+        <div>
+          <label
+            for="petAge"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Edad</label
+          >
+          <input
+            type="text"
+            id="petAge"
+            formControlName="petAge"
+            placeholder="Edad de tu mascota"
+            class="mb-2 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+          <div
+            *ngIf="hasErrors('petAge', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo Edad es obligatorio
+          </div>
+        </div>
+
+        <!-- caracteristicas  -->
+        <div class="flex items-center space-x-4 justify-center mt-6 mb-4">
+          <hr class="flex-grow" />
+          <p class="text-center text-lg font-medium">
+            Características físicas principales
+          </p>
+          <hr class="flex-grow" />
+        </div>
+
+        <div formArrayName="characteristics">
+          <div
+            *ngFor="
+              let characteristic of characteristics.controls;
+              let i = index
+            "
+            class="mb-2 flex gap-10"
+          >
+            <input
+              [formControlName]="i"
+              placeholder="Añade una característica"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
+            />
+            <button
+              type="button"
+              class="group relative h-10 w-40 overflow-hidden rounded-lg bg-white text-lg shadow"
+              (click)="removeCharacteristic(i)"
+              *ngIf="characteristics.length > 1"
+            >
+              <div
+                class="absolute inset-0 w-3 bg-[#0575A6] transition-all duration-[250ms] ease-out group-hover:w-full"
+              ></div>
+              <span class="relative text-black group-hover:text-white">
+                Eliminar
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          (click)="addCharacteristic()"
+          class="text-[#0575A6] text-sm font-medium mt-2"
+        >
+          + Agregar nueva característica
+        </button>
+
+        <br /><br />
+
+        <!-- botones siguiente y back -->
+        <button
+          type="button"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-5"
+          (click)="onNext()"
+        >
+          Siguiente
+        </button>
+        <button
+          type="reset"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+        >
+          Cancelar
+        </button>
+
+        <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots1.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- INICIO FORM PT2 -->
+
+      <div *ngIf="currentStep === 2" class="form-step2 mb-0 mt-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+        <h1
+          class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
+        >
+          Datos de perdida
+        </h1>
+
+        <!-- codigo postal -->
+        <div>
+          <label
+            for="zipCode"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Código postal</label
+          >
+          <input
+            type="number"
+            id="zipCode"
+            value="29140"
+            disabled
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+          />
+
+          <div
+            *ngIf="hasErrors('zipCode', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo del código postal es obligatorio
+          </div>
+        </div>
+
+        <!-- estado-->
+        <div>
+          <label
+            for="state"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Estado</label
+          >
+          <input
+            type="text"
+            id="state"
+            value="Chiapas"
+            disabled
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+          />
+        </div>
+
+        <!-- municipio  -->
+        <div>
+          <label
+            for="municipality"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Municipio</label
+          >
+          <input
+            type="text"
+            id="municipality"
+            value="Ocozocoautla de Espinoza"
+            disabled
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+          />
+        </div>
+
+        <!-- colonia -->
+        <div>
+          <label
+            for="neighborhood"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Colonia</label
+          >
+          <select
+            id="neighborhood"
+            formControlName="neighborhood"
+            class="mb-2 div-select-pet bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5"
+          >
+            <option *ngFor="let colony of colonies" [value]="colony">
+              {{ colony }}
+            </option>
+          </select>
+          <div
+            *ngIf="hasErrors('neighborhood', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la colonia es obligatorio
+          </div>
+        </div>
+
+        <!-- fecha perdida-->
+        <div>
+          <label
+            for="dateLost"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Fecha en que se perdió</label
+          >
+          <input
+            type="date"
+            id="dateLost"
+            formControlName="dateLost"
+            placeholder="Fecha de perdida"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+
+          <div
+            *ngIf="hasErrors('dateLost', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de la fecha de perdida es obligatorio
+          </div>
+        </div>
+
+        <!-- descripcion -->
+        <div>
+          <label
+            for="description"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Descripción</label
+          >
+          <input
+            type="text"
+            id="description"
+            formControlName="description"
+            placeholder="Pequeña descripción"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+          <div
+            *ngIf="hasErrors('description', 'required')"
+            class="text-red-500 text-xs mb-2"
+          >
+            El campo de una pequeña descripción es obligatorio
+          </div>
+        </div>
+
+        <!-- uktima vez visto-->
+        <div>
+          <label
+            for="lastSeen"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Lugar de la última vez visto</label
+          >
+          <input
+            type="text"
+            id="lastSeen"
+            formControlName="lastSeen"
+            placeholder="Ultima vez que lo viste"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+        </div>
+
+        <!-- recompensa -->
+        <div>
+          <label
+            for="reward"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+            >Recompensa</label
+          >
+          <input
+            type="number"
+            id="reward"
+            formControlName="reward"
+            placeholder="¿Recompensa?"
+            class="mb-4 bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:placeholder-gray-400 dark:text-black"
+            required
+          />
+        </div>
+
+        <!-- botones siguiente y back -->
+        <button
+          type="button"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-5"
+          (click)="onNext()"
+        >
+          Siguiente
+        </button>
+
+        <button
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
+        >
+          Anterior
+        </button>
+
+        <br />
+        <div class="flex justify-center mt-4">
+          <img src="/assets/forms/dots2.svg" alt="" />
+        </div>
+      </div>
+
+      <!-- INICIO FORM PT3 -->
+
+      <div *ngIf="currentStep === 3" class="form-step3 mb-0 mt-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+        <h1
+          class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
+        >
+          Fotos de la mascota
+        </h1>
+        <div class="container-main">
+          <div class="container-img-main">
+            <div
+              class="sub-container-img"
+              (click)="triggerFileInputs(fileInput1)"
+            >
+              <img
+                *ngIf="imageUrls[0]"
+                [src]="imageUrls[0]"
+                alt="Imagen cargada"
+                id="upload-img"
+              />
+              <img *ngIf="!imageUrls[0]" src="assets/forms/dog1.svg" alt="" />
+              <span *ngIf="!imageUrls[0]">Foto principal de la mascota</span>
+              <input
+                #fileInput1
+                type="file"
+                (change)="onFileSelect($event, 0)"
+                accept="image/*"
+                hidden
+              />
+            </div>
+          </div>
+
+          <div class="container-img-secondaries">
+            <div class="container-imgs-pair-1">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput2)"
+              >
+                <img
+                  *ngIf="imageUrls[1]"
+                  [src]="imageUrls[1]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[1]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput2
+                  type="file"
+                  (change)="onFileSelect($event, 1)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput3)"
+              >
+                <img
+                  *ngIf="imageUrls[2]"
+                  [src]="imageUrls[2]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[2]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput3
+                  type="file"
+                  (change)="onFileSelect($event, 2)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+            <div class="container-imgs-pair-2">
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput4)"
+              >
+                <img
+                  *ngIf="imageUrls[3]"
+                  [src]="imageUrls[3]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[3]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput4
+                  type="file"
+                  (change)="onFileSelect($event, 3)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div
+                class="container-img-secondary"
+                (click)="triggerFileInputs(fileInput5)"
+              >
+                <img
+                  *ngIf="imageUrls[4]"
+                  [src]="imageUrls[4]"
+                  alt="Imagen cargada"
+                  id="upload-img"
+                />
+                <img *ngIf="!imageUrls[4]" src="assets/forms/dog2.svg" alt="" />
+                <input
+                  #fileInput5
+                  type="file"
+                  (change)="onFileSelect($event, 4)"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones -->
+        <button
+          type="submit"
+          class="div-submit_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white mb-4"
+        >
+          Enviar
+        </button>
+        <button
+          type="button"
+          class="div-reset_color block w-full rounded-lg px-5 py-3 text-sm font-medium text-white"
+          (click)="onBack()"
+        >
+          Anterior
+        </button>
+      </div>
+    </form>
+ 
+</div>

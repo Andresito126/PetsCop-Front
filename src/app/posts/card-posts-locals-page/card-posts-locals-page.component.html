@@ -1,0 +1,14 @@
+<div
+  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10"
+>
+  <app-header-card-local-service
+    [id_user]="localService.id_user"
+  ></app-header-card-local-service>
+
+  <app-card-post-main
+    (click)="redirectDetailPost()"
+    class="cursor-pointer"
+    [localService]="localService"
+  ></app-card-post-main>
+
+</div>

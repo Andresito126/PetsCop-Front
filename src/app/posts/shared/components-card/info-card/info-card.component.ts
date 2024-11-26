@@ -26,6 +26,7 @@ export class InfoCardComponent implements OnInit {
   @Input() images!: string[];
   @Input() post!: Pet;
 
+
   imagenes: any[] = [];
 
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class InfoCardComponent implements OnInit {
   }
   
   getPhotos(){
-    for(let i:number = 0; i < this.images.length; i++){
+    for(let i:number = 0; i < 3; i++){
       this.postServices.getPhotosFromMongo(this.images[i]).subscribe(
         response => {
           const img = URL.createObjectURL(response);

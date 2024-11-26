@@ -18,12 +18,17 @@ export class HeaderCardComponent implements OnChanges {
   ) {}
 
   // VARIABLES
-  @Input() date!: string;
-  @Input() time!: string;
   @Input() id_user!: number;
+
+  @Input() showInfoLocal: boolean=false
+  @Input() showInfoData: boolean=false
+  @Input() time = '';
+  @Input() date = '';
+
   type_user: string = '';
   user_name: string = '';
   profile_photo: any;
+
   user_normaly: IUserDataSerialization = {
     id_user_normally: 0,
     id_user: 0,
@@ -33,6 +38,7 @@ export class HeaderCardComponent implements OnChanges {
     profile_picture: '',
   };
 
+  // MÉTODOS
   ngOnChanges(): void {
     this.putUser(this.id_user);
   }

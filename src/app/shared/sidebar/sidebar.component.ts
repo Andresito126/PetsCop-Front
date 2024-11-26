@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class SidebarComponent {
 
+
   constructor(
     private router: Router
   ){}
@@ -22,8 +23,18 @@ export class SidebarComponent {
   rol_user: string = "";
   link_configuration_user: string = "";
 
+  logOut() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('rol');
+  localStorage.removeItem('id_user');
+   
+  this.router.navigate(['/login']);
+  console.log("se borraron datos del local")
+    }
+  
   toggleMenu() {
     this.menuToggle.emit(); 
+    
   }
 
   goToProfile(){
@@ -31,13 +42,17 @@ export class SidebarComponent {
     this.id_user = getting_id ? JSON.parse(getting_id) : 0;
     console.log(this.id_user)
     this.router.navigate(["/user_profile", this.id_user]);
+    
   }
 
   thisUserIsNormal(): boolean{
     const getting_rol = localStorage.getItem("rol");
     this.rol_user = getting_rol ? JSON.parse(getting_rol) : "";
+    
     if(this.rol_user === "Normal")
+      
       return true;
+    
     else
       return false;
   }

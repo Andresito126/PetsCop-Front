@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { IPostSerialization } from '../models/ipost-serialization';;
 import { ILocalServiceSerialization } from '../models/ilocal-service-serialization';
 import { IPostPreview } from '../models/ipost-preview';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
   
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient){}
 
   private _url_mongo: string = 'http://localhost:3000';
 
@@ -34,7 +35,7 @@ export class PostsService {
     return this._http.post<IPostPreview[]>(this._url_mongo + "/posts/getPostsUser/" + id_user, null);
   }
 
-  getPhotosFromMongo(id_photo: string | undefined): Observable<any>{
+  getPhotosFromMongo(id_photo: string | undefined | SafeUrl): Observable<any>{
     return this._http.get(this._url_mongo + "/drive/download/" + id_photo, {responseType: 'blob'});
   }
 
@@ -45,4 +46,8 @@ export class PostsService {
   getInformationLocalService(id_user: number): Observable<ILocalServiceSerialization> {
     return this._http.post<ILocalServiceSerialization>(`${this._url_mongo}/posts/getNameAndPhotolocalService/${id_user}`, {});
   }
+  pass_post_of_lost_to_found(id_post: string, gratitude: string): Observable<string>{
+    return this._http.put<string>(`${this._url_mongo}/posts/updatePostLostPetToFoundPet/${id_post}`, {gratitude});
+  }
+
 }

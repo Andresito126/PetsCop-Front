@@ -32,10 +32,14 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-color: #136A93;
+    color: white;
 }
 
-.card-user-button_edit :hover{
-    color: rgb(58, 140, 217);
+.card-user-button_edit:hover{
+    background-color: #2b6cb0; 
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out; 
 }
 
 .card-user-button_edit-icon{

@@ -1,54 +1,62 @@
 .card-container_main {
-    min-height: 25rem;
-    max-height: max-content;
-    margin-left: 1.4%;
-    margin-right: 1.4%;
-    max-width: 81rem;
+  min-height: 25rem;
+  max-height: max-content;
+  margin-left: 1.4%;
+  margin-right: 1.4%;
+  max-width: 81rem;
 }
 
-
-
-.info-pet-container-main{
-    
-    max-width:max-content;
-    min-width: 68%;
-    height: 40rem;
+.info-pet-container-main {
+  max-width: max-content;
+  min-width: 68%;
+  max-height: max-content;
 }
 
-.name-status{
-    background-color: red;
-    height: 2rem;
-    width: 40rem;
+.name-status {
+  background-color: red;
+  height: 2rem;
+  width: 40rem;
 }
 
-
-  /* boton seleccion datos */
-  .button-caract_button.active {
-    background-color: #0E4C6A; 
-  }
-  
-.button-caract-div{
-    width: 100%;
-    
+/* boton seleccion datos */
+.button-caract_button.active {
+  background-color: #0e4c6a;
 }
 
-.button-caract_button{
-    background-color: #1981b0;
-    width: 50%;
+.button-caract-div {
+  width: 100%;
 }
 
-.button-caract_button:hover{
-    background-color: #136A93;
-    width: 50%;
+.button-caract_button {
+  background-color: #1981b0;
+  width: 50%;
 }
 
-.leftPlace{
-   border-top-left-radius:  10px;
-   border-bottom-left-radius: 10px;
+.button-caract_button:hover {
+  background-color: #136a93;
+  width: 50%;
 }
- 
-.rightPlace{
-    border-top-right-radius:  10px;
-    border-bottom-right-radius: 10px;
-    
- }
+
+.leftPlace {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.rightPlace {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.text-informationPet{
+  font-family: 'Abhaya Libre';
+  font-size: 17px;
+  font-weight:900 ;
+  text-align: justify;
+}
+
+.iFind-button {
+  background-color: #1981b0;
+  color: #ffffff;
+  margin-left: 84.7%;
+}
+

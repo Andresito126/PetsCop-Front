@@ -6,23 +6,13 @@
     <span class="text-title-nav text-white  font-bold">PETS COP</span>
   </div>
 
-  <div class="flex items-center space-x-4 mx-4">
+  <div *ngIf="showButtonsNav"  class="flex items-center space-x-4 mx-4">
     
-    <div class="relative w-96">
-      <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
-        <img src="/assets/nav-aside/search.svg" alt="Buscar" class="w-6 h-6" />
-      </span>
-   
-      <input
-        type="text"
-        placeholder="Busca algo"
-        class="navButton-color pt-3 text-start w-full py-2 rounded-full pl-10 focus:outline-none"
-      />
-    </div>
+
 
     <button
     (click)="openPostTypeModal()"
-      class=" navButton-color w-64 py-2 px-4 rounded-full flex items-center space-x-2 "
+      class=" navButton-color py-2 px-4 rounded-full flex items-center space-x-2 "
     >
       <img src="/assets/nav-aside/addPost.svg" alt="Añadir publicación" >
       <span class="mt-1">Añadir una publicación</span>
@@ -30,7 +20,7 @@
   </div>
 
   <div class="flex items-center space-x-4">
-    <button class="text-white hover:text-gray-200">
+    <button  *ngIf="showButtonsNav" class="text-white hover:text-gray-200">
       <img src="/assets/nav-aside/startChat.svg" alt="Iniciar chat" >
     </button>
     <button (click)="toggleMenu()" class="text-white hover:text-gray-200">

@@ -1,4 +1,15 @@
 .message-button {
+      display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     background-color: #136A93;
-    color: #ffffff;
+    color: white;
+}
+
+
+.message-button:hover{
+    background-color: #2b6cb0; 
+    transform: scale(1.05); 
+    transition: all 0.3s ease-in-out; 
 }

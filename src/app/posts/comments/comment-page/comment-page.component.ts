@@ -29,6 +29,7 @@ export class CommentPageComponent implements OnChanges {
   commentsUsers: ICommentUser[] = [];
   @Input() id_user: any;
   @Input() id_post: string = '';
+  @Input() id_local_service: string = '';
   @Output() render = new EventEmitter<boolean>();
 
   // VARIABLES PARA EL MODAL
@@ -168,6 +169,7 @@ export class CommentPageComponent implements OnChanges {
         response: content,
         creation_date: new Date()
       }
+
       this.serviceComment
         .createCommentToPost(this.id_post, this.id_user, new_comment)
         .subscribe(

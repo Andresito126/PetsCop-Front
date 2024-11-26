@@ -42,6 +42,11 @@ export class UserConfigurationService {
     return this._http.post(this._apiUrl + 'drive/upload', formData);
   }
 
+
+    deleteProfilePhoto(id_file: string): Observable<any>{
+      return this._http.delete(this._apiUrl + "drive/delete/" + id_file);
+    }
+
   updateNormalUser(
     user: IUserDataSerialization
   ): Observable<IUserDataSerialization> {
@@ -59,4 +64,10 @@ export class UserConfigurationService {
       credentials
     );
   }
+
+  getCurrentUserId(): number | null {
+    const id = localStorage.getItem('id_user');
+    return id ? JSON.parse(id) : null; 
+  }
+
 }

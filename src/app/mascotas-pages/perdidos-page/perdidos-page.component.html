@@ -1,2 +1,6 @@
-<app-header-filter-post (executeGetRecent)="getRecentPost()" (executeGetOld)="getOldPost()"></app-header-filter-post>
+<app-header-filter-post 
+[title]="'MASCOTAS PERDIDAS'"  
+(executeGetRecent)="getRecentPost()" 
+(executeGetOld)="getOldPost()"
+></app-header-filter-post>
 <app-card-post-page *ngFor="let post of posts" [post]="post"></app-card-post-page>

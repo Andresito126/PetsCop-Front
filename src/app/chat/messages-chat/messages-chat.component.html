@@ -1,0 +1,16 @@
+<main>
+    <!--
+    <div>
+        <img [src]="photo" alt="Photo" class="h-14 w-14 mr-0.5 mt-5 user-img">
+        <div class="contact-name">
+            <p class="text-sm font-semibold mt-5"> {{user_name}} </p>
+        </div>
+    </div>-->
+    <div class="list-messages">
+        <app-message *ngFor="let message of messages" [id_chat]="id_chat" [id_user]="id_user" [message]="message" (edit_this_message)="editingMessage($event)"></app-message>
+    </div>
+    <div class="input-message">
+        <app-input-new-message [id_user]="id_user" [id_chat]="id_chat" *ngIf="!message_is_editing"></app-input-new-message>
+        <app-input-edit-message [id_chat]="id_chat" [edit_this_message]="send_this_message_to_edit" *ngIf="message_is_editing" (close_input)="closeEditMessage($event)"></app-input-edit-message>
+    </div>
+</main>

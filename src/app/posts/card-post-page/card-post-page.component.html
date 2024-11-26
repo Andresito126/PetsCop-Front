@@ -1,18 +1,21 @@
 <!-- incio -->
 
 <div
-  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 cursor-pointer"
-  (click)="redirectDetailPost()"
+  class="card-container_main p-4 rounded-lg border border-gray-200 bg-white shadow-lg mt-10 "
 >
   <!-- header del nombre, datos, publi y mandar mensaje -->
   <app-header-card
     [id_user]="post.id_user"
     [date]="date_publication"
     [time]="time_publication"
+
+    [showInfoData]="true"
   ></app-header-card>
   <!-- info -->
 
   <app-info-card
+  class="cursor-pointer"
+  (click)="redirectDetailPost()"
   [lost_data]="post.loss_data"
   [reward]="post.reward"
   [gratitude]="post.gratitude"
@@ -44,9 +47,27 @@
       Repostear
     </button>
 
-    <div *ngIf="isHome">
-      <button class="iFind-button h-10 flex items-center px-4 py-1.5 rounded-md">Lo he encontrado!</button>
+    <div *ngIf="post.post_type === 'Lost'" class="group flex gap-2 ml-auto" >
+      <button class="icon-button edit-button" (click)="redirectEditPostLost()">
+        <img src="assets/comments/edit.svg" alt="Editar" class="icon" />
+      </button>
+      <button class="icon-button delete-button">
+        <img src="assets/comments/delete.svg" alt="Eliminar" class="icon" />
+      </button>
     </div>
+
+    <div  *ngIf="post.post_type === 'Adoption'" class="group flex gap-2 ml-auto" (click)="redirectEditPostAdoption()">
+      <button class="icon-button edit-button">
+        <img src="assets/comments/edit.svg" alt="Editar" class="icon" />
+      </button>
+      <button class="icon-button delete-button">
+        <img src="assets/comments/delete.svg" alt="Eliminar" class="icon" />
+      </button>
+    </div>
+
+
+   
+
   </div>
   
 </div>

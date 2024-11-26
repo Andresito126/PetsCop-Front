@@ -11,12 +11,24 @@ import { HomeModule } from './home/home.module';
 import { PostsModule } from './posts/posts.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptorService } from './shared/services/jwt-interceptor.service';
+
 import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
+
+import { LocalServicesModule } from './local-services/local-services.module';
+
+
+import { ChatModule } from './chat/chat.module';
+
+
+
+import { LocalesServiciosModule } from './locales-servicios/locales-servicios.module';
+import { RouterLink, RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -27,9 +39,17 @@ import { MascotasPagesModule } from './mascotas-pages/mascotas-pages.module';
     PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
+    RouterModule,
+    RouterLink,
     HomeModule,
     PostsModule,
     MascotasPagesModule,
+    LocalServicesModule,
+    ChatModule,
+
+
+    LocalesServiciosModule
+
   ],
   providers: [
     {

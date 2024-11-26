@@ -1,11 +1,15 @@
-.section-header {
-  width: 100%;
-  
-}
 .filtro-button {
-  background-color: #136a93;
+  background-color: #136a93; 
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.filtro-button_value {
-  color: #000000;
+.filtro-button:hover {
+  background-color: #0e4e69; 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.filtro-button:active {
+  transform: scale(1); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
 }

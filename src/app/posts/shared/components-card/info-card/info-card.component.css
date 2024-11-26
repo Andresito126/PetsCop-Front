@@ -1,15 +1,91 @@
-.card-container_info{
-    min-height: 15rem;
+.card-container_info {
+  min-height: 15rem;
 }
 
-.info-section-main{
-    width: 58%;
+.card-container_info {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.info-section-description_div{
-    width: 100%;
+
+.card-container_info:hover {
+  transform: translateY(-5px) scale(1.03); 
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
-.info-section-img_div{
-    margin-top: 4%;
+
+
+.info-section-main {
+  width: 63%;
+}
+
+.text-status{
+  font-size: 19px;
+  
+}
+
+.text-status-name{
+  font-size: 20px;
+  font-weight: 600;
+  color: #0575A6;
+}
+
+.text-status_weight{
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.text-namePet{
+  font-size: 19px;
+
+  font-weight: bolder;
+  font-style: normal;
+}
+
+.text-informationPet{
+
+  font-size: 15px;
+  font-weight:normal ;
+  text-align: justify;
+}
+
+.div-text {
+  max-width: 50vw;
+}
+
+.info-section-description_div {
+  width: 100%;
+}
+
+.text-subtitles{
+  font-size: 20px;
+}
+
+.info-section-img_div {
+  margin: auto;
+  align-items: center;
+  gap: 1rem;
+  min-width: 30%;
+
+}
+
+.info-section-img_div img {
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  opacity: 0.6; 
+  
+}
+
+.info-section-img_div img:nth-child(2) {
+  transform: scale(1.2); 
+  opacity: 1; 
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.info-section-img_div img:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 

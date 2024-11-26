@@ -1,0 +1,27 @@
+
+<div
+  class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start"
+>
+
+  <div class="info-section-main">
+    <div
+      class="bg-[#0575A6] text-white font-bold py-1 px-6 rounded-full text-center inline-block"
+    >
+      {{ type_user }}
+    </div>
+
+    <div class="info-section-description_div mt-2 text-justify">
+      <p class="div-text text-informationPet">{{ localService.description }}</p>
+    </div>
+  </div>
+
+  <!-- imagenes -->
+  <div class="info-section-img_div flex space-x-2">
+    <img
+      *ngFor="let image of imgs"
+      [src]="image"
+      class="w-28 h-28 object-cover rounded-lg shadow"
+      alt="Imagen de la mascota"
+    />
+  </div>
+</div>

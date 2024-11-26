@@ -6,3 +6,4 @@ export interface IAdressSerialization {
     outside_number?: number;
     street?: string;
 }
+    

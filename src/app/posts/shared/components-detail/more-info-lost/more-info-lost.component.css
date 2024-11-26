@@ -3,3 +3,13 @@
     white-space: normal;
   }
   
+  .card-color{
+    background-color: #0575A6;
+  }
+
+  .text-informationPet{
+    font-family: 'Abhaya Libre';
+    font-size: 19.5px;
+    font-weight:900 ;
+    text-align: justify;
+  }

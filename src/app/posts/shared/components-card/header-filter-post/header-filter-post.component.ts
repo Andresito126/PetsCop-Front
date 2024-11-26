@@ -10,6 +10,7 @@ export class HeaderFilterPostComponent {
   @Output() executeGetOld = new EventEmitter<void>();
   @Input() getRecent!: () => void;
   @Input() getOld!: () => void;
+  @Input() title: string= "";
   value_option: number = 0;
 
   onOptionSelected(){
