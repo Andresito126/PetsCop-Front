@@ -21,6 +21,7 @@ export class ChatListComponent implements OnInit {
   }
 
   pass_chat_id(id: string){
+    console.log("Pasando chat con el id:", id);
     this.id_chat_to_pass.emit(id);
   }
 

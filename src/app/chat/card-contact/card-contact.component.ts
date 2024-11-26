@@ -33,6 +33,7 @@ export class CardContactComponent implements OnInit {
   }
 
   open_chat(){
+    console.log("Abriendo chat:", this.chat_info._id);
     this.send_action.emit(this.chat_info._id);
   }
 

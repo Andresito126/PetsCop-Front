@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MessageService } from '../services/message.service';
 import { ImessageSerialization } from '../models/imessage-serialization';
 
@@ -7,7 +7,7 @@ import { ImessageSerialization } from '../models/imessage-serialization';
   templateUrl: './messages-chat.component.html',
   styleUrl: './messages-chat.component.css'
 })
-export class MessagesChatComponent implements OnInit, OnDestroy {
+export class MessagesChatComponent implements OnInit, OnChanges, OnDestroy {
   @Input() id_chat: string = "";
   @Input() id_user: number = 0;
   @Input() user_name: string = "";
@@ -48,6 +48,13 @@ export class MessagesChatComponent implements OnInit, OnDestroy {
           }
         }
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes['id_chat'] && changes['id_chat'].currentValue){
+        console.log("Cambiando id del chat a:", this.id_chat);
+        this.ngOnInit();
+      }
   }
 
   ngOnDestroy(): void {
