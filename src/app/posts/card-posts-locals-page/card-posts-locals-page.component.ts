@@ -24,4 +24,6 @@ export class CardPostsLocalsPageComponent {
     this.router.navigate(['/detalleLocalServicio', this.localService._id]);
   }
 
+  
+
 }

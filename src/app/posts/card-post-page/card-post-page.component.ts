@@ -46,4 +46,12 @@ export class CardPostPageComponent implements OnInit {
   redirectDetailPost(): void {
     this.router.navigate(['/detallePost', this.post._id]);
   }
+
+  redirectEditPostLost():void{
+    this.router.navigate(['/actualizar-publicacion-perdida', this.post._id])
+  }
+
+  redirectEditPostAdoption():void{
+    this.router.navigate(['/actualizar-publicacion-adopcion', this.post._id])
+  }
 }
