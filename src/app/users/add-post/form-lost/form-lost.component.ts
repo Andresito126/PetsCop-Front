@@ -9,6 +9,7 @@ import {
 import { ILossPostSerialization } from '../../models/iloss-post-serialization';
 import { PostService } from '../../services/post.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-lost',
@@ -52,7 +53,8 @@ export class FormLostComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private formBuilder: FormBuilder,
-    private servicePost: PostService
+    private servicePost: PostService,
+    private router: Router
   ) {
     this.formLost = this.form.group({
       // Datos básicos
@@ -74,14 +76,16 @@ export class FormLostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.servicePost.showColonies().subscribe(
-      (response) => {
-        this.colonies = response;
-      },
-      (err) => {
-        console.log('Error: ' + err);
-      }
-    );
+    if (localStorage.getItem('token')) {
+      this.servicePost.showColonies().subscribe(
+        (response) => {
+          this.colonies = response;
+        },
+        (err) => {
+          console.log('Error: ' + err);
+        }
+      );
+    }
   }
 
   //METODOS
@@ -143,7 +147,7 @@ export class FormLostComponent implements OnInit {
               color: '#ffffff',
               showConfirmButton: false,
               timer: 1800,
-            });
+            }).then(() => this.router.navigate(['']));
           },
           (err) => {
             console.log(err);

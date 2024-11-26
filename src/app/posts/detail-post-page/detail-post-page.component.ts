@@ -62,7 +62,8 @@ export class DetailPostPageComponent implements OnInit {
     this.id_post = this.route.snapshot.paramMap.get('id_post');
     this.getInformationPost();
   }
-  type_post= ""
+
+
   getInformationPost(): void {
     this.postServices.getInformationPost(this.id_post).subscribe(
       (response) => {

@@ -25,6 +25,7 @@ import { UpdateLostPageComponent } from './users/add-post/pages/update-lost-page
 import { UpdateAdoptionPageComponent } from './users/add-post/pages/update-adoption-page/update-adoption-page.component';
 
 import { UserTypeGuard } from './guards/user-type.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:'', component:HomePageComponent},
@@ -48,11 +49,14 @@ const routes: Routes = [
   {path:'detalleLocalServicio/:id_local_servicio', component:DetailPostLocalsPageComponent},
   {path:'publicacion/locales', component:LocalsPageComponent},
   
-  { path: 'crear-publicacion-perdida', component: LostPageComponent },
+  { path: 'crear-publicacion-perdida', component: LostPageComponent, canActivate: [AuthGuard]},
  
-  { path: 'actualizar-publicacion-perdida/:id_post',component: UpdateLostPageComponent},
-  { path: 'crear-publicacion-adopcion', component: AdoptionPageComponent },
+  { path: 'actualizar-publicacion-perdida/:id_post',component: UpdateLostPageComponent },
+
+  { path: 'crear-publicacion-adopcion', component: AdoptionPageComponent, canActivate: [AuthGuard]},
+
   { path: 'actualizar-publicacion-adopcion/:id_post', component: UpdateAdoptionPageComponent},
+
   {path: 'chat', component: ViewChatComponent},
 
   {path: 'configuracion/local_services', component: EditLocalServicesFormComponent}
