@@ -51,6 +51,26 @@ export class AsideComponent implements OnInit {
     this.router.navigate(["/user_profile", this.id_user]);
   }
 
+  goToHome(){
+    this.router.navigate(["/"]);
+  }
+
+  goToLocalService(){
+    this.router.navigate(["/"]);
+  }
+
+  goToLosted(){
+    this.router.navigate(["/"]);
+  }
+
+  goToFinded(){
+    this.router.navigate(["/"]);
+  }
+
+  goToAdoption(){
+    this.router.navigate(["/"]);
+  }
+
   getImgProfile(){
     const getting_id = localStorage.getItem("id_user");
     this.id_user = getting_id ? JSON.parse(getting_id) : 0;

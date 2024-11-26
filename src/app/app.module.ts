@@ -22,6 +22,7 @@ import { ChatModule } from './chat/chat.module';
 
 
 import { LocalesServiciosModule } from './locales-servicios/locales-servicios.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { LocalesServiciosModule } from './locales-servicios/locales-servicios.mo
     PostTypeModalComponent,
     CredentialsModule,
     HttpClientModule,
-
+    RouterModule,
     HomeModule,
     PostsModule,
     MascotasPagesModule,
