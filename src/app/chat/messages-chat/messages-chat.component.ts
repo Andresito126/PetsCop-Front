@@ -7,7 +7,7 @@ import { ImessageSerialization } from '../models/imessage-serialization';
   templateUrl: './messages-chat.component.html',
   styleUrl: './messages-chat.component.css'
 })
-export class MessagesChatComponent implements OnInit, OnChanges, OnDestroy {
+export class MessagesChatComponent implements OnChanges, OnDestroy {
   @Input() id_chat: string = "";
   @Input() id_user: number = 0;
   @Input() user_name: string = "";
@@ -20,45 +20,47 @@ export class MessagesChatComponent implements OnInit, OnChanges, OnDestroy {
     body_message: "",
   }
 
+  private listenersInitialized: boolean = false;
+
   constructor(private chatServices: MessageService){}
 
-  ngOnInit(): void {
-    console.log("Iniciando chat");
-      this.chatServices.join(this.id_chat, this.id_user);
-      this.chatServices.load_messages(this.id_chat, (messages) => {this.messages = messages});
+  initializeListeners(): void {
+    this.chatServices.on_new_message((message) => {
+      this.messages.push(message);
+    });
 
-      this.chatServices.on_new_message((message) => {
-        this.messages.push(message);
-      })
-
-      this.chatServices.on_edited_message((message) => {
-        for(let i: number = 0; i < this.messages.length; i++){
-          if(this.messages[i]._id === message._id){
-            this.messages[i] = message;
-            i = this.messages.length + 10;
-          }
+    this.chatServices.on_edited_message((message) => {
+      for (let i: number = 0; i < this.messages.length; i++) {
+        if (this.messages[i]._id === message._id) {
+          this.messages[i] = message;
+          break;
         }
-      })
+      }
+    });
 
-      this.chatServices.on_deleted_message((id_message) => {
-        for(let i: number = 0; i < this.messages.length; i++){
-          if(this.messages[i]._id === id_message){
-            this.messages.splice(i, 1);
-            i = this.messages.length + 10;
-          }
-        }
-      });
+    this.chatServices.on_deleted_message((id_message) => {
+      this.messages = this.messages.filter((msg) => msg._id !== id_message);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
       if(changes['id_chat'] && changes['id_chat'].currentValue){
         console.log("Cambiando id del chat a:", this.id_chat);
-        this.ngOnInit();
+
+        this.chatServices.join(this.id_chat, this.id_user);
+        this.chatServices.load_messages(this.id_chat, (messages) => {
+          this.messages = messages;
+        });
+        if (!this.listenersInitialized) {
+          this.initializeListeners();
+          this.listenersInitialized = true;
+        }
       }
   }
 
   ngOnDestroy(): void {
       this.chatServices.on_disconect();
+      this.listenersInitialized = false;
   }
 
   editingMessage(message: ImessageSerialization){
@@ -69,13 +71,4 @@ export class MessagesChatComponent implements OnInit, OnChanges, OnDestroy {
   closeEditMessage(close: boolean){
     this.message_is_editing = false;
   }
-
-  /*
-
-  editMessage(objMsg: ImessagesSerialization){
-    objMsg.body_message = this.edit_body;
-    this.chatServices.edit_message(this.id_chat, objMsg);
-    this.edit_body = "";
-  }
-    */
 }
