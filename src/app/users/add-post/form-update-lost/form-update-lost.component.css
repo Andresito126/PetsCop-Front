@@ -22,6 +22,9 @@
     background-position: calc(100% - 1.5rem) center;
   }
   
+  .form-step1, .form-step2{
+    width: 590px;
+  }
   
   
   .container-main {

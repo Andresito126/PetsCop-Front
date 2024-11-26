@@ -1,18 +1,24 @@
 <div
-  class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 flex justify-center"
+  class="mx-auto max-w-screen-xl px-4 py-6 sm:px-6 lg:px-8 flex justify-center"
 >
-  <div class="w-full sm:w-1/2">
+
     <form
       [formGroup]="formAdoption"
       (ngSubmit)="onSubmitFormAdoption()"
       action="#"
-      class="mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+      class=""
     >
       <!-- INICIO FORM PT1 -->
-      <div *ngIf="currentStep === 1" class="form-step1">
+      <div *ngIf="currentStep === 1" class="form-step1 mb-0  space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+        <h1
+        class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl">
+          Formulario de adopción
+        </h1>
+        <hr class="flex-grow mb-2" />
         <h1
           class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
         >
+
           Datos básicos de la mascota
         </h1>
 
@@ -129,7 +135,7 @@
               *ngIf="characteristics.length > 1"
             >
               <div
-                class="absolute inset-0 w-3 bg-blue-600 transition-all duration-[250ms] ease-out group-hover:w-full"
+                class="absolute inset-0 w-3 bg-[#0575A6] transition-all duration-[250ms] ease-out group-hover:w-full"
               ></div>
               <span class="relative text-black group-hover:text-white">
                 Eliminar
@@ -141,7 +147,7 @@
         <button
           type="button"
           (click)="addCharacteristic()"
-          class="text-blue-600 text-sm font-medium mt-2"
+          class="text-[#0575A6] text-sm font-medium mt-2"
         >
           + Agregar nueva característica
         </button>
@@ -170,7 +176,7 @@
       </div>
 
       <!-- INICIO FORM PT2 -->
-      <div *ngIf="currentStep === 2" class="form-step2">
+      <div *ngIf="currentStep === 2" class="form-step2 mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
         <h1
           class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
         >
@@ -267,7 +273,7 @@
               (click)="removePhysicalProblems(i)"
             >
               <div
-                class="absolute inset-0 w-3 bg-blue-600 transition-all duration-[250ms] ease-out group-hover:w-full"
+                class="absolute inset-0 w-3 bg-[#0575A6] transition-all duration-[250ms] ease-out group-hover:w-full"
               ></div>
               <span class="relative text-black group-hover:text-white">
                 Eliminar
@@ -279,7 +285,7 @@
           <button
             type="button"
             (click)="addPhysicalProblems()"
-            class="text-blue-600 text-sm font-medium mt-2"
+            class="text-[#0575A6] text-sm font-medium mt-2"
           >
             + Agregar nuevo problema físico
           </button>
@@ -351,7 +357,7 @@
 
       <!-- INICIO FORM PT3 -->
 
-      <div *ngIf="currentStep === 3" class="form-step3">
+      <div *ngIf="currentStep === 3" class="form-step3 mb-0 mt-4 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
         <h1
           class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
         >
@@ -483,5 +489,5 @@
         </button>
       </div>
     </form>
-  </div>
+ 
 </div>
