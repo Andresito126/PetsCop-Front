@@ -28,7 +28,7 @@ export class ChatListComponent implements OnInit {
   get_chats(){
     this.chatServices.get_chats(this.id_user).subscribe(
       response => {
-        console.log("It's ok!")
+        console.log("It's ok!", response)
         this.chat_list = response;
       },
       error => console.log("Error:", error)
