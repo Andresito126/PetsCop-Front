@@ -19,7 +19,6 @@ export class HeaderCardLocalServiceComponent {
 
   // VARIABLES
   @Input() id_user!: number;
-  @Input() showButtonMessage: boolean = false;
 
   user_name: string = '';
   profile_photo: any;

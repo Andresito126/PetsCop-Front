@@ -11,17 +11,28 @@
   
 }
 
+.text-status-name{
+  font-size: 20px;
+  font-weight: 600;
+  color: #0575A6;
+}
+
+.text-status_weight{
+  font-size: 20px;
+  font-weight: 500;
+}
+
 .text-namePet{
   font-size: 19px;
-  font-family: 'Abhaya Libre';
+
   font-weight: bolder;
   font-style: normal;
 }
 
 .text-informationPet{
-  font-family: 'Abhaya Libre';
-  font-size: 17px;
-  font-weight:900 ;
+
+  font-size: 15px;
+  font-weight:normal ;
   text-align: justify;
 }
 

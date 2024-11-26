@@ -1,16 +1,22 @@
-.description-of-event {
-  max-width: 100%;
-  white-space: normal;
-}
-
-.description-of-event {
-  max-width: 100%;
-  white-space: normal;
-}
-
 .card-color {
   background-color: #0575a6;
+  min-width: 245px; 
+  max-width: 200px; 
+  height: 90px;
+  flex-grow: 1; 
 }
+
+
+.description-of-event {
+  max-width: 100%;
+  white-space: normal;
+}
+
+
+.cards-places {
+  gap: 1rem; 
+}
+
 
 .text-informationPet {
   font-family: "Abhaya Libre";

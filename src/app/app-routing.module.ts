@@ -28,15 +28,15 @@ import { UserTypeGuard } from './guards/user-type.guard';
 
 const routes: Routes = [
   {path:'', component:HomePageComponent},
-  {path:'perdidos', component: PerdidosPageComponent},
-  {path:'encontrados', component: EncontradosPageComponent},
-  {path:'adopcion', component: AdopcionPageComponent},
+  {path:'publicacion/perdidos', component: PerdidosPageComponent},
+  {path:'publicacion/encontrados', component: EncontradosPageComponent},
+  {path:'publicacion/adopciones', component: AdopcionPageComponent},
   {path:'usuario', component:ChooseUserComponent},
   {path:'usuario/registro', component:RegisterComponent, canActivate: [UserTypeGuard] },
   {path:'login', component:LoginComponent},
   {path:'detallePost/:id_post', component:DetailPostPageComponent},
-  {path: 'publicacion/perdida', component: LostPageComponent },
-  {path: 'publicacion/adopcion', component: AdoptionPageComponent },
+  {path: 'formulario/perdida', component: LostPageComponent },
+  {path: 'formulario/adopcion', component: AdoptionPageComponent },
 
   //dependiendo del usaurio
   {path:'user/configuration', component:ProfileSettingsPageComponent},

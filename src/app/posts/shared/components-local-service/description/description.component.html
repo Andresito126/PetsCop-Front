@@ -1,50 +1,42 @@
 <div class="div_lost">
-    <div
-      class="description-of-event text-gray-700  max-w-full overflow-hidden mt-2"
-    >
-      <h1 class="font-semibold text-xl mt-2 mb-5">Descripción</h1>
-      <p class="break-words">
-        {{ description }}
-      </p>
-      
-    </div>
- 
-    <hr class="border-gray-300 mt-4 mb-2" />
+  <div class="description-of-event text-gray-700 max-w-full overflow-hidden mt-2">
+    <h1 class="font-semibold text-xl mt-2 mb-5">Descripción</h1>
+    <p class="break-words">
+      {{ description }}
+    </p>
+  </div>
 
-    <div class="last-seen text-gray-600 mt-5">
-      <div class="cards-places flex space-x-4 mb-4">
-        <div
-          class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-52"
-        >
-          Estado <br />
-          <p class="text-white">{{address?.state}}</p>
-        </div>
-        <div
-          class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
-        >
-          Municipio <br />
-          <p class="text-white">{{address?.municipality}}</p>
-        </div>
-        <div
-          class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
-        >
-          Colonia <br />
-          <p class="text-white">{{address?.colony}}</p>
-        </div>
-        <div
-          class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
-        >
-          Calle <br />
-          <p class="text-white">{{address?.street}}</p>
-        </div>
-        <div
-          class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
-          *ngIf="address?.outside_number"
-        >
-          Número exterior <br />
-          <p class="text-white">{{address?.outside_number}}</p>
-        </div>
+  <hr class="border-gray-300 mt-4 mb-2" />
+
+  <div class="last-seen text-gray-600 mt-5">
+    <div class="cards-places flex flex-wrap gap-4">
+      <div class="card-color text-white px-4 py-2 rounded-lg text-center flex-1">
+        Estado <br />
+        <p class="text-white">{{ address?.state }}</p>
+      </div>
+
+      <div class="card-color text-white px-4 py-2 rounded-lg text-center flex-1">
+        Municipio <br />
+        <p class="text-white">{{ address?.municipality }}</p>
+      </div>
+
+      <div class="card-color text-white px-4 py-2 rounded-lg text-center flex-1">
+        Colonia <br />
+        <p class="text-white">{{ address?.colony }}</p>
+      </div>
+
+      <div class="card-color text-white px-4 py-2 rounded-lg text-center flex-1">
+        Calle <br />
+        <p class="text-white">{{ address?.street }}</p>
+      </div>
+
+      <div
+        class="card-color text-white px-4 py-2 rounded-lg text-center flex-1"
+        *ngIf="address?.outside_number"
+      >
+        Número exterior <br />
+        <p class="text-white">{{ address?.outside_number }}</p>
       </div>
     </div>
   </div>
-  
+</div>

@@ -19,7 +19,7 @@ export class HeaderCardComponent implements OnChanges {
 
   // VARIABLES
   @Input() id_user!: number;
-  @Input() showButtonMessage: boolean=false;
+
   @Input() showInfoLocal: boolean=false
   @Input() showInfoData: boolean=false
   @Input() time = '';

@@ -2,10 +2,15 @@
   class="card-container_info rounded-lg border border-gray-200 bg-white shadow-md p-5 flex justify-between items-start"
 >
   <div class="info-section-main">
+
+    <div class="info-section_dog-text flex">
+      <p class=" text-status-name text-transform: uppercase ">{{ pet.name }}</p>
+    </div>
+
     <!-- ng if si es perdido o encontrado cambia color -->
      <div *ngIf="type_post==='Lost'">
       <p
-      class="text-status  text-red-600"
+      class="text-status_weight  text-red-600"
     >
       ESTADO:
       <span  class="text-gray-600">Perdido</span>
@@ -14,9 +19,9 @@
   
      </div>
 
-     <div *ngIf="type_post==='Found'">
+     <div *ngIf="type_post==='Encontrado'">
       <p
-      class="text-status  text-green-600"
+      class="text-status_weight  text-green-500"
     >
       ESTADO:
       <span class="text-gray-600">Encontrado</span>
@@ -25,17 +30,13 @@
 
      <div *ngIf="type_post==='Adoption'">
       <p
-      class="text-status  text-violet-700"
+      class="text-status_weight  text-violet-800"
     >
       ESTADO:
       <span  class="text-gray-600">Adopción</span>
     </p>
      </div>
   
-
-    <div class="info-section_dog-text flex">
-      <p class=" text-status text-blue-800 text-transform: uppercase ">{{ pet.name }}</p>
-    </div>
 
     <div
       class="info-section-description_div mt-2 text-justify"

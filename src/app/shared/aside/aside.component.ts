@@ -2,21 +2,25 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { UserConfigurationService } from '../../users/services/user-configuration.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-aside',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './aside.component.html',
   styleUrl: './aside.component.css'
 })
 
 
 
+
 export class AsideComponent implements OnInit {
 
+  showButtonsAside: boolean = true;
   isDropdownOpen: boolean = false;
+  hiddenRoutes: string[] = ['/usuario', '/login', '/usuario/registro', ];
+
 
   constructor(
     private userConfigurationServices: UserConfigurationService,
@@ -40,8 +44,17 @@ export class AsideComponent implements OnInit {
   rol_user: string = "";
   id_user: number = 0;
 
+  
+
   ngOnInit(): void {
       this.getImgProfile();
+          // se suscribe para los cambios de la ruta
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // actualiza la si se ve la vista segun la ruta
+        this.showButtonsAside = !this.hiddenRoutes.includes(event.urlAfterRedirects);
+      }
+    });
   }
 
   goToProfile(){
@@ -51,26 +64,7 @@ export class AsideComponent implements OnInit {
     this.router.navigate(["/user_profile", this.id_user]);
   }
 
-  goToHome(){
-    this.router.navigate(["/"]);
-  }
-
-  goToLocalService(){
-    this.router.navigate(["/"]);
-  }
-
-  goToLosted(){
-    this.router.navigate(["/"]);
-  }
-
-  goToFinded(){
-    this.router.navigate(["/"]);
-  }
-
-  goToAdoption(){
-    this.router.navigate(["/"]);
-  }
-
+  
   getImgProfile(){
     const getting_id = localStorage.getItem("id_user");
     this.id_user = getting_id ? JSON.parse(getting_id) : 0;

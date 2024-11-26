@@ -10,22 +10,22 @@
     <hr class="border-gray-300 mt-4" />
   </div>
   <div class="info-pet-lost">
-    <p class="text-yellow-400 font-semibold text-xl mb-3">Perdido en:</p>
+    <p class="font-semibold text-xl mb-3">Perdido en:</p>
     <div class="cards-places flex space-x-4 mb-4">
       <div
-        class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Estado <br />
         <p class="text-white">{{ state }}</p>
       </div>
       <div
-        class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Municipio <br />
         <p class="text-white">{{ municipality }}</p>
       </div>
       <div
-        class="card-color text-yellow-400 px-4 py-2 rounded-lg text-center min-w-56"
+        class="card-color text-white px-4 py-2 rounded-lg text-center min-w-56"
       >
         Colonia <br />
         <p class="text-white">{{ neighborhood }}</p>
@@ -34,7 +34,7 @@
     <div class="last-seen text-gray-600 mt-5">
       <p class="text-informationPet flex items-center">
         <img src="assets/posts/ubication.svg" class=" h-10 w-10 mr-2" />
-        {{ lastSeen }}
+        Última vez vista:  {{ lastSeen }}
       </p>
     </div>
   </div>
