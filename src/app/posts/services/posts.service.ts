@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { IPostSerialization } from '../models/ipost-serialization';;
 import { ILocalServiceSerialization } from '../models/ilocal-service-serialization';
 import { IPostPreview } from '../models/ipost-preview';
-import { ILocalService } from '../../local-services/models/ilocal-service-serialization';
 import { SafeUrl } from '@angular/platform-browser';
 
 @Injectable({
@@ -48,9 +47,7 @@ export class PostsService {
     return this._http.post<ILocalServiceSerialization>(`${this._url_mongo}/posts/getNameAndPhotolocalService/${id_user}`, {});
   }
 
-  getAllLocalServices(): Observable<ILocalService[]> {
-    return this._http.get<ILocalService[]>(`${this._url_mongo}/locals_services/getAllLocalsServices`);
-  }
+  
 
   
   

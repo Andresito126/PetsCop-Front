@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../../posts/services/posts.service';
 import { ILocalService } from '../../models/ilocal-service-serialization';
+import { LocalServiceService } from '../../../posts/shared/components-local-service/services/local-service.service';
 
 @Component({
   selector: 'app-locals-page',
@@ -9,7 +10,7 @@ import { ILocalService } from '../../models/ilocal-service-serialization';
 })
 export class LocalsPageComponent implements OnInit {
   constructor(
-    private postServices: PostsService,
+    private localServices: LocalServiceService,
   ) {}
 
   // VARIABLES
@@ -21,7 +22,7 @@ export class LocalsPageComponent implements OnInit {
   }
 
   getLocalServices(): void {
-    this.postServices.getAllLocalServices().subscribe(
+    this.localServices.getAllLocalServices().subscribe(
       (response) => {
         console.log(response)
         this.local_services = response;

@@ -10,11 +10,11 @@
     <!-- horarios -->
     <div class="dropdown-horizontal-list">
       <div
-        *ngFor="let horario of horarios"
+        *ngFor="let horario of openingHours"
         class="dropdown-horizontal-card"
       >
-        <h3 class="dropdown-horizontal-card-title">{{ horario.dia }}</h3>
-        <p class="dropdown-horizontal-card-text">{{ horario.horarioEntrada }} - {{horario.horarioSalida}}</p>
+        <h3 class="dropdown-horizontal-card-title">{{ horario.day_care }}</h3>
+        <p class="dropdown-horizontal-card-text">{{ horario.start_time }} - {{horario.end_time}}</p>
       </div>
     </div>
   </div>

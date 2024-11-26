@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { IAdressSerialization } from '../../../../credentials/models/iadress-serialization';
 
 @Component({
   selector: 'app-name-address',
@@ -9,5 +10,4 @@ export class NameAddressComponent {
 
   //VARIABLES
   @Input() name!: string;
-  @Input() address!: string;
 }

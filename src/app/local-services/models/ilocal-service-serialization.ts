@@ -1,5 +1,3 @@
-import { SafeUrl } from "@angular/platform-browser";
-
 export interface ILocalService {
   _id: string;
   id_user: number;

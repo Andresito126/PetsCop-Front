@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILocalService } from '../../../../local-services/models/ilocal-service-serialization';
+import { IInformationLocalService } from '../../../models/iinformation-local-service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,13 @@ export class LocalServiceService {
 
   getInformationLocalService(id_user: number): Observable<ILocalService> {
     return this.http.get<ILocalService>(`${this._url_mongo}/locals_services/get_by_id_user/${id_user}`);
+  }
+
+  getInformationLocalServiceById(id: string): Observable<IInformationLocalService> {
+    return this.http.post<IInformationLocalService>(`${this._url_mongo}/locals_services/getInformationLocalService/${id}`,{});
+  }
+
+  getAllLocalServices(): Observable<ILocalService[]> {
+    return this.http.get<ILocalService[]>(`${this._url_mongo}/locals_services/getAllLocalsServices`);
   }
 }
