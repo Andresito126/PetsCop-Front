@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IlocalServicesSerialization } from '../models/ilocal-services-serialization';
 import { Observable } from 'rxjs';
@@ -39,6 +39,8 @@ export class LocalServicesService {
   }
 
   post_photo_into_local_services(images: FormData): Observable<string[]>{
-    return this._http.post<string[]>(this._url_mongo + "drive/uploadImages", images);
+    return this._http.post<string[]>(this._url_mongo + "drive/uploadImages", images, {
+      headers: new HttpHeaders({ 'skipAuth': 'true' })
+    });
   }
 }

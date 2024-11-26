@@ -35,12 +35,16 @@ export class UsersAuthService {
 
   // Registrar a un local o servicio
   registerLocalService(newLocalService: IRegisterUserLocalServiceSerialization): Observable<void> {
-    return this._http.post<void>(this._apiURLMONGO + '/locals_services/registerLocalService', newLocalService);
+    return this._http.post<void>(this._apiURLMONGO + '/locals_services/registerLocalService', newLocalService, {
+      headers: new HttpHeaders({ 'skipAuth': 'true' })
+    });
   }
 
   // Guardar imágen
   saveImage(form_data: FormData): Observable<any> {
-    return this._http.post<any>(this._apiUrl + '/drive/upload', form_data)
+    return this._http.post<any>(this._apiUrl + '/drive/upload', form_data, {
+      headers: new HttpHeaders({ 'skipAuth': 'true' })
+    })
   }
 
   // registerLocalService(newUser: IRegisterUserLocalServiceSerialization): Observable<IRegisterUserLocalServiceSerialization>{
@@ -57,7 +61,9 @@ export class UsersAuthService {
   };
 
   getColognes(cp: number): Observable<string[]>{
-    return this._http.post<string[]>(this._apiURLMONGO + "/dipomex/" + cp, null);
+    return this._http.post<string[]>(this._apiURLMONGO + "/dipomex/" + cp, null, {
+      headers: new HttpHeaders({ 'skipAuth': 'true' })
+    });
   }
 
   // EJEMPLO
