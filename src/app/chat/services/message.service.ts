@@ -6,7 +6,7 @@ import { ImessageSerialization } from '../models/imessage-serialization';
   providedIn: 'root'
 })
 export class MessageService {
-  private _url_api_mongo: string = "http://localhost:3000/";
+  private _url_api_mongo: string = "https://petscopapi.integrador.xyz/";
   private socket: Socket;
 
   constructor() {
