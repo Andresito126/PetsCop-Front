@@ -22,6 +22,10 @@
   background-position: calc(100% - 1.5rem) center;
 }
 
+.form-step1, .form-step2{
+  width: 590px;
+}
+
 /* Estilos para el input que va a mostrar la imagen de la cartilla*/
 .upload-container {
   width: 34rem;

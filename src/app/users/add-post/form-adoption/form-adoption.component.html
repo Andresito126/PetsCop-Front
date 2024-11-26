@@ -1,15 +1,15 @@
 <div
   class="mx-auto max-w-screen-xl px-4 mt-5 sm:px-6 lg:px-8 flex justify-center"
 >
-  <div class="w-full sm:w-1/2">
+ 
     <form
       [formGroup]="formAdoption"
       (ngSubmit)="onSubmitFormAdoption()"
       action="#"
-      class="mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+      class=""
     >
       <!-- INICIO FORM PT1 -->
-      <div *ngIf="currentStep === 1" class="form-step1">
+      <div *ngIf="currentStep === 1" class="form-step1 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
         <h1
         class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl">
           Formulario de adopción
@@ -165,7 +165,7 @@
       </div>
 
       <!-- INICIO FORM PT2 -->
-      <div *ngIf="currentStep === 2" class="form-step2">
+      <div *ngIf="currentStep === 2" class="form-step2 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
         <h1
           class="text-center text-2xl mb-6 font-bold text-slate-800 sm:text-3xl"
         >
@@ -334,7 +334,7 @@
 
       <!-- INICIO FORM PT3 -->
 
-      <div *ngIf="currentStep === 3" class="form-step3">
+      <div *ngIf="currentStep === 3" class="form-step3 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
         <h1
           class="text-center text-2xl font-bold text-slate-800 sm:text-3xl mb-6"
         >
@@ -466,5 +466,5 @@
         </button>
       </div>
     </form>
-  </div>
+  
 </div>
