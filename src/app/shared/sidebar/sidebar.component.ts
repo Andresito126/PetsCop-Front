@@ -11,6 +11,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class SidebarComponent {
 
+
   constructor(
     private router: Router
   ){}
@@ -22,6 +23,14 @@ export class SidebarComponent {
   rol_user: string = "";
   link_configuration_user: string = "";
 
+  logOut() {
+  localStorage.removeItem('token');
+  localStorage.removeItem('rol');
+  localStorage.removeItem('id_user');
+   
+  this.router.navigate(['/login']);
+  console.log("se borraron datos del local")
+    }
   
   toggleMenu() {
     this.menuToggle.emit(); 
